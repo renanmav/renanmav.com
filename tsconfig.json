@@ -4,7 +4,7 @@
     "strict": false,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "bundler",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "strictNullChecks": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

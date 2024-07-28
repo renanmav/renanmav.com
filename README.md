@@ -1,15 +1,15 @@
 # renanmav.com
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and it's using a custom [portfolio site template with a blog](https://vercel.com/templates/next.js/portfolio-starter-kit). Includes:
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using a custom [portfolio site template with a blog](https://vercel.com/templates/next.js/portfolio-starter-kit).
+
+Includes:
 
 - MDX and Markdown support
 - Optimized for SEO (sitemap, robots, JSON-LD schema)
-- RSS Feed
 - Dynamic OG images
 - Syntax highlighting
 - Tailwind v4
 - Vercel Speed Insights / Web Analytics
-- Geist font
 
 ## Getting Started
 
