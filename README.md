@@ -8,7 +8,7 @@ Includes:
 - Optimized for SEO (sitemap, robots, JSON-LD schema)
 - Dynamic OG images
 - Syntax highlighting
-- Tailwind v4
+- Tailwind v3
 - Vercel Speed Insights / Web Analytics
 
 ## Getting Started
