@@ -41,8 +41,6 @@ const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 const inter = Inter({ subsets: ["latin"] });
 
-import nextSvg from "../public/next.svg";
-
 export default function RootLayout({
   children,
 }: Readonly<{
