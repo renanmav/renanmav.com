@@ -8,11 +8,12 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "./components/nav";
 import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
+import { myInfo } from "./constants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Renan Mav",
+    default: myInfo.name,
     template: "%s",
   },
   description: "This is my website.",

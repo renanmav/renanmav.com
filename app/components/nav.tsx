@@ -1,3 +1,4 @@
+import { myInfo } from "app/constants";
 import Image from "next/image";
 
 export function Navbar() {
@@ -16,7 +17,7 @@ export function Navbar() {
             alt="Picture of the author"
             className="mr-2 size-8 rounded-full object-cover"
           />
-          Renan Mav
+          {myInfo.name}
         </a>
       </div>
 

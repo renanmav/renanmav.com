@@ -1,8 +1,9 @@
+import { myInfo } from "app/constants";
 import { ImageResponse } from "next/og";
 
 export function GET(request: Request) {
   let url = new URL(request.url);
-  let title = url.searchParams.get("title") || "Renan Mav";
+  let title = url.searchParams.get("title") || myInfo.name;
 
   return new ImageResponse(
     (

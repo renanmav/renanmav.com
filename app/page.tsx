@@ -1,12 +1,14 @@
 import Link from "next/link";
 
 import { BlogPosts } from "app/components/posts";
+import { myInfo } from "./constants";
 
 export default function Page() {
   return (
     <section>
       <p className="mb-4">
-        I live in Brazil 🇧🇷 and work as a software enginner at Coinbase.
+        I live in {myInfo.address} and work as a software enginner at{" "}
+        {myInfo.company}.
       </p>
 
       <p className="mb-4">
@@ -22,9 +24,9 @@ export default function Page() {
       </p>
       <p className="mb-4">
         You can reach me at{" "}
-        <Link href="mailto:me@renanmav.com">me@renanmav.com</Link>. Also find me
-        on <Link href="https://x.com/renanmav">Twitter</Link> and{" "}
-        <Link href={"https://github.com/renanmav"}>GitHub</Link>.
+        <Link href={`mailto:${myInfo.email}`}>{myInfo.email}</Link>. Also find
+        me on <Link href={myInfo.twitter}>Twitter</Link> and{" "}
+        <Link href={myInfo.github}>GitHub</Link>.
       </p>
 
       <div className="my-8">
