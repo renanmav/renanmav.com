@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     default: "Renan Mav",
     template: "%s",
   },
-  description: "This is my portfolio.", // TODO
+  description: "This is my website.",
   openGraph: {
-    title: "My Portfolio", // TODO
-    description: "This is my portfolio.", // TODO
+    title: "My Website",
+    description: "This is my website.",
     url: baseUrl,
-    siteName: "My Portfolio", // TODO
+    siteName: "My Website",
     locale: "en_US",
     type: "website",
   },
@@ -50,14 +50,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
-        inter.className
+        "bg-white text-black dark:bg-black dark:text-white",
+        inter.className,
       )}
     >
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
+      <body className="mx-4 mt-8 max-w-xl antialiased lg:mx-auto">
         {/* TODO: make this work with dark mode */}
         <link rel="shortcut icon" href="/vercel-icon-dark.svg" />
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+        <main className="mt-6 flex min-w-0 flex-auto flex-col px-2 md:px-0">
           <Navbar />
           {children}
           <Footer />

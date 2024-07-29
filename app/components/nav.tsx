@@ -2,15 +2,19 @@ import Image from "next/image";
 
 export function Navbar() {
   return (
-    <header className="flex flex-row mb-8">
-      <div className="flex flex-row items-center grow" id="nav-left">
-        <a rel="author" href="/" className="flex flex-row items-center">
+    <header className="mb-8 flex flex-row">
+      <div className="flex grow flex-row items-center" id="nav-left">
+        <a
+          rel="author"
+          href="/"
+          className="flex flex-row items-center font-semibold"
+        >
           <Image
             src="/habbo-pfp.png"
             width={30}
             height={30}
             alt="Picture of the author"
-            className="w-8 h-8 rounded-full mr-2 object-cover"
+            className="mr-2 size-8 rounded-full object-cover"
           />
           Renan Mav
         </a>
