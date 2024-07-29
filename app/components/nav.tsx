@@ -22,7 +22,8 @@ export function Navbar() {
       </div>
 
       <div className="flex flex-row items-center" id="nav-right">
-        <span>Theme</span>
+        {/* TODO: implement dark mode */}
+        {/* <span>Theme</span> */}
       </div>
     </header>
   );
