@@ -10,7 +10,24 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       textColor: {
-        black: "rgb(17, 17, 17)",
+        black: "rgb(20, 20, 20)",
+      },
+      fontSize: {
+        sm: [
+          ".8125rem",
+          {
+            fontWeight: "460",
+            letterSpacing: "-.0025rem",
+          },
+        ],
+        base: [
+          ".875rem",
+          {
+            lineHeight: "1.25rem",
+            fontWeight: "400",
+            letterSpacing: "-.00563rem",
+          },
+        ],
       },
     },
   },

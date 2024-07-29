@@ -8,7 +8,7 @@ export function Navbar() {
         <a
           rel="author"
           href="/"
-          className="flex flex-row items-center font-semibold"
+          className="flex flex-row items-center text-base font-semibold"
         >
           <Image
             src="/habbo-pfp.png"
