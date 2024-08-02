@@ -51,7 +51,7 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function Blog({ params }) {
+export default function BlogPostPage({ params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
@@ -82,15 +82,13 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title text-2xl font-semibold tracking-tighter">
-        {post.metadata.title}
-      </h1>
-      <div className="mb-8 mt-2 flex items-center justify-between text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      <h1 className="title text-base font-semibold">{post.metadata.title}</h1>
+      <div className="mb-8 mt-2 flex items-center justify-between text-base">
+        <p className="text-base text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose">
+      <article className="prose text-base">
         <CustomMDX source={post.content} />
       </article>
     </section>

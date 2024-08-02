@@ -55,7 +55,7 @@ export default function RootLayout({
         inter.className,
       )}
     >
-      <body className="mx-4 mt-8 max-w-xl antialiased lg:mx-auto">
+      <body className="mx-auto mt-8 max-w-2xl px-4 antialiased">
         {/* TODO: make this work with dark mode */}
         <link rel="shortcut icon" href="/vercel-icon-dark.svg" />
         <main className="mt-6 flex min-w-0 flex-auto flex-col px-2 md:px-0">

@@ -7,5 +7,6 @@ export const myInfo = {
   linkedin: "https://linkedin.com/in/renanmav",
   github: "https://github.com/renanmav",
   instagram: "https://instagram.com/renanmav",
+  telegram: "https://t.me/renanmav",
   company: "Coinbase",
 };

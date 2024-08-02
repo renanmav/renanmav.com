@@ -5,7 +5,7 @@ export const metadata = {
   description: "Read my blog.",
 };
 
-export default function Page() {
+export default function BlogPostsPage() {
   return (
     <section>
       <BlogPosts />

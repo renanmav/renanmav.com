@@ -1,8 +1,9 @@
-import Link from "next/link";
+import React from "react";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import React from "react";
+
+import Link from "./link";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -27,7 +28,7 @@ function Table({ data }) {
 }
 
 function CustomLink(props) {
-  let href = props.href;
+  const href = props.href;
 
   if (href.startsWith("/")) {
     return (
@@ -38,10 +39,10 @@ function CustomLink(props) {
   }
 
   if (href.startsWith("#")) {
-    return <a {...props} />;
+    return <Link {...props} />;
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return <Link target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
 function RoundedImage(props) {
@@ -77,7 +78,7 @@ function createHeading(level) {
           className: "anchor",
         }),
       ],
-      children
+      children,
     );
   };
 
