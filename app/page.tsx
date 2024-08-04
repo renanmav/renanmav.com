@@ -18,14 +18,17 @@ export default function IndexPage() {
         mobile technologies and building fast and scalable apps that are easy
         and delightful to use.
       </p>
+      {/* TODO: add section about previous work experience */}
       <p className="mb-4 text-base">
         I consider myself an artist at heart, consistently polishing my
         creations and looking for my masterpiece.
       </p>
       <p className="mb-4 text-base">
-        I also enjoy cars and fixing/racing/drifting them. 🏎️ 🏁
-        {/* TODO: Checkout my YouTube channel for some of my sends. */}
+        I also enjoy cars and fixing/racing/drifting them. My biggest
+        inspiration of all time are Jesus Christ and Ayrton Senna. They taught
+        me to be humble, chase my dreams and never give up. 🧎🏻‍➡️🏎️ 🏁
       </p>
+      {/* TODO: Checkout my YouTube channel for some of my sends. */}
       <p className="mb-4 text-base">
         If you think we could work together, pair on a specific problem, or just
         chat about life and cars,{" "}
