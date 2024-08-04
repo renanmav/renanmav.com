@@ -1,5 +1,7 @@
 export const myInfo = {
   name: "Renan Mav",
+  description:
+    "Software Engineer, Fullstack Developer, Open Source Contributor, Car Enthusiast, Artist, Jesus Follower, Ayrton Senna Fan",
   email: "me@renanmav.com",
   phone: "+55 63 98461-0014",
   address: "Brazil 🇧🇷",

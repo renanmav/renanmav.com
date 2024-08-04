@@ -16,14 +16,23 @@ export const metadata: Metadata = {
     default: myInfo.name,
     template: "%s",
   },
-  description: "This is my website.",
+  description: myInfo.description,
   openGraph: {
-    title: "My Website",
-    description: "This is my website.",
+    title: myInfo.name,
+    siteName: myInfo.name,
+    description: myInfo.description,
     url: baseUrl,
-    siteName: "My Website",
-    locale: "en_US",
     type: "website",
+    locale: "en_US",
+    alternateLocale: "pt_BR",
+    images: [
+      {
+        url: new URL("/unfurl.png", baseUrl).href,
+        width: 800,
+        height: 600,
+        alt: myInfo.name,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -55,7 +64,7 @@ export default function RootLayout({
         inter.className,
       )}
     >
-      <body className="mx-auto mt-8 max-w-2xl px-4 antialiased">
+      <body className="mx-auto mt-8 max-w-xl px-4 antialiased">
         {/* TODO: change this to habbo icon rounded */}
         <link rel="shortcut icon" href="/habbo-pfp.png" />
         <main className="mt-6 flex min-w-0 flex-auto flex-col px-2 md:px-0">
