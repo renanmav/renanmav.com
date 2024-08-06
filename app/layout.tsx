@@ -66,7 +66,7 @@ export default function RootLayout({
     >
       <body className="mx-auto mt-8 max-w-xl px-4 antialiased">
         {/* TODO: change this to habbo icon rounded */}
-        <link rel="shortcut icon" href="/habbo-pfp.png" />
+        <link rel="shortcut icon" href="/favicon.png" />
         <main className="mt-6 flex min-w-0 flex-auto flex-col px-2 md:px-0">
           <Navbar />
           {children}
