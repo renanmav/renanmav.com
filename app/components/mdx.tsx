@@ -42,7 +42,7 @@ function CustomLink(props) {
     return <Link {...props} />;
   }
 
-  return <Link target="_blank" rel="noopener noreferrer" {...props} />;
+  return <Link openInNewTab {...props} />;
 }
 
 function RoundedImage(props) {
