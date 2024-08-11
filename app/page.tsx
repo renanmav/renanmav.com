@@ -51,9 +51,9 @@ function HobbiesAndInspirations() {
     <p id="hobbies-and-inspirations" className="mb-4 text-base">
       I consider myself an artist at heart, consistently polishing my creations
       and looking for my masterpiece. I also enjoy cars and
-      fixing/racing/drifting them. My biggest inspiration of all time are Jesus
-      Christ and Ayrton Senna. They taught me to be humble, chase my dreams and
-      never give up. 🙏 🏎️ 🏁
+      fixing/racing/drifting them. My biggest inspirations of all time are my
+      mom & dad, Jesus Christ and Ayrton Senna. They taught me to chase my
+      dreams, be humble and never give up. 🙏 🏎️ 🏁
     </p>
   );
 }

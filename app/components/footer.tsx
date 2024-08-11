@@ -1,9 +1,11 @@
+import { formatDate } from "app/blog/utils";
+
 export default function Footer() {
   return (
     <footer className="mb-20">
       <Divider />
-      <LastUpdated />
       <Memories />
+      <LastUpdated />
     </footer>
   );
 }
@@ -17,13 +19,22 @@ function Divider() {
   );
 }
 
-function LastUpdated() {
-  // return (
-  //   <p id="last-updated" className="text-sm text-gray-400">
-  //     Last updated on {new Date().toLocaleDateString()}
-  //   </p>
-  // );
-  return null;
+async function getLatestCommitDate(): Promise<string> {
+  const response = await fetch(
+    "https://api.github.com/repos/renanmav/renanmav.com/commits/main",
+  );
+  const data = await response.json();
+  return data.commit.author.date;
+}
+
+async function LastUpdated() {
+  const lastCommitDate = await getLatestCommitDate();
+
+  return (
+    <p id="last-updated" className="text-sm text-gray-300 dark:text-gray-600">
+      Last updated on {formatDate(lastCommitDate, true)}
+    </p>
+  );
 }
 
 function Memories() {
