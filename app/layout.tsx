@@ -58,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-US"
       className={cx(
         "bg-white text-black dark:bg-black dark:text-white",
         inter.className,
