@@ -116,19 +116,19 @@ html {
 }
 
 .prose h1 {
-  @apply mb-2 mt-6 text-4xl font-medium tracking-tight;
+  @apply mb-2 mt-6 text-4xl font-medium;
 }
 
 .prose h2 {
-  @apply mb-2 mt-6 text-xl font-medium tracking-tight;
+  @apply mb-2 mt-6 text-xl font-medium;
 }
 
 .prose h3 {
-  @apply mb-2 mt-6 text-xl font-medium tracking-tight;
+  @apply mb-2 mt-6 text-xl font-medium;
 }
 
 .prose h4 {
-  @apply mb-2 mt-6 text-lg font-medium tracking-tight;
+  @apply mb-2 mt-6 text-lg font-medium;
 }
 
 .prose strong {

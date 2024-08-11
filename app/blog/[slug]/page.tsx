@@ -82,12 +82,10 @@ export default function BlogPostPage({ params }) {
           }),
         }}
       />
-      <h1 className="title text-base font-semibold">{post.metadata.title}</h1>
-      <div className="mb-8 mt-2 flex items-center justify-between text-base">
-        <p className="text-base text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
-        </p>
-      </div>
+      <h1 className="title text-base font-medium">{post.metadata.title}</h1>
+      <p className="text-base text-neutral-400">
+        {formatDate(post.metadata.publishedAt)}
+      </p>
       <article className="prose text-base">
         <CustomMDX source={post.content} />
       </article>
