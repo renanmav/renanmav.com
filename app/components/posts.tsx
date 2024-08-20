@@ -23,7 +23,7 @@ export function BlogPosts() {
             href={`/blog/${post.slug}`}
           >
             <div className="flex w-full flex-col space-x-0 md:flex-row md:space-x-2">
-              <p className="w-[100px] text-base tabular-nums text-neutral-400">
+              <p className="w-40 text-base tabular-nums text-neutral-400">
                 {formatDate(post.metadata.publishedAt, false)}
               </p>
               <p className="text-base text-blue-500 no-underline hover:underline">

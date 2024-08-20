@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 
 import Link from "./link";
+import DateFromNow from "./date-from-now";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -98,6 +99,7 @@ let components = {
   a: CustomLink,
   code: Code,
   Table,
+  DateFromNow,
 };
 
 export function CustomMDX(props) {

@@ -36,7 +36,7 @@ export default function ContactList() {
   ];
 
   return (
-    <div>
+    <div className="mb-8">
       {contacts.map((contact) => (
         <p key={contact.name} className="text-base">
           {contact.name}:{" "}

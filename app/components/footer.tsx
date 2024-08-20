@@ -20,6 +20,7 @@ function Divider() {
 }
 
 async function getLatestCommitDate(): Promise<string> {
+  "use client";
   const response = await fetch(
     "https://api.github.com/repos/renanmav/renanmav.com/commits/main",
   );
@@ -40,7 +41,7 @@ async function LastUpdated() {
 function Memories() {
   return (
     <p id="memories" className="text-sm text-gray-400">
-      Recording memories while time passes by...
+      Recording memories while time goes by...
     </p>
   );
 }
