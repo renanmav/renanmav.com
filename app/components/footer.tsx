@@ -1,5 +1,6 @@
 "use client";
 
+import useSWR from "swr";
 import { formatDate } from "app/formatDate";
 
 export default function Footer() {
@@ -21,21 +22,22 @@ function Divider() {
   );
 }
 
-async function getLatestCommitDate(): Promise<string> {
-  "use client";
-  const response = await fetch(
+function getLatestCommitDate(): Promise<string> {
+  return fetch(
     "https://api.github.com/repos/renanmav/renanmav.com/commits/main",
-  );
-  const data = await response.json();
-  return data.commit.author.date;
+  )
+    .then((response) => response.json())
+    .then((data) => data.commit.author.date);
 }
 
-async function LastUpdated() {
-  const lastCommitDate = await getLatestCommitDate();
+function LastUpdated() {
+  const { data } = useSWR("lastCommitDate", getLatestCommitDate);
+
+  if (!data) return null;
 
   return (
     <p id="last-updated" className="text-sm text-gray-300 dark:text-gray-600">
-      Last updated on {formatDate(lastCommitDate, true)}
+      Last updated on {formatDate(data, true)}
     </p>
   );
 }
