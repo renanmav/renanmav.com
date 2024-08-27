@@ -1,4 +1,6 @@
-import { formatDate } from "app/blog/utils";
+"use client";
+
+import { formatDate } from "app/formatDate";
 
 export default function Footer() {
   return (
