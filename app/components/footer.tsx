@@ -31,9 +31,9 @@ function getLatestCommitDate(): Promise<string> {
 }
 
 function LastUpdated() {
-  const { data } = useSWR("lastCommitDate", getLatestCommitDate);
-
-  if (!data) return null;
+  const { data } = useSWR("lastCommitDate", getLatestCommitDate, {
+    fallbackData: new Date().toISOString(),
+  });
 
   return (
     <p id="last-updated" className="text-sm text-gray-300 dark:text-gray-600">
