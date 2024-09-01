@@ -32,10 +32,10 @@ function MeNowadays() {
 function PassionsAndInterests() {
   return (
     <p id="passions-and-interests" className="mb-4 text-base">
-      I'm passionate about design, code quality, fullstack development, making
-      open-source contributions and building in public. I have a particular
-      interest in mobile technologies and building fast and scalable apps that
-      are easy and delightful to use.
+      I'm passionate about design, code quality, making open-source
+      contributions and building in public. I have a particular interest in
+      mobile technologies and building fast and scalable apps that are easy and
+      delightful to use.
     </p>
   );
 }
