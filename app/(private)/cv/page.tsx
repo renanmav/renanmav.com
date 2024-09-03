@@ -10,7 +10,7 @@ const Divider = () => (
 );
 
 export const metadata = {
-  title: "CV",
+  title: "Resume - Renan Mav",
 };
 
 export default function CvPage() {
