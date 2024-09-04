@@ -70,7 +70,7 @@ const history: WorkExperience[] = [
         wallet" to a revamped app in React Native.
       </p>,
       <p key="3">
-        Worked on the onboarding flow using recovery phrases (BIP-39),
+        Worked on the onboarding flow using multi-language mnemonics (BIP-39),
         decentralized identity (.cb.id), Coinbase account &harr; Wallet
         connection, and more.
       </p>,
@@ -109,7 +109,22 @@ const history: WorkExperience[] = [
       { name: "Docker" },
       { name: "Terraform" },
     ],
-    highlights: [<p key="1">A</p>, <p key="2">B</p>, <p key="3">C</p>],
+    highlights: [
+      <p key="1">
+        As one of the first hires, played an instrumental role in definition of
+        app architecture and quality standards.
+      </p>,
+      <p key="2">
+        Contributed to the core features of the app (onboarding, KYC,
+        statements, cards, Pix), focusing on user experience, reliability and
+        performance.
+      </p>,
+      <p key="3">Maintained a close relationship with founders.</p>,
+      <p key="4">
+        Went through YCombinator @ W21 batch, where I learned a lot about
+        startups and the Valley culture.
+      </p>,
+    ],
   },
   {
     company: {
@@ -140,7 +155,22 @@ const history: WorkExperience[] = [
       { name: "AWS Lambda", bold: true },
       { name: "AWS CDK", bold: true },
     ],
-    highlights: [<p key="1">A</p>, <p key="2">B</p>, <p key="3">C</p>],
+    highlights: [
+      <p key="1">
+        Contributed to the development of Confy, SaaS designed to help organize
+        tech meetups.
+      </p>,
+      <p key="2">Partnered with design on multiple sessions.</p>,
+      <p key="3">
+        Implemented social login with Google, Facebook and GitHub as the first
+        workstream.
+      </p>,
+      <p key="4">
+        Deployed a serverless server-side-rendered architecture through AWS
+        Lambda, API Gateway, CDN and AWS CDK.
+      </p>,
+      <p key="5">Supported third-party clients with agile methodology.</p>,
+    ],
   },
 ];
 
