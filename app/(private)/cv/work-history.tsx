@@ -43,8 +43,8 @@ const history: WorkExperience[] = [
     },
     description: (
       <p>
-        Joined Coinbase Wallet team to build a crypto wallet that allows users
-        to manage their digital assets and interact with the blockchain.
+        Individual Contributor on the Coinbase Wallet team, building one of the
+        best self-custody wallets for managing digital assets.
       </p>
     ),
     tools: [
@@ -63,7 +63,23 @@ const history: WorkExperience[] = [
       { name: "REST" },
       { name: "gRPC" },
     ],
-    highlights: [],
+    highlights: [
+      <p key="1">Primarily a product frontend role.</p>,
+      <p key="2">
+        Joined to rewrite the previous native self-custody wallet called "Toshi
+        wallet" to a revamped app in React Native.
+      </p>,
+      <p key="3">
+        Worked on the onboarding flow using recovery phrases (BIP-39),
+        decentralized identity (.cb.id), Coinbase account &harr; Wallet
+        connection, and more.
+      </p>,
+      <p key="4">
+        Currently working on Payment squad, creating fiat-to-crypto experiences.
+        Building the buy flow aggregating multiple payment providers on mobile,
+        extension, dapp and smart contract wallet.
+      </p>,
+    ],
   },
   {
     company: {
@@ -77,7 +93,12 @@ const history: WorkExperience[] = [
       startDate: "jun. 2020",
       endDate: "jan. 2022",
     },
-    description: <p>Early Team Member of Brazilian fintech.</p>,
+    description: (
+      <p>
+        Early Team Member of Brazilian fintech serving unbanked Gen-Z youth w/
+        Mastercard debit card.
+      </p>
+    ),
     tools: [
       { name: "TypeScript", bold: true },
       { name: "React Native", bold: true },
@@ -88,7 +109,7 @@ const history: WorkExperience[] = [
       { name: "Docker" },
       { name: "Terraform" },
     ],
-    highlights: [],
+    highlights: [<p key="1">A</p>, <p key="2">B</p>, <p key="3">C</p>],
   },
   {
     company: {
@@ -119,7 +140,7 @@ const history: WorkExperience[] = [
       { name: "AWS Lambda", bold: true },
       { name: "AWS CDK", bold: true },
     ],
-    highlights: [],
+    highlights: [<p key="1">A</p>, <p key="2">B</p>, <p key="3">C</p>],
   },
 ];
 
@@ -155,7 +176,7 @@ function Experience({ experience }: { experience: WorkExperience }) {
   return (
     <div className="grid grid-cols-2">
       {/* Left column */}
-      <div className="flex flex-col gap-0">
+      <div className="flex flex-col pr-4">
         <div className="flex flex-row gap-2">
           <Link
             href={experience.company.url}
@@ -193,7 +214,13 @@ function Experience({ experience }: { experience: WorkExperience }) {
       </div>
 
       {/* Right column */}
-      <div>highlights!</div>
+      <div>
+        <ul className="list-disc">
+          {experience.highlights.map((highlight, index) => (
+            <li key={index}>{highlight}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

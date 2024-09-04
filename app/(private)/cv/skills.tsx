@@ -5,7 +5,7 @@ type Skill = {
 
 const skills: Skill[] = [
   { name: "TypeScript + React.js / React Native + Node.js", years: 6 },
-  { name: "Go/Golang", years: 2 },
+  { name: "Go/Golang", years: 1 },
   { name: "Docker" },
   { name: "REST" },
   { name: "GraphQL" },
@@ -28,7 +28,8 @@ export default function Skills() {
         <span key={skill.name} className="font-semibold">
           {SKILL_SEPARATOR} {skill.name}{" "}
           <span className="text-sm font-normal italic">
-            {skill.years && `[${skill.years}yrs]`}
+            {skill.years &&
+              `[${skill.years}${skill.years === 1 ? "yr" : "yrs"}]`}
           </span>
         </span>
       ))}
