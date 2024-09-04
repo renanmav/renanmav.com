@@ -12,11 +12,11 @@ const skills: Skill[] = [
   { name: "gRPC" },
   { name: "AWS" },
   { name: "Github Actions (CI/CD)" },
-  { name: "Solidity + Foundry" },
   { name: "Next.js + Vercel" },
   { name: "SSR / CSR / SSG" },
+  { name: "Design Systems" },
+  { name: "Solidity + Foundry + Hardhat" },
   { name: "wagmi / ethers.js / web3.js" },
-  { name: "Design Systems (Storybook, Tailwind)" },
 ];
 
 const SKILL_SEPARATOR = "⇥";

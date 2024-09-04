@@ -9,12 +9,13 @@ export default function Link({
   href,
   children,
   openInNewTab,
+  className,
   ...linkProps
 }: LinkProps) {
   return (
     <NextLink
       href={href}
-      className="text-blue-500 no-underline hover:underline"
+      className={`text-blue-500 no-underline hover:underline ${className}`}
       {...(openInNewTab
         ? {
             target: "_blank",
