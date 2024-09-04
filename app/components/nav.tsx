@@ -2,7 +2,7 @@ import { myInfo } from "app/constants";
 import Image from "next/image";
 import Link from "next/link";
 
-export function Navbar() {
+export default function Navbar() {
   return (
     <header className="mb-8 flex flex-row">
       <div className="flex grow flex-row items-center" id="nav-left">

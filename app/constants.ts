@@ -9,5 +9,6 @@ export const myInfo = {
   github: "https://github.com/renanmav",
   instagram: "https://instagram.com/renanmav",
   telegram: "https://t.me/renanmav",
+  website: "https://renanmav.com",
   company: "Coinbase",
 };

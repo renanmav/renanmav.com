@@ -5,8 +5,6 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { Navbar } from "./components/nav";
-import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
 import { myInfo } from "./constants";
 
@@ -64,16 +62,11 @@ export default function RootLayout({
         inter.className,
       )}
     >
-      <body className="mx-auto mt-8 max-w-xl px-4 antialiased">
-        {/* TODO: change this to habbo icon rounded */}
+      <body className="antialiased">
         <link rel="shortcut icon" href="/favicon.png" />
-        <main className="mt-6 flex min-w-0 flex-auto flex-col px-2 md:px-0">
-          <Navbar />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </main>
+        {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

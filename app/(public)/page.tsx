@@ -1,6 +1,6 @@
 import { BlogPosts } from "app/components/posts";
-import { myInfo } from "./constants";
-import Link from "./components/link";
+import { myInfo } from "app/constants";
+import Link from "app/components/link";
 
 export default function IndexPage() {
   // TODO: add react-intl for translations
