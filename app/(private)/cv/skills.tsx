@@ -5,7 +5,7 @@ type Skill = {
 
 const skills: Skill[] = [
   { name: "TypeScript + React.js / React Native + Node.js", years: 6 },
-  { name: "Go/Golang", years: 1 },
+  { name: "Go/Golang", years: 2 },
   { name: "Docker" },
   { name: "REST" },
   { name: "GraphQL" },

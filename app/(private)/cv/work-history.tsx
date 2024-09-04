@@ -2,6 +2,10 @@ import Link from "app/components/link";
 
 import Divider from "./divider";
 
+function Bold({ children }: { children: React.ReactNode }) {
+  return <strong className="font-semibold">{children}</strong>;
+}
+
 type Company = {
   name: string;
   url: string;
@@ -64,10 +68,13 @@ const history: WorkExperience[] = [
       { name: "gRPC" },
     ],
     highlights: [
-      <p key="1">Primarily a product frontend role.</p>,
+      <p key="1">
+        Primarily a <Bold>product frontend role</Bold>, with some backend
+        development when needed.
+      </p>,
       <p key="2">
-        Joined to rewrite the previous native self-custody wallet called "Toshi
-        wallet" to a revamped app in React Native.
+        Joined to <Bold>rewrite the previous native app</Bold> called "Toshi
+        wallet" to a <Bold>revamped app in React Native</Bold>.
       </p>,
       <p key="3">
         Worked on the onboarding flow using multi-language mnemonics (BIP-39),
@@ -75,9 +82,9 @@ const history: WorkExperience[] = [
         connection, and more.
       </p>,
       <p key="4">
-        Currently working on Payment squad, creating fiat-to-crypto experiences.
-        Building the buy flow aggregating multiple payment providers on mobile,
-        extension, dapp and smart contract wallet.
+        Currently working on Ramps squad, building the buy flow aggregating
+        multiple payment providers on mobile, extension, dapp and smart contract
+        wallet.
       </p>,
     ],
   },

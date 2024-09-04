@@ -17,8 +17,8 @@ function PastExperience() {
     <p>
       I'm a pragmatic fullstack software engineer with over <Bold>6 years</Bold>{" "}
       of experience, specializing in{" "}
-      <Bold>frontend development for web and mobile platforms at scale</Bold>. I
-      can also understand and craft backend systems. I have been working
+      <Bold>development for web and mobile platforms at scale</Bold>. I can also{" "}
+      <Bold>understand and craft backend systems</Bold>. I have been working
       remotely for U.S. companies for 3 years.
     </p>
   );
