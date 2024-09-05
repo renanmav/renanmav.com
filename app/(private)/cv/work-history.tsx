@@ -47,8 +47,10 @@ const history: WorkExperience[] = [
     },
     description: (
       <p>
-        Individual Contributor on the Coinbase Wallet team, building one of the
-        best self-custody wallets for managing digital assets.
+        Individual Contributor on the{" "}
+        <Link href="https://www.coinbase.com/wallet">Coinbase Wallet</Link>{" "}
+        team, building one of the best self-custody wallets for managing digital
+        assets.
       </p>
     ),
     tools: [
@@ -77,14 +79,29 @@ const history: WorkExperience[] = [
         wallet" to a <Bold>revamped app in React Native</Bold>.
       </p>,
       <p key="3">
-        Worked on the onboarding flow using multi-language mnemonics (BIP-39),
-        decentralized identity (.cb.id), Coinbase account &harr; Wallet
-        connection, and more.
+        Worked on the onboarding flow using{" "}
+        <Bold>multi-language mnemonics (BIP-39)</Bold>,
+        <Bold>decentralized identity (.cb.id)</Bold>,{" "}
+        <Bold>Coinbase account &harr; Wallet connection</Bold>, and more.
       </p>,
       <p key="4">
-        Currently working on Ramps squad, building the buy flow aggregating
-        multiple payment providers on mobile, extension, dapp and smart contract
-        wallet.
+        Currently working on Ramps squad,{" "}
+        <Bold>
+          building the buy flow aggregating multiple payment providers
+        </Bold>{" "}
+        on{" "}
+        <Link href="https://apps.apple.com/us/app/coinbase-wallet-nfts-crypto/id1278383455">
+          mobile
+        </Link>
+        ,{" "}
+        <Link href="https://chromewebstore.google.com/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad?hl=en&source=wallet_coinbase_com&_branch_match_id=1360354476970338567&_branch_referrer=H4sIAAAAAAAAAyXIQQqAIBAAwNfULY2OgXToIaLrpoK6sWv4/YJuw6Teb9m1jqTAL0MBVT1cKdiXQKMVcuEQehjQ/G2BcvNO8EOdp21lvJA5t2g90xBkcyamii8nNN0uWgAAAA%3D%3D&pli=1">
+          extension
+        </Link>
+        , <Link href="https://wallet.coinbase.com">dapp</Link> and{" "}
+        <Link href="https://www.coinbase.com/wallet/smart-wallet">
+          smart contract wallet
+        </Link>
+        .
       </p>,
     ],
   },
@@ -118,18 +135,20 @@ const history: WorkExperience[] = [
     ],
     highlights: [
       <p key="1">
-        As one of the first hires, played an instrumental role in definition of
-        app architecture and quality standards.
+        As <Bold>one of the first hires</Bold>, played an instrumental role in{" "}
+        <Bold>definition of app architecture and quality standards</Bold>.
       </p>,
       <p key="2">
-        Contributed to the core features of the app (onboarding, KYC,
-        statements, cards, Pix), focusing on user experience, reliability and
-        performance.
+        Contributed to the <Bold>core features of the app</Bold> (onboarding,
+        KYC, statement, cards, Pix), focusing on user experience, reliability
+        and performance.
       </p>,
-      <p key="3">Maintained a close relationship with founders.</p>,
+      <p key="3">
+        Maintained a <Bold>close relationship with founders</Bold>.
+      </p>,
       <p key="4">
-        Went through YCombinator @ W21 batch, where I learned a lot about
-        startups and the Valley culture.
+        Went through <Bold>YCombinator @ W21 batch</Bold>, where I learned a lot
+        about startups and the Valley culture.
       </p>,
     ],
   },
@@ -147,8 +166,9 @@ const history: WorkExperience[] = [
     },
     description: (
       <p>
-        Software House Experience. Contributed to the development of Confy, SaaS
-        designed to help organize tech meetups.
+        Software House Experience. Contributed to the development of{" "}
+        <Link href="https://www.confy.app">Confy</Link>, SaaS designed to help
+        organize tech meetups.
       </p>
     ),
     tools: [
@@ -164,19 +184,31 @@ const history: WorkExperience[] = [
     ],
     highlights: [
       <p key="1">
-        Contributed to the development of Confy, SaaS designed to help organize
-        tech meetups.
+        Started working remotely from{" "}
+        <Link
+          href="https://www.google.com/maps/place/Palmas,+State+of+Tocantins"
+          className="!text-black hover:no-underline"
+        >
+          Palmas, TO
+        </Link>{" "}
+        (hometown).
       </p>,
-      <p key="2">Partnered with design on multiple sessions.</p>,
+      <p key="2">
+        Transitioned to a hybrid work model,{" "}
+        <Bold>relocating to the city of the company's office</Bold>.
+      </p>,
       <p key="3">
-        Implemented social login with Google, Facebook and GitHub as the first
-        workstream.
+        Implemented <Bold>social login with Google, Facebook and GitHub</Bold>{" "}
+        as the first end-to-end workstream.
       </p>,
-      <p key="4">
-        Deployed a serverless server-side-rendered architecture through AWS
-        Lambda, API Gateway, CDN and AWS CDK.
+      <p key="4">Partnered with design peer on multiple sessions.</p>,
+      <p key="5">
+        <Bold>Deployed a serverless server-side-rendered architecture</Bold>{" "}
+        through AWS Lambda, API Gateway, CDN and AWS CDK.
       </p>,
-      <p key="5">Supported third-party clients with agile methodology.</p>,
+      <p key="6">
+        <Bold>Supported third-party clients</Bold> with agile methodology.
+      </p>,
     ],
   },
 ];

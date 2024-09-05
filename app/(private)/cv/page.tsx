@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function CvPage() {
   return (
-    <section className="mx-4 my-6">
+    <section className="mx-4 my-5">
       {sections.map((Section, index) => {
         const isLastItem = index === sections.length - 1;
         return (
