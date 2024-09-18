@@ -13,11 +13,11 @@ Includes:
 
 ## Getting Started
 
-First, install dependencies and then run the development server:
+First, install dependencies using [Bun](https://bun.sh/docs/installation) and then run the development server:
 
 ```bash
-yarn install
-yarn dev
+bun i
+bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
