@@ -24,7 +24,7 @@ export default function Head() {
 
 function LinkedinPhoto() {
   return (
-    <div className="flex basis-1/4">
+    <div className="flex basis-1/3">
       <Image
         src="/linkedin.png"
         alt="Renan Mav"
@@ -40,7 +40,7 @@ function PersonalInfo() {
   return (
     <div className="flex basis-3/4 flex-col">
       <h1 className="text-lg font-semibold">Renan Mav</h1>
-      <p>Software Engineer</p>
+      <p>Senior Software Engineer</p>
 
       <ul className="mt-2 flex flex-col gap-1">
         <li className="hover:cursor-pointer">

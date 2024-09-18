@@ -2,6 +2,7 @@ import NextLink, { LinkProps as NextLinkProps } from "next/link";
 
 type LinkProps = {
   openInNewTab?: boolean;
+  showExternalIcon?: boolean;
 } & NextLinkProps &
   React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -9,6 +10,7 @@ export default function Link({
   href,
   children,
   openInNewTab,
+  showExternalIcon = true,
   className,
   ...linkProps
 }: LinkProps) {
@@ -25,7 +27,7 @@ export default function Link({
       {...linkProps}
     >
       {children}
-      {openInNewTab && <ExternalIcon />}
+      {openInNewTab && showExternalIcon && <ExternalIcon />}
     </NextLink>
   );
 }

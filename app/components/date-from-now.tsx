@@ -4,6 +4,7 @@ type Props = {
   date: string;
 };
 
+// TODO: refactor to DateRange component
 export default function DateFromNow({ date: dateStr }: Props) {
   const date = new Date(dateStr);
   const now = new Date(Date.now());

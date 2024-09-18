@@ -1,6 +1,6 @@
 export const myInfo = {
   name: "Renan Mav",
-  description: "Software Engineer, Car Enthusiast, Jesus Follower",
+  description: "Developer, Driver, Jesus Follower",
   email: "me@renanmav.com",
   phone: "+55 63 98461-0014",
   address: "Brazil 🇧🇷",

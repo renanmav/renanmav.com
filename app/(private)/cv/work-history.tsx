@@ -41,7 +41,7 @@ const history: WorkExperience[] = [
       industry: "Self-custody wallet",
     },
     role: {
-      title: "Software Engineer",
+      title: "Senior Software Engineer",
       startDate: "jan. 2022",
       endDate: "present",
     },

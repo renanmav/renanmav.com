@@ -21,6 +21,7 @@ export default function IndexPage() {
 }
 
 function MeNowadays() {
+  // TODO: add /now page and reference it here
   return (
     <p id="me-nowadays" className="mb-4 text-base">
       I am currently living in {myInfo.address} and working as a software
