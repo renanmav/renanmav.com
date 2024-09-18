@@ -19,7 +19,7 @@ function PastExperience() {
       of experience, specializing in{" "}
       <Bold>development for web and mobile platforms at scale</Bold>. I can also{" "}
       <Bold>understand and craft backend systems</Bold>. I have been working
-      remotely for U.S. companies for 3 years.
+      remotely for U.S. companies for 3 years. I have proven ability in <Bold>React Native</Bold> and <Bold>Golang</Bold>.
     </p>
   );
 }
@@ -31,9 +31,9 @@ function Mission() {
       <Bold>
         deliver software that has a business impact with focus and onwership
       </Bold>
-      . I enjoy being involved in the full application development lifecycle,
+      . I enjoy being involved in the <Bold>full application development lifecycle</Bold>,
       from conception and implementation to deployment, maintenance and
-      monitoring.
+      monitoring. <Bold>I proactively seek to implement best practices</Bold> to ensure efficient and scalable solutions.
     </p>
   );
 }
@@ -41,8 +41,7 @@ function Mission() {
 function HardAndSoftSkills() {
   return (
     <p>
-      I write <Bold>high quality, well-tested code</Bold> that follows security
-      best practices. I translate business requirements into technical
+      I write <Bold>high quality, well-tested code</Bold> with a focus on <Bold>readability and maintainability</Bold>. I translate business requirements into technical
       specifications, fostering{" "}
       <Bold>clear communication and efficient execution</Bold>.
     </p>
