@@ -6,6 +6,8 @@ import Divider from "./divider";
 
 const sections = [Head, PersonalSummary, Skills, WorkHistory];
 
+// TODO: Add a way to download the CV as a PDF
+// TODO: Add unfurl card for the CV
 export const metadata = {
   title: "Resume - Renan Mav",
 };

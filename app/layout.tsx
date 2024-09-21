@@ -62,6 +62,9 @@ export default function RootLayout({
         inter.className,
       )}
     >
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body className="antialiased">
         <link rel="shortcut icon" href="/favicon.png" />
         {children}

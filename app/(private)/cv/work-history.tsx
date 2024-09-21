@@ -41,7 +41,7 @@ const history: WorkExperience[] = [
       industry: "Self-custody wallet",
     },
     role: {
-      title: "Senior Software Engineer",
+      title: "Software Engineer",
       startDate: "jan. 2022",
       endDate: "present",
     },
@@ -236,16 +236,16 @@ function Header() {
   return (
     <div className="mb-2 flex">
       <h2 className="basis-1/2 font-bold uppercase">Work History</h2>
-      <h2 className="basis-1/2 font-bold uppercase">Highlights</h2>
+      <h2 className="hidden basis-1/2 font-bold uppercase md:block">Highlights</h2>
     </div>
   );
 }
 
 function Experience({ experience }: { experience: WorkExperience }) {
   return (
-    <div className="grid grid-cols-2">
+    <div className="md:grid md:grid-cols-2">
       {/* Left column */}
-      <div className="flex flex-col pr-4">
+      <div className="flex flex-col md:pr-4">
         <div className="flex flex-row gap-2">
           <Link
             href={experience.company.url}
@@ -283,7 +283,7 @@ function Experience({ experience }: { experience: WorkExperience }) {
       </div>
 
       {/* Right column */}
-      <div>
+      <div className="mt-2 pl-4 md:mt-0 md:pl-0">
         <ul className="list-disc">
           {experience.highlights.map((highlight, index) => (
             <li key={index}>{highlight}</li>

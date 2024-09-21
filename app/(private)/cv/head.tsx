@@ -5,15 +5,10 @@ import { SiGmail } from "react-icons/si";
 import { myInfo } from "app/constants";
 import Link from "app/components/link";
 
-/**
- * Head component for the CV page.
- *
- * Includes my name, job title, photo and contact information
- */
 export default function Head() {
   return (
     <section>
-      <div className="flex flex-row gap-8">
+      <div className="grid grid-cols-[1fr_3fr] gap-4 md:flex md:flex-row md:items-end md:gap-8">
         <LinkedinPhoto />
         <PersonalInfo />
         <ContactInfo />
@@ -40,7 +35,7 @@ function PersonalInfo() {
   return (
     <div className="flex basis-3/4 flex-col">
       <h1 className="text-lg font-semibold">Renan Mav</h1>
-      <p>Senior Software Engineer</p>
+      <p>Software Engineer</p>
 
       <ul className="mt-2 flex flex-col gap-1">
         <li className="hover:cursor-pointer">
@@ -62,35 +57,35 @@ function PersonalInfo() {
 
 const contactList = [
   {
+    href: myInfo.website,
+    text: myInfo.website,
+    Icon: FaLink,
+  },
+  {
     href: `mailto:${myInfo.email}`,
     text: myInfo.email,
     Icon: SiGmail,
   },
   {
-    href: myInfo.linkedin,
-    text: myInfo.linkedin.replace("https://", ""),
-    Icon: FaLinkedin,
-  },
-  {
     href: myInfo.github,
-    text: myInfo.github.replace("https://", ""),
+    text: myInfo.github,
     Icon: FaGithub,
   },
   {
-    href: myInfo.website,
-    text: myInfo.website.replace("https://", ""),
-    Icon: FaLink,
+    href: myInfo.linkedin,
+    text: myInfo.linkedin,
+    Icon: FaLinkedin,
   },
 ];
 
 function ContactInfo() {
   return (
-    <div className="flex basis-1/4 flex-col items-end gap-1 self-end">
+    <div className="col-span-2 flex basis-1/4 flex-row items-end justify-evenly gap-4 self-end md:flex-col md:gap-1">
       {contactList.map((contact, index) => (
-        <div key={index} className="flex flex-row items-center gap-2">
-          <Link href={contact.href}>{contact.text}</Link>
-          {contact.Icon && <contact.Icon className="size-5" />}
-        </div>
+        <Link key={index} href={contact.href} className="flex flex-row items-center gap-2">
+          <span className="hidden md:block">{contact.text.replace("https://", "")}</span>
+          {contact.Icon && <contact.Icon className="size-7 md:size-5" />}
+        </Link>
       ))}
     </div>
   );
