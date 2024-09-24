@@ -19,14 +19,14 @@ const skills: Skill[] = [
   { name: "wagmi / ethers.js / web3.js" },
 ];
 
-const SKILL_SEPARATOR = "⇥";
+const SKILL_SEPARATOR = "➜";
 
 export default function Skills() {
   return (
     <section className="flex flex-row flex-wrap gap-2">
       {skills.map((skill) => (
         <span key={skill.name} className="font-semibold">
-          {SKILL_SEPARATOR} {skill.name}{" "}
+          <span className="text-xs">{SKILL_SEPARATOR}</span> {skill.name}{" "}
           <span className="text-sm font-normal italic">
             {skill.years &&
               `[${skill.years}${skill.years === 1 ? "yr" : "yrs"}]`}
