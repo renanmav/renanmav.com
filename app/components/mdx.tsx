@@ -4,7 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 
 import Link from "./link";
-import DateFromNow from "./date-from-now";
+import DateRange from "./date-range";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -71,7 +71,7 @@ function createHeading(level) {
     let slug = slugify(children);
     return React.createElement(
       `h${level}`,
-      { id: slug },
+      { id: slug, className: "!text-base !font-semibold" },
       [
         React.createElement("a", {
           href: `#${slug}`,
@@ -99,7 +99,7 @@ let components = {
   a: CustomLink,
   code: Code,
   Table,
-  DateFromNow,
+  DateRange,
 };
 
 export function CustomMDX(props) {
