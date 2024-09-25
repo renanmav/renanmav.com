@@ -1,15 +1,16 @@
 "use client";
 
 type Props = {
-  date: string;
+  startDate: string;
+  endDate: string;
 };
 
 // TODO: refactor to DateRange component
-export default function DateFromNow({ date: dateStr }: Props) {
-  const date = new Date(dateStr);
-  const now = new Date(Date.now());
+export default function DateRange({ startDate, endDate }: Props) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
-  const { years, months } = dateDiffInYearsAndMonths(date, now);
+  const { years, months } = dateDiffInYearsAndMonths(start, end);
 
   const yearLabel = years > 1 ? "years" : "year";
   const monthLabel = months > 1 ? "months" : "month";
