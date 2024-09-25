@@ -7,6 +7,7 @@ export default function Footer() {
   return (
     <footer className="mb-20">
       <Divider />
+      <MadeWith />
       <Memories />
       <LastUpdated />
     </footer>
@@ -46,6 +47,14 @@ function Memories() {
   return (
     <p id="memories" className="text-sm text-gray-400">
       Recording memories while time goes by...
+    </p>
+  );
+}
+
+function MadeWith() {
+  return (
+    <p id="made-with" className="text-sm font-semibold text-gray-400">
+      Made with 🤘🗿
     </p>
   );
 }
