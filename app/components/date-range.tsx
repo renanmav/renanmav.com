@@ -5,7 +5,6 @@ type Props = {
   endDate: string;
 };
 
-// TODO: refactor to DateRange component
 export default function DateRange({ startDate, endDate }: Props) {
   const start = new Date(startDate);
   const end = new Date(endDate);
