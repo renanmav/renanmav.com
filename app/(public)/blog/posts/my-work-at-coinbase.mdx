@@ -6,17 +6,21 @@ summary: "Documentation of my work at Coinbase"
 
 I started working at [Coinbase](https://www.coinbase.com) on **January 2022**, so that accounts for **<DateRange startDate="2022-01-04" endDate="2024-09-06" />**! I'm documenting my IC4 journey here, so I can look back and see how much I've grown. 🚀
 
+Everything in here is my personal experience and opinion.
+
 ## Starting out 🚶🏻‍➡️
 
-{/* You're being too negative about Z1. They were a small team and you were one of the first hires. You should be proud of that. */}
+I was previously working at a small startup called [Z1](https://z1.app) — a fintech for Brazilian teenagers that offers a bank account app with a Mastercard debit card. I was one of the first hires there, primarily working on [their React Native app](https://apps.apple.com/br/app/z1-conta-digital/id1522028830).
 
-I was previously working at a small startup called [Z1](https://z1.app). I was one of the first hires there, primarily working on [their React Native app](https://apps.apple.com/br/app/z1-conta-digital/id1522028830). It's a fintech for Brazilian teenagers that offers a bank account app with a Mastercard debit card.
+The journey from design and implementation to launch was super fast, as you would expect in a startup environment, so I got the chance to wear many hats and learn a lot of new things. At some point, we got into YCombinator and started to see exponential growth in users and team.
 
-Most of the engineering team was located in [São Paulo, SP](https://maps.app.goo.gl/CT5kN9mzVaWmKGyF6) while I was in a remote role working from [Brasília, DF](https://maps.app.goo.gl/K25tn95wcqmTv8SG7) _(home)_, so I was feeling a bit left out in the primary decision makings when they decided to rent an office at Faria Lima Avenue. 
+Most of the engineering team was located in [São Paulo, SP](https://maps.app.goo.gl/CT5kN9mzVaWmKGyF6) while I was in a remote role working from [Brasília, DF](https://maps.app.goo.gl/K25tn95wcqmTv8SG7) _(home)_, so I was feeling a bit left out in the primary decision makings when they decided to rent an office at Faria Lima avenue. 
 
 I was feeling like I was accumulating a lot of functions and not really being recognized for my work. I felt like it was a **time for a change**. I wanted to work for a big company alongside smart people and learn from them.
 
 I'm into crypto and at the end of 2021 I started learning more about it based on the web3 boom. Coinbase was one of the companies that were hiring a lot of people and I thought it would be a good fit. I saw an opportunity on X's _(RIP Twitter ⚰️)_ that [Harry Tormey](https://x.com/htormey) posted about his team [hiring engineers from Brazil](https://x.com/htormey/status/1437758742989312005) and decided to apply.
+
+{/* TODO: write about the interview process */}
 
 ## What I do 🧑🏻‍💻
 
@@ -27,12 +31,12 @@ I'm into crypto and at the end of 2021 I started learning more about it based on
 
 ## What I've built 🚢
 
-1. [react-navigation](https://reactnavigation.org) scaffolding of Coinbase Wallet `apps/rn`.
-1. Common ESLint config within monorepo: we first started with yarn workspaces at wallet/wallet-mobile repo and then switched to NX; as one of my first challenges, I pulled out the common config for linting across our packages and put it in a separate monorepo package `workspaces/libs/eslint-config`.
-1. Onboarding flow
-1. Decentralized ID onboarding (.cb.id)
-1. Terms of Service and Privacy Policy
-1. One click buy flow on CBPay (at [pay.coinbase.com](https://pay.coinbase.com)): built a buy flow at `payments/onramp-widget` which is a repo from another internal team called CBPay (recently renamed to Coinbase Onramp).
+1. **[react-navigation](https://reactnavigation.org) scaffolding**: of Coinbase Wallet `apps/rn`.
+1. **Common ESLint config within monorepo**: we first started with yarn workspaces at wallet/wallet-mobile repo and then switched to NX; as one of my first challenges, I pulled out the common config for linting across our packages and put it in a separate monorepo package `workspaces/libs/eslint-config`.
+1. **Onboarding flow**:
+1. **Decentralized ID onboarding**: (.cb.id)
+1. **Terms of Service and Privacy Policy**: a legal requirement for users to acknowledge. Most boring thing ever to implement, but someone has to do it. And that someone was me. At first, I thought about not breaking the DRY principle by rendereing a pre-existing TOS page within a webview. Don't freeze the app on startup.
+1. **One click buy flow on CBPay (at [pay.coinbase.com](https://pay.coinbase.com))**: built a buy flow at `payments/onramp-widget` which is a repo from another internal team called CBPay (recently renamed to Coinbase Onramp).
 1. Buy flow
   1. React Native
   1. Panorama
@@ -54,17 +58,17 @@ I'm into crypto and at the end of 2021 I started learning more about it based on
 - US company
 - Remote-friendly
 
-## What I don't like 🤮
+## What I don't like 🙁
 
-- Work-life balance
-- Useless meetings
-- Promo cycle
-- Management style
-- Startup wanna-be but not really
+- **Work-life balance**: hard to disconnect from work, with most of my team working EST hours, specially my manager.
+- **Useless meetings**: a lot of meetings are not necessary, especially when it's a recurring one. Some decisions that could have been made asynchronously were made in a meeting wasting everyone's time.
+- **Promo cycle**: it's very slow and there's no clear path to get a raise. I worked there for almost 3 years and never got a raise.
+- **Management style**: it's very micromanagement-y and there's a lot of politics involved. Feedback is not always specific and clear, most of the times it's vague and general, often repeating the same things over and over again. I didn't have a manager that really helped me grow in my career.
+- **Startup wanna-be but not really**: it's a big company with a startup mindset, but it's still a big company. Lot's of bureaucracy and processes that slow down the pace of work. Some engineers try to do things the "right" way, but it's not the best way to ship things.
 
 ## What's next? 💭
 
-I was terminated on **September 6, 2024**. My manager told me it was lack of performance, but all [my performance reviews were on track](https://drive.google.com/drive/folders/1pKIeMI5dSsfYxEWbFxyemb-XBKd7N5q2), so I'm not sure what happened. Probably some internal politics or downsizing. I didn't get a warning or a chance to improve. It was very out of the blue, he just pulled me into a 1:1 meeting with an HR rep and told me the news.
+I was terminated on **September 6, 2024**. My manager told me it was lack of performance, but all [my performance reviews were on track](https://drive.google.com/drive/folders/1pKIeMI5dSsfYxEWbFxyemb-XBKd7N5q2), so I'm not sure what happened. Probably some internal politics or downsizing. I didn't get a warning or a chance to improve. It was out of the blue, he just pulled me into a 1:1 meeting with an HR rep and told me the news.
 
 `¯\_(ツ)_/¯`
 
