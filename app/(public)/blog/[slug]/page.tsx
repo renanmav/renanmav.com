@@ -61,7 +61,7 @@ export default function BlogPostPage({ params }) {
   }
 
   return (
-    <section>
+    <section className="scroll-fade-container">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -82,6 +82,19 @@ export default function BlogPostPage({ params }) {
               name: "My Portfolio",
             },
           }),
+        }}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 64) {
+              document.body.classList.add('scrolled');
+            } else {
+              document.body.classList.remove('scrolled');
+            }
+          });
+        `,
         }}
       />
       <h1 className="title text-base font-medium">{post.metadata.title}</h1>

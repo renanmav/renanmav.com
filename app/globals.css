@@ -2,36 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-} */
-
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;
@@ -175,4 +145,41 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+/* Add this new section for the scroll fade effect */
+.scroll-fade-container {
+  position: relative;
+}
+
+.scroll-fade-container::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px; /* Adjust this value to control the fade height */
+  background: linear-gradient(
+    to bottom,
+    var(--background-color) 0%,
+    var(--background-color) 5%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.scrolled .scroll-fade-container::after {
+  opacity: 1;
+}
+
+/* Define background colors for light and dark modes */
+:root {
+  --background-color: white;
+}
+
+.dark {
+  --background-color: black;
 }
