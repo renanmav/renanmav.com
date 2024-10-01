@@ -4,6 +4,9 @@ publishedAt: "2024-10-01"
 summary: "Documentation of my work at Coinbase"
 ---
 
+{/* TODO: add page views */}
+{/* TODO: add dark mode switch on nav bar */}
+
 I started working at [Coinbase](https://www.coinbase.com) on **January 2022**, so that accounts for **<DateRange startDate="2022-01-04" endDate="2024-09-06" />**! I'm documenting my IC4 journey here, so I can look back and see how much I've grown. 🚀
 
 Everything in here is my personal experience and opinion.
@@ -20,14 +23,20 @@ I was feeling like I was accumulating a lot of functions and not really being re
 
 I'm into crypto and at the end of 2021 I started learning more about it based on the web3 boom. Coinbase was one of the companies that were hiring a lot of people and I thought it would be a good fit. I saw an opportunity on X's _(RIP Twitter ⚰️)_ that [Harry Tormey](https://x.com/htormey) posted about his team [hiring engineers from Brazil](https://x.com/htormey/status/1437758742989312005) and decided to apply.
 
-{/* TODO: write about the interview process */}
+The interview process was pretty standard. I had 4 rounds of interviews:
+
+1. One pair programming to solve a React.js application failing unit tests locally.
+1. One pair programming implementing a order book for a crypto exchange with buy and sell buttons, along with a ledger transaction list (+/-). I did it using React Native. As preparation, I decided to recreate the Coinbase app landing page with sign in and sign up forms. The repository is open source and [available here](https://github.com/renanmav/coinbase-repro).
+1. One technical interview with a lot of system design questions. I did it using [Excalindraw](https://excalidraw.com).
+1. One more interview with a manager.
+
+Once I got the offer, I accepted it and started the onboarding process.
 
 ## What I do 🧑🏻‍💻
 
-- Frontend work
-- Some spot-on backend work
-- PR reviews
-- Manually review and test changes
+- **Frontend work**: TypeScript, React, React Native, React Query, CDS (Coinbase Design System), Recoil / Jotai, Jest, React Testing Library, Detox, etc.
+- **Some spot-on backend work**: Golang, Postgres, SQS, Redis, Docker, etc.
+- **PR reviews**: I was known for being very thorough with my reviews, which helped the team members a lot, catching edge cases and potential bugs early in development phase. I did that by manually checking in to the branch or downloading one-off builds, ask for manual review instructions of that given change, manually review and actually test changes. Ever since a initiative to improve code quality called PRG internally. 
 
 ## What I've built 🚢
 
@@ -41,6 +50,7 @@ I'm into crypto and at the end of 2021 I started learning more about it based on
   1. React Native
   1. Panorama
   1. Smart contract wallet
+1. Mesh: including the RN SDK, and a backend proxy service to inject secret values into request headers as per advice of docs and security team.
 
 ## What I've learned 🧠
 
