@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { highlight } from "sugar-high";
+
+// TODO: use https://github.com/react-syntax-highlighter/react-syntax-highlighter
 
 import Link from "./link";
 import DateRange from "./date-range";
@@ -51,8 +52,14 @@ function RoundedImage(props) {
 }
 
 function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+  return (
+    <code
+      className="rounded-sm bg-gray-100 p-1 text-sm dark:bg-[rgb(23,23,23)] dark:text-white"
+      {...props}
+    >
+      {children}
+    </code>
+  );
 }
 
 function slugify(str) {
@@ -71,7 +78,7 @@ function createHeading(level) {
     let slug = slugify(children);
     return React.createElement(
       `h${level}`,
-      { id: slug, className: "!text-base !font-semibold" },
+      { id: slug, className: "!text-base !font-semibold !mb-4 !mt-8" },
       [
         React.createElement("a", {
           href: `#${slug}`,
