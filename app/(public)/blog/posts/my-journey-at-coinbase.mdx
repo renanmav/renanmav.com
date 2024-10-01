@@ -6,12 +6,13 @@ summary: "Documentation of my work at Coinbase"
 
 {/* TODO: add page views */}
 {/* TODO: add dark mode switch on nav bar */}
+{/* TODO: fix `` style */}
 
 I started working at [Coinbase](https://www.coinbase.com) on **January 2022**, so that accounts for **<DateRange startDate="2022-01-04" endDate="2024-09-06" />**! I'm documenting my IC4 journey here, so I can look back and see how much I've grown. 🚀
 
 Everything in here is my personal experience and opinion.
 
-## Starting out 🚶🏻‍➡️
+## Starting out 👣
 
 I was previously working at a small startup called [Z1](https://z1.app) — a fintech for Brazilian teenagers that offers a bank account app with a Mastercard debit card. I was one of the first hires there, primarily working on [their React Native app](https://apps.apple.com/br/app/z1-conta-digital/id1522028830).
 
@@ -21,12 +22,12 @@ Most of the engineering team was located in [São Paulo, SP](https://maps.app.go
 
 I was feeling like I was accumulating a lot of functions and not really being recognized for my work. I felt like it was a **time for a change**. I wanted to work for a big company alongside smart people and learn from them.
 
-I'm into crypto and at the end of 2021 I started learning more about it based on the web3 boom. Coinbase was one of the companies that were hiring a lot of people and I thought it would be a good fit. I saw an opportunity on X — _RIP Twitter ⚰️_ — that [Harry Tormey](https://x.com/htormey) posted about his team [hiring engineers from Brazil](https://x.com/htormey/status/1437758742989312005) and decided to apply.
+I'm into crypto and at the end of 2021 I started learning more about it based on the web3 boom. Coinbase was one of the companies that were hiring a lot of people and I thought it would be a good fit. I saw an opportunity on X — _RIP Twitter ⚰️_ — about their team [hiring engineers from Brazil](https://x.com/htormey/status/1437758742989312005) and decided to apply. Turns out they were opening the "Coinbase Brazil LTDA" entity, hiring through CLT and paying base salary in Brazilian Reais (BRL/R$) along with RSU shares ($COIN on NASDAQ).
 
 The interview process was pretty standard. I had 4 rounds of interviews:
 
 1. One pair programming to solve a React.js application failing unit tests locally.
-1. One pair programming implementing a order book for a crypto exchange with buy and sell buttons, along with a ledger transaction list (+/-). I did it using React Native. As preparation, I decided to recreate the Coinbase app landing page with sign in and sign up forms. The repository is open source and [available here](https://github.com/renanmav/coinbase-repro).
+1. One pair programming implementing an order book for a crypto exchange with buy and sell buttons, along with a ledger transaction list (+/-). I did it using React Native. As preparation, I decided to recreate the Coinbase app landing page with sign in and sign up forms. The repository is open source and [available here](https://github.com/renanmav/coinbase-repro).
 1. One technical interview with a lot of system design questions. I did it using [Excalindraw](https://excalidraw.com).
 1. One more interview with a manager.
 
@@ -34,23 +35,29 @@ Once I got the offer, I accepted it and started the onboarding process.
 
 ## What I do 🧑🏻‍💻
 
-- **Frontend work**: TypeScript, React, React Native, React Query, CDS (Coinbase Design System), Recoil / Jotai, Jest, React Testing Library, Detox, etc.
-- **Some spot-on backend work**: Golang, Postgres, SQS, Redis, Docker, etc.
-- **PR reviews**: I was known for being very thorough with my reviews, which helped my team members a lot, catching edge cases and potential bugs early in development phase. I did that by manually checking in to the branch or downloading one-off builds, ask for manual review instructions of that given change to be added into the PR description, manually review and actually test changes. Ever since a initiative to improve code quality called internally PRG, I was dedicating a lot of time to it. 
+- **Frontend work**: joined to help rewrite the Coinbase Wallet app in React Native and also contribute to the Chrome extension development. Tech stack includes TypeScript, React, React Native, React Query, CDS (Coinbase Design System), Recoil / Jotai, Jest, React Testing Library, Detox, etc.
+- **Some spot-on backend work**: after a lot of time contributing to the frontend, I asked to help with some backend development I did some minor worksteams in microservices such as WAAS - Web3 Asset Aggregator Service for consolidating asset data info from multiple providers such as Coingecko, Coinmarketcap and others, helping with a refactor to avoid having to redeploy the service in order to pickup config changes. I also helped with `wallet/common` backend library documentation, decomposing their README into separate docs. Tech stack includes Golang, Postgres, SQS, Redis, Docker, etc.
+- **PR reviews**: I was known for being very thorough with my reviews, which helped my team members a lot, catching bugs and edge cases early. I did that by manually checking in to the branch or downloading one-off builds, enforcing manual review instructions in PR descriptions, and actually manually testing changes.
 
 ## What I've built 🚢
 
-1. **[react-navigation](https://reactnavigation.org) scaffolding**: of Coinbase Wallet `apps/rn`.
-1. **Common ESLint config within monorepo**: we first started with yarn workspaces at wallet/wallet-mobile repo and then switched to NX; as one of my first challenges, I pulled out the common config for linting across our packages and put it in a separate monorepo package `workspaces/libs/eslint-config`.
-1. **Onboarding flow**:
-1. **Decentralized ID onboarding**: (.cb.id)
+1. **[react-navigation](https://reactnavigation.org) scaffolding**: Coinbase Wallet navigation setup in `apps/rn`, including `TabNavigator` and `DrawerNavigator`, as well as basic deep linking setup. At that time, we were using react-navigation v4. It was later updated to v5 and then to v6.
+1. **Common ESLint config within monorepo**: we first started with yarn workspaces at `wallet/wallet-mobile` repo and then the infra team switched to NX; as one of my first challenges, I pulled out the common config for linting across our packages and put it in a separate monorepo package `workspaces/libs/eslint-config`.
+1. **Onboarding flow**: _Talk about onboarding flow_. After some time, there was another effort to implement instant onboarding, reducing the amount of clicks from around 10 to nearly 2.
+{/* TODO: add recording here */}
+1. **Decentralized ID onboarding**: (.cb.id), they recently launched [base names](https://www.base.org/names) to the public. (Say hello to [renan.base.eth](https://www.base.org/names/renan.base.eth)!)
+{/* TODO: add recording here */}
 1. **Terms of Service and Privacy Policy**: a legal requirement for users to acknowledge. Most boring thing ever to implement, but someone has to do it. And that someone was me. At first, I thought about not breaking the DRY principle by rendereing a pre-existing TOS page within a webview. Don't freeze the app on startup.
+1. **A/B experiments to improve funding rates**: TODO
 1. **One click buy flow on CBPay (at [pay.coinbase.com](https://pay.coinbase.com))**: built a buy flow at `payments/onramp-widget` which is a repo from another internal team called CBPay (recently renamed to Coinbase Onramp).
 1. Buy flow
+{/* TODO: add recording here */}
+{/* TODO: fix this list hierarchy */}
   1. React Native
   1. Panorama
   1. Smart contract wallet
 1. **MeshConnect**: including the implementation of their RN SDK into `wallet/wallet-mobile`, and a backend proxy service at `wallet/payment-provider-aggregator` to inject secret values into request headers as per advice of docs and security team.
+{/* TODO: add recording here */}
 
 ## What I've learned 🧠
 
@@ -70,11 +77,11 @@ Once I got the offer, I accepted it and started the onboarding process.
 
 ## What I don't like 🙁
 
-- **Work-life balance**: hard to disconnect from work, with most of my team working EST hours, specially my manager.
-- **Useless meetings**: a lot of meetings are not necessary, especially when it's a recurring one. Some decisions that could have been made asynchronously were made in a meeting wasting everyone's time.
+- **Work-life balance**: hard to disconnect from work, with most of my team working EST hours, specially my manager. It also had oncall rotation, which was a pain to getting paged at 2am and having to respond to incidents which you have no context.
+- **Useless meetings**: a lot of meetings are not necessary, especially when it's a recurring one. I get it, it's because of rituals. Some decisions that could have been made asynchronously were made in a meeting wasting everyone's time.
 - **Promo cycle**: it's very slow and there's no clear path to get a raise. I worked there for almost 3 years and never got a raise.
-- **Management style**: it's very micromanagement-y and there's a lot of politics involved. Feedback is not always specific and clear, most of the times it's vague and general, often repeating the same things over and over again. I didn't have a manager that really helped me grow in my career.
-- **Startup wanna-be but not really**: it's a big company with a startup mindset, but it's still a big company. Lot's of bureaucracy and processes that slow down the pace of work. Some engineers try to do things the "right" way, but it's not the best way to ship things.
+- **Management style**: this is very much personal-relationship oriented. I had a total of 3 manager changes. My first one was very hands off and gave me a lot of freedom. My last one was not very supportive. Feedback is not always specific and clear, most of the times it's vague and general, often repeating the same things over and over again. I didn't have a manager that really helped me grow in my career.
+- **Startup wanna-be but not really**: it's a big company with a startup mindset, but it's still a big company. Lot's of bureaucracy and processes that slow down the pace of work. Engineers are encouraged to run through the brick walls, which is a good thing.
 
 ## What's next? 💭
 
@@ -82,4 +89,4 @@ I was terminated on **September 6, 2024**. My manager told me it was lack of per
 
 `¯\_(ツ)_/¯`
 
-I'm looking for my next role. If you know of any opportunities, [please reach out to me](/contact). I'm looking for a remote-friendly company with a good work-life balance, a USD paying salary, and a good culture.
+I'm looking for my next role. If you know of any good opportunities, [please reach out to me](/contact). I'm looking for a remote-friendly company that pays in USD, with a good work-life balance and interesting culture. It can be web, mobile or backend focused. All pieces are welcome! 😉
