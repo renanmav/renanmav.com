@@ -5,8 +5,9 @@ summary: "Documentation of my work at Coinbase"
 ---
 
 {/* TODO: add page views */}
+{/* TODO: add lateral index with headings */}
 
-I started working at [Coinbase](https://www.coinbase.com) on **January 2022**, so that accounts for **<DateRange startDate="2022-01-04" endDate="2024-09-06" />**! I'm documenting my IC4 journey here, so I can look back and see how much I've grown. 🚀
+I started working at [Coinbase](https://www.coinbase.com) on **January 2022**, so that accounts for a total of **<DateRange startDate="2022-01-04" endDate="2024-09-06" />**! I'm documenting my IC4 journey here, so I can look back and see how much I've grown. 🚀
 
 Everything in here is my personal experience and opinion.
 
@@ -14,7 +15,7 @@ Everything in here is my personal experience and opinion.
 
 I was previously working at a small startup called [Z1](https://z1.app) — a fintech for Brazilian teenagers that offers a bank account app with a Mastercard debit card. I was one of the first hires there, primarily working on [their React Native app](https://apps.apple.com/br/app/z1-conta-digital/id1522028830).
 
-The journey from design and implementation to launch was super fast, as you would expect in a startup environment, so I got the chance to wear many hats and learn a lot of new things. At some point, we got into YCombinator and started to see exponential growth in users and team.
+The journey from design and implementation to launch was super fast, as you would expect in a startup environment, so I got the chance to wear many hats and learn a lot of new things. At some point, we got into [YCombinator](https://www.ycombinator.com/companies/z1) and started to see exponential growth in users and team.
 
 Most of the engineering team was located in [São Paulo, SP](https://maps.app.goo.gl/CT5kN9mzVaWmKGyF6) while I was in a remote role working from [Brasília, DF](https://maps.app.goo.gl/K25tn95wcqmTv8SG7) _(home)_, so I was feeling a bit left out in the primary decision makings when they decided to rent an office at Faria Lima avenue. 
 
@@ -57,10 +58,10 @@ Once I got the offer, I accepted it and started the onboarding process.
 - **[react-navigation](https://reactnavigation.org) scaffolding**: Coinbase Wallet navigation setup in `apps/rn`, including `TabNavigator` and `StackNavigator`, as well as basic deeplinking setup. At that time, we were using react-navigation v4. It was later updated to v5 and then to v6.
 - **Common [ESLint](https://eslint.org) config within monorepo**: we first started with [yarn workspaces](https://yarnpkg.com/features/workspaces) at `wallet/wallet-mobile` repo and then the infra team switched to [NX](https://nx.dev); as one of my first challenges, I pulled out the common config for linting across our monorepo and put it in a separate package `workspaces/libs/eslint-config`.
 - **Onboarding flow**: _Talk about onboarding flow_. After some time, there was another effort to implement instant onboarding, reducing the amount of clicks from ~10 to nearly 2. {/* TODO: add recording here */}
-- **Decentralized ID onboarding**: (.cb.id), they recently launched [base names](https://www.base.org/names) to the public. (Say hello to [renan.base.eth](https://www.base.org/names/renan.base.eth)!) {/* TODO: add recording here */}
+- **Decentralized ID onboarding**: an IC5 eng from the identity team was on PTO, so I was assigned to build the screens for claiming your `.cb.id` username, which is a lightweight version of ENS with really cheap gas fees, so we offer this for free to users during onboarding. Coinbase recently launched [basenames](https://www.base.org/names) to the public, so I think that makes `.cb.id` kinda legacy. _Say hello to [renan.base.eth](https://www.base.org/names/renan.base.eth)!_ {/* TODO: add recording here */}
 - **Terms of Service and Privacy Policy**: a legal requirement for users to acknowledge. Most boring thing ever to implement, but someone has to do it. And that someone was me. At first, I thought about not breaking the DRY principle by rendereing a pre-existing TOS page within a webview. Don't freeze the app on startup.
 - **A/B experiments to improve funding rates**: NFT incentives that were delivered once the funding was completed, CTAs to launch the buy flow on different parts of the app, etc.
-- **One click buy flow on CBPay (at [pay.coinbase.com](https://pay.coinbase.com))**: built a buy flow at `payments/onramp-widget` which is a repo from another internal team called CBPay (recently renamed to Coinbase Onramp). 
+- **One click buy flow on CBPay (at [pay.coinbase.com](https://pay.coinbase.com))**: built a buy flow at `payments/onramp-widget` which is a repo from another internal team called CBPay (recently renamed to Coinbase Onramp). This flow was presented inside Wallet via webview. 
 - **Buy flow**: TODO, add recording
     - React Native
     - Panorama
@@ -83,7 +84,7 @@ Once I got the offer, I accepted it and started the onboarding process.
 - US company
 - Remote-friendly
 
-## What I don't like 🙁
+## What I don't like 😢
 
 - **Work-life balance**: hard to disconnect from work, with most of my team working EST hours, specially my manager. It also had to attend oncall rotations, which was a pain, getting paged at 2am and having to respond to incidents which you have no context.
 - **Useless meetings**: a lot of meetings are not necessary, especially when it's a recurring one. I get it, it's because of rituals. Some decisions that could have been made asynchronously were made in a meeting wasting everyone's time.
