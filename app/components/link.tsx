@@ -18,7 +18,7 @@ export default function Link({
   return (
     <NextLink
       href={href}
-      className={`text-blue-500 no-underline transition-colors duration-500 hover:text-blue-300 dark:hover:text-blue-700 ${className}`}
+      className={`text-blue-500 no-underline transition-colors duration-500 hover:text-blue-400 dark:hover:text-blue-700 ${className}`}
       {...(openInNewTab
         ? {
             target: "_blank",

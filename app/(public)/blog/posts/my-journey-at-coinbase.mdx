@@ -5,7 +5,6 @@ summary: "Documentation of my work at Coinbase"
 ---
 
 {/* TODO: add page views */}
-{/* TODO: fix `` style */}
 
 I started working at [Coinbase](https://www.coinbase.com) on **January 2022**, so that accounts for **<DateRange startDate="2022-01-04" endDate="2024-09-06" />**! I'm documenting my IC4 journey here, so I can look back and see how much I've grown. 🚀
 
@@ -34,24 +33,39 @@ Once I got the offer, I accepted it and started the onboarding process.
 
 ## What I do 🧑🏻‍💻
 
-- **Frontend work**: joined to help rewrite the Coinbase Wallet app in React Native and also contribute to the Chrome extension development. Tech stack includes TypeScript, React, React Native, React Query, CDS (Coinbase Design System), Recoil / Jotai, Jest, React Testing Library, Detox, etc.
-- **Some spot-on backend work**: after a lot of time contributing to the frontend, I asked to help with some backend development. I did some minor worksteams in microservices such as WAAS - Web3 Asset Aggregator Service for consolidating asset data info from multiple providers such as Coingecko, Coinmarketcap and others, helping with a refactor to avoid having to redeploy the service in order to pickup config changes. I also helped with `wallet/common` backend library documentation, decomposing their README into separate docs. Tech stack includes Golang, Postgres, SQS, Redis, Docker, etc.
-- **PR reviews**: I was known for being very thorough with my reviews, which helped my team members a lot, catching bugs and edge cases early. I did that by manually checking in to the branch or downloading one-off builds, enforcing manual review instructions in PR descriptions, and actually manually testing changes.
+- **Frontend work**: joined to help rewrite the Coinbase Wallet app in React Native and also contribute to the Chrome extension development. Tech stack includes:
+    - TypeScript
+    - React & React Native
+    - React Query for data fetching
+    - CDS (Coinbase Design System) for UI components
+    - Recoil & Jotai for global state management
+    - Jest & React Testing Library for unit testing
+    - Detox & BrowserStack for E2E testing
+- **Some spot-on backend work**: after a lot of time contributing to the frontend, I asked to help with some backend development. I did some minor worksteams in microservices such as WAAS - Web3 Asset Aggregator Service for consolidating asset data info from multiple providers such as Coingecko, Coinmarketcap and others, helping with a refactor to avoid having to redeploy the service in order to pickup config changes. I also helped with backend library `wallet/common` documentation, decomposing README into separate docs. Tech stack includes:
+    - Golang
+    - Postgres for relational data
+    - MongoDB for non-relational data
+    - SQS for message queue
+    - Redis for cache
+    - gRPC for microservices communication
+    - Docker for containerization
+    - Kubernetes for orchestration
+- **PR reviews**: I was known for being very thorough with my reviews, which helped my peers a lot, catching bugs and edge cases early. I did that by enforcing manual review instructions in PR descriptions, git checkout to the branch or downloading one-off builds, and manually testing changes.
 
 ## What I've built 🚢
 
-- **[react-navigation](https://reactnavigation.org) scaffolding**: Coinbase Wallet navigation setup in `apps/rn`, including `TabNavigator` and `StackNavigator`, as well as basic deep linking setup. At that time, we were using react-navigation v4. It was later updated to v5 and then to v6.
-- **Common ESLint config within monorepo**: we first started with yarn workspaces at `wallet/wallet-mobile` repo and then the infra team switched to NX; as one of my first challenges, I pulled out the common config for linting across our packages and put it in a separate monorepo package `workspaces/libs/eslint-config`.
-- **Onboarding flow**: _Talk about onboarding flow_. After some time, there was another effort to implement instant onboarding, reducing the amount of clicks from around 10 to nearly 2. {/* TODO: add recording here */}
+- **[react-navigation](https://reactnavigation.org) scaffolding**: Coinbase Wallet navigation setup in `apps/rn`, including `TabNavigator` and `StackNavigator`, as well as basic deeplinking setup. At that time, we were using react-navigation v4. It was later updated to v5 and then to v6.
+- **Common [ESLint](https://eslint.org) config within monorepo**: we first started with [yarn workspaces](https://yarnpkg.com/features/workspaces) at `wallet/wallet-mobile` repo and then the infra team switched to [NX](https://nx.dev); as one of my first challenges, I pulled out the common config for linting across our monorepo and put it in a separate package `workspaces/libs/eslint-config`.
+- **Onboarding flow**: _Talk about onboarding flow_. After some time, there was another effort to implement instant onboarding, reducing the amount of clicks from ~10 to nearly 2. {/* TODO: add recording here */}
 - **Decentralized ID onboarding**: (.cb.id), they recently launched [base names](https://www.base.org/names) to the public. (Say hello to [renan.base.eth](https://www.base.org/names/renan.base.eth)!) {/* TODO: add recording here */}
 - **Terms of Service and Privacy Policy**: a legal requirement for users to acknowledge. Most boring thing ever to implement, but someone has to do it. And that someone was me. At first, I thought about not breaking the DRY principle by rendereing a pre-existing TOS page within a webview. Don't freeze the app on startup.
-- **A/B experiments to improve funding rates**: TODO
-- **One click buy flow on CBPay (at [pay.coinbase.com](https://pay.coinbase.com))**: built a buy flow at `payments/onramp-widget` which is a repo from another internal team called CBPay (recently renamed to Coinbase Onramp).
+- **A/B experiments to improve funding rates**: NFT incentives that were delivered once the funding was completed, CTAs to launch the buy flow on different parts of the app, etc.
+- **One click buy flow on CBPay (at [pay.coinbase.com](https://pay.coinbase.com))**: built a buy flow at `payments/onramp-widget` which is a repo from another internal team called CBPay (recently renamed to Coinbase Onramp). 
 - **Buy flow**: TODO, add recording
     - React Native
     - Panorama
     - Smart contract wallet
-- **MeshConnect**: including the implementation of their RN SDK into `wallet/wallet-mobile`, and a backend proxy service at `wallet/payment-provider-aggregator` to inject secret values into request headers as per advice of docs and security team. {/* TODO: add recording here */}
+- **[MeshConnect](https://www.meshconnect.com) integration**: a vendor that allows transfers from different exchanges such as Binance, Robinhood, etc. It included the implementation of their RN SDK into `wallet/wallet-mobile`, and a backend proxy service at `wallet/payment-provider-aggregator` to inject the API key and secret values into request headers as per advice of [their docs](https://docs.meshconnect.com/guides/link-initialization#getting-your-api-keys) and our app security team. {/* TODO: add recording here */}
 
 ## What I've learned 🧠
 
@@ -71,7 +85,7 @@ Once I got the offer, I accepted it and started the onboarding process.
 
 ## What I don't like 🙁
 
-- **Work-life balance**: hard to disconnect from work, with most of my team working EST hours, specially my manager. It also had oncall rotation, which was a pain to getting paged at 2am and having to respond to incidents which you have no context.
+- **Work-life balance**: hard to disconnect from work, with most of my team working EST hours, specially my manager. It also had to attend oncall rotations, which was a pain, getting paged at 2am and having to respond to incidents which you have no context.
 - **Useless meetings**: a lot of meetings are not necessary, especially when it's a recurring one. I get it, it's because of rituals. Some decisions that could have been made asynchronously were made in a meeting wasting everyone's time.
 - **Promo cycle**: it's very slow and there's no clear path to get a raise. I worked there for almost 3 years and never got a raise.
 - **Management style**: this is very much personal-relationship oriented. I had a total of 3 manager changes. My first one was very hands off and gave me a lot of freedom. My last one was not very supportive. Feedback is not always specific and clear, most of the times it's vague and general, often repeating the same things over and over again. I didn't have a manager that really helped me grow in my career.
@@ -79,8 +93,8 @@ Once I got the offer, I accepted it and started the onboarding process.
 
 ## What's next? 💭
 
-I was terminated on **September 6, 2024**. My manager told me it was lack of performance, but all [my performance reviews were on track](https://drive.google.com/drive/folders/1pKIeMI5dSsfYxEWbFxyemb-XBKd7N5q2), so I'm not sure what happened. Probably some internal politics or downsizing. I didn't get a warning or a chance to improve. It was out of the blue, he just pulled me into a 1:1 meeting with an HR rep and told me the news.
+I was terminated on **September 6, 2024**. My manager told me it was lack of perf, but all [my performance reviews were on-track](https://drive.google.com/drive/folders/1pKIeMI5dSsfYxEWbFxyemb-XBKd7N5q2). I didn't get a warning or a chance to improve. I'm not really sure what happened, probably some internal politics or downsizing due bear market. It was out of the blue, he just pulled me into a 1:1 meeting with an HR rep and told me the news.
 
 `¯\_(ツ)_/¯`
 
-I'm looking for my next role. If you know of any good opportunities, [please reach out to me](/contact). I'm looking for a remote-friendly company that pays in USD, with a good work-life balance and interesting culture. It can be web, mobile or backend focused. All pieces are welcome! 😉
+I'm looking for my next role. If you know of any good opportunities, [please reach out to me](/contact). I'm looking for a remote-friendly company that pays in USD or USDC or BTC, with a good work-life balance and interesting culture. It can be web, mobile or backend focused. All pieces are welcome! 😉
