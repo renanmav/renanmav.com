@@ -57,16 +57,19 @@ Once I got the offer, I accepted it and started the onboarding process.
 
 - **[react-navigation](https://reactnavigation.org) scaffolding**: Coinbase Wallet navigation setup in `apps/rn`, including `TabNavigator` and `StackNavigator`, as well as basic deeplinking setup. At that time, we were using react-navigation v4. It was later updated to v5 and then to v6.
 - **Common [ESLint](https://eslint.org) config within monorepo**: we first started with [yarn workspaces](https://yarnpkg.com/features/workspaces) at `wallet/wallet-mobile` repo and then the infra team switched to [NX](https://nx.dev); as one of my first challenges, I pulled out the common config for linting across our monorepo and put it in a separate package `workspaces/libs/eslint-config`.
-- **Onboarding flow**: _Talk about onboarding flow_. After some time, there was another effort to implement instant onboarding, reducing the amount of clicks from ~10 to nearly 2. {/* TODO: add recording here */}
-- **Decentralized ID onboarding**: an IC5 eng from the identity team was on PTO, so I was assigned to build the screens for claiming your `.cb.id` username, which is a lightweight version of ENS with really cheap gas fees, so we offer this for free to users during onboarding. Coinbase recently launched [basenames](https://www.base.org/names) to the public, so I think that makes `.cb.id` kinda legacy. _Say hello to [renan.base.eth](https://www.base.org/names/renan.base.eth)!_ {/* TODO: add recording here */}
-- **Terms of Service and Privacy Policy**: a legal requirement for users to acknowledge. Most boring thing ever to implement, but someone has to do it. And that someone was me. At first, I thought about not breaking the DRY principle by rendereing a [pre-existing TOS page](https://wallet.coinbase.com/terms-of-service) within a webview, but due security reasons, I had to keep a copy of the page in our app. _Don't freeze the app on startup._
-- **A/B experiments to improve funding rates**: NFT incentives that were delivered once the funding was completed, CTAs to launch the buy flow on different parts of the app, etc.
+- **Onboarding flow**: _Talk about onboarding flow_. After some time, there was another effort to implement instant onboarding, reducing the amount of clicks from ~10 to nearly 2.
+<YoutubeVideo videoId="xpFVEA3Y96o" title="Onboarding flow" aspectRatio="9:19.5" />
+- **Decentralized ID onboarding**: an IC5 eng from the identity team was on PTO, so I was assigned to build the screens for claiming your `.cb.id` username, which is a lightweight version of ENS with really cheap gas fees, so we offer this for free to users during onboarding. Coinbase recently launched [basenames](https://www.base.org/names) to the public, so I think that makes `.cb.id` kinda legacy. _Say hello to [renan.base.eth](https://www.base.org/names/renan.base.eth)!_
+- **Terms of Service and Privacy Policy**: a legal requirement for users to acknowledge. Most boring thing ever to implement, but someone has to do it. And that someone was me. At first, I thought about not breaking the DRY principle by rendereing a [pre-existing TOS page](https://wallet.coinbase.com/terms-of-service) within a webview, but due security reasons, I had to keep a copy of the page in our app. _Make sure you don't freeze the app on startup when implementing a fullscreen modal takeover ( ͡° ͜ʖ ͡°)_
+- **A/B experiments to improve funding rates**: NFT incentives that were delivered once the first funding was completed, CTAs to launch the buy flow on different parts of the app, etc.
 - **One click buy flow on CBPay (at [pay.coinbase.com](https://pay.coinbase.com))**: built a buy flow at `payments/onramp-widget` which is a repo from another internal team called CBPay (recently renamed to Coinbase Onramp). This flow was presented inside Wallet via webview. 
-- **Buy flow**: TODO, add recording
+- **Buy flow**: TODO, add recording. Present on the following platforms:
     - React Native
-    - Panorama
-    - Smart contract wallet
+    - Panorama - [wallet.coinbase.com](https://wallet.coinbase.com)
+    - Smart contract wallet - [keys.coinbase.com](https://keys.coinbase.com)
+<YoutubeVideo videoId="V2rio-Sa128" title="Buy flow" aspectRatio="9:19.5" />
 - **[MeshConnect](https://www.meshconnect.com) integration**: a vendor that allows transfers from different exchanges such as Binance, Robinhood, etc. It included the implementation of their RN SDK into `wallet/wallet-mobile`, and a backend proxy service at `wallet/payment-provider-aggregator` to inject the API key and secret values into request headers as per advice of [their docs](https://docs.meshconnect.com/guides/link-initialization#getting-your-api-keys) and our app security team.
+<YoutubeVideo videoId="u0lX2jtOaNE" title="MeshConnect flow" aspectRatio="9:19.5" />
 
 ## What I've learned 🧠
 
@@ -86,6 +89,7 @@ Once I got the offer, I accepted it and started the onboarding process.
 
 ## What I don't like 😢
 
+- **Not learning new things**: just doing the same thing over and over again, not challenged to do things differently, pretty much in the comfort zone.
 - **Work-life balance**: hard to disconnect from work, with most of my team working EST hours, specially my manager. It also had to attend oncall rotations, which was a pain, getting paged at 2am and having to respond to incidents which you have no context.
 - **Useless meetings**: a lot of meetings are not necessary, especially when it's a recurring one. I get it, it's because of rituals. Some decisions that could have been made asynchronously were made in a meeting wasting everyone's time.
 - **Promo cycle**: it's very slow and there's no clear path to get a raise. I worked there for almost 3 years and never got a raise.

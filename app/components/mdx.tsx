@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
+import YoutubeVideo from "./youtube-video";
+
 // TODO: use https://github.com/react-syntax-highlighter/react-syntax-highlighter
 
 import Link from "./link";
@@ -107,6 +109,7 @@ let components = {
   code: Code,
   Table,
   DateRange,
+  YoutubeVideo,
 };
 
 export function CustomMDX(props) {
