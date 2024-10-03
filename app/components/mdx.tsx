@@ -80,7 +80,7 @@ function createHeading(level) {
     let slug = slugify(children);
     return React.createElement(
       `h${level}`,
-      { id: slug, className: "!text-base !font-semibold !mb-4 !mt-8" },
+      { id: slug, className: "!text-base !font-semibold !mb-4 !pt-10 !mt-0" },
       [
         React.createElement("a", {
           href: `#${slug}`,
