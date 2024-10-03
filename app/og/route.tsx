@@ -10,7 +10,7 @@ export function GET(request: Request) {
       <div
         tw="flex flex-col w-full h-full items-center justify-center"
         style={{
-          backgroundImage: "url(/unfurl-blog-post.png)",
+          backgroundImage: "url('/unfurl-blog-post.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
