@@ -1,10 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { highlight } from "sugar-high";
+
+import YoutubeVideo from "./youtube-video";
+
+// TODO: use https://github.com/react-syntax-highlighter/react-syntax-highlighter
 
 import Link from "./link";
-import DateFromNow from "./date-from-now";
+import DateRange from "./date-range";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -51,8 +54,14 @@ function RoundedImage(props) {
 }
 
 function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+  return (
+    <code
+      className="rounded-sm bg-gray-100 p-1 text-sm dark:bg-[rgb(23,23,23)] dark:text-white"
+      {...props}
+    >
+      {children}
+    </code>
+  );
 }
 
 function slugify(str) {
@@ -71,7 +80,7 @@ function createHeading(level) {
     let slug = slugify(children);
     return React.createElement(
       `h${level}`,
-      { id: slug },
+      { id: slug, className: "!text-base !font-semibold !mb-4 !pt-10 !mt-0" },
       [
         React.createElement("a", {
           href: `#${slug}`,
@@ -99,7 +108,8 @@ let components = {
   a: CustomLink,
   code: Code,
   Table,
-  DateFromNow,
+  DateRange,
+  YoutubeVideo,
 };
 
 export function CustomMDX(props) {

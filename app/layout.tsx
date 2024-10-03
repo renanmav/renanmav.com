@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { baseUrl } from "./sitemap";
 import { myInfo } from "./constants";
+import { ThemeProvider } from "./components/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -56,7 +57,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en-US"
+      lang="en"
       className={cx(
         "bg-white text-black dark:bg-black dark:text-white",
         inter.className,
@@ -64,10 +65,10 @@ export default function RootLayout({
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="/favicon.png" />
       </head>
       <body className="antialiased">
-        <link rel="shortcut icon" href="/favicon.png" />
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

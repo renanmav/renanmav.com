@@ -2,6 +2,8 @@ import { myInfo } from "app/constants";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ThemeToggle } from "./theme-toggle";
+
 export default function Navbar() {
   return (
     <header className="mb-8 flex flex-row">
@@ -22,8 +24,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex flex-row items-center" id="nav-right">
-        {/* TODO: implement dark mode */}
-        {/* <span>Theme</span> */}
+        <ThemeToggle />
       </div>
     </header>
   );
