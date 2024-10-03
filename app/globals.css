@@ -183,3 +183,7 @@ table {
 .dark {
   --background-color: black;
 }
+
+.active {
+  @apply text-black dark:text-white;
+}

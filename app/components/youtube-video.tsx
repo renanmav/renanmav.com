@@ -21,7 +21,6 @@ export default function YoutubeVideo({
         title={title}
         src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&loop=1`}
         allow="autoplay; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
         width={width * 10 * scale}
         height={height * 10 * scale}

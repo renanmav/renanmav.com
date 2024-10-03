@@ -5,7 +5,7 @@ import { formatDate } from "app/formatDate";
 
 export default function Footer() {
   return (
-    <footer className="mb-20">
+    <footer className="mb-[85vh]">
       <Divider />
       <MadeWith />
       <Memories />

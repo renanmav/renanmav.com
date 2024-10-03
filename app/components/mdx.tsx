@@ -8,6 +8,7 @@ import YoutubeVideo from "./youtube-video";
 
 import Link from "./link";
 import DateRange from "./date-range";
+import LateralIndex from "./lateral-index";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -114,9 +115,13 @@ let components = {
 
 export function CustomMDX(props) {
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    />
+    <>
+      <LateralIndex />
+
+      <MDXRemote
+        {...props}
+        components={{ ...components, ...(props.components || {}) }}
+      />
+    </>
   );
 }
