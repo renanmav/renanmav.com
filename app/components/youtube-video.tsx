@@ -19,7 +19,7 @@ export default function YoutubeVideo({
     <div className="my-2 flex justify-center">
       <iframe
         title={title}
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&loop=1`}
         allow="autoplay; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
