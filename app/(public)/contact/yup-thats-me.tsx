@@ -8,6 +8,7 @@ export default function YupThatsMe() {
         alt="Picture of Renan Mav (me)"
         width={300}
         height={300}
+        className="rounded-md"
       />
       <ArrowPointingAtMe />
       <p className="absolute left-[340px] top-[330px] text-base font-semibold">
