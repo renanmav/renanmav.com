@@ -103,7 +103,10 @@ export default function BlogPostPage({ params }) {
       </p>
       {/* TODO: add post views */}
       <article className="prose text-base">
-        <CustomMDX source={post.content} />
+        <CustomMDX
+          source={post.content}
+          showLateralIndex={post.metadata.showLateralIndex}
+        />
       </article>
     </section>
   );

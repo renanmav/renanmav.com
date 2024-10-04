@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 
 import YoutubeVideo from "./youtube-video";
 
@@ -113,10 +113,17 @@ let components = {
   YoutubeVideo,
 };
 
-export function CustomMDX(props) {
+interface CustomMDXProps extends MDXRemoteProps {
+  showLateralIndex?: string;
+}
+
+export function CustomMDX({
+  showLateralIndex = "true",
+  ...props
+}: CustomMDXProps) {
   return (
     <>
-      <LateralIndex />
+      {showLateralIndex === "true" ? <LateralIndex /> : null}
 
       <MDXRemote
         {...props}
