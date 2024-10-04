@@ -70,7 +70,7 @@ export default function LateralIndex() {
   ) => {
     event.preventDefault();
     if (headings[0]?.id === id) {
-      // If it's the first heading, scroll to the top
+      // If it's the first heading, scroll to the very top
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       const targetElement = document.getElementById(id);
