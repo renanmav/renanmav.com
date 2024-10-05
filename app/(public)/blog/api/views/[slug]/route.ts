@@ -21,9 +21,12 @@ type DynamicParams = { params: { slug: string } };
 
 export async function GET(_: NextRequest, { params }: DynamicParams) {
   const slug = params.slug;
+  console.log("GET /blog/api/views/[slug]", slug);
 
   const viewCount = await ViewCount.findOne({ slug });
   const views = viewCount ? viewCount.views : 0;
+
+  console.log(`GET /blog/api/views/${slug} - ${views} views`);
 
   return new Response(JSON.stringify({ views }), {
     status: 200,
@@ -38,8 +41,11 @@ export async function POST(_: NextRequest, { params }: DynamicParams) {
     { $inc: { views: 1 } },
     { new: true, upsert: true },
   );
+  const views = viewCount.views;
 
-  return new Response(JSON.stringify({ views: viewCount.views }), {
+  console.log(`POST /blog/api/views/${slug} - ${views} views`);
+
+  return new Response(JSON.stringify({ views }), {
     status: 200,
   });
 }

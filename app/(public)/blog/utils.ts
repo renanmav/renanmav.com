@@ -58,8 +58,10 @@ export function getBlogPosts() {
 }
 
 export async function getPostViews(slug: string) {
+  console.log(`getPostViews(${slug})`);
   const res = await fetch(`${baseUrl}/blog/api/views/${slug}`, {
     method: "POST",
+    cache: "no-store",
   });
   const data = await res.json();
   return data.views;
