@@ -1,3 +1,4 @@
+import { baseUrl } from "app/sitemap";
 import fs from "fs";
 import path from "path";
 
@@ -54,4 +55,12 @@ export function getBlogPosts() {
   return getMDXData(
     path.join(process.cwd(), "app", "(public)", "blog", "posts"),
   );
+}
+
+export async function getPostViews(slug: string) {
+  const res = await fetch(`${baseUrl}/blog/api/views/${slug}`, {
+    method: "POST",
+  });
+  const data = await res.json();
+  return data.views;
 }

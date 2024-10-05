@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
-import { formatDate } from "app/formatDate";
+import { PostHeader } from "app/components/post-header";
 import { baseUrl } from "app/sitemap";
 
-import { getBlogPosts } from "../utils";
+import { getBlogPosts, getPostViews } from "../utils";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -53,11 +53,18 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function BlogPostPage({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+export default async function BlogPostPage({ params }) {
+  const post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
+  }
+
+  let views = 0;
+  try {
+    views = await getPostViews(post.slug);
+  } catch (error) {
+    console.error("Error fetching post views:", error);
   }
 
   return (
@@ -97,11 +104,11 @@ export default function BlogPostPage({ params }) {
         `,
         }}
       />
-      <h1 className="title text-base font-medium">{post.metadata.title}</h1>
-      <p className="text-base text-neutral-400">
-        {formatDate(post.metadata.publishedAt)}
-      </p>
-      {/* TODO: add post views */}
+      <PostHeader
+        title={post.metadata.title}
+        publishedAt={post.metadata.publishedAt}
+        views={views}
+      />
       <article className="prose text-base">
         <CustomMDX
           source={post.content}
