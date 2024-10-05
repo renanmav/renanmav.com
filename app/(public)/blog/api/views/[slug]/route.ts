@@ -1,13 +1,29 @@
 import { NextRequest } from "next/server";
+import mongoose from "mongoose";
 
-let viewCounts: Record<string, number> = {}; // This should be replaced with a database
+if (!process.env.MONGODB_URI) {
+  throw new Error("MONGODB_URI is not defined");
+}
+
+mongoose.connect(process.env.MONGODB_URI, {
+  dbName: "blog",
+  autoCreate: true,
+});
+
+const viewCountSchema = new mongoose.Schema({
+  slug: { type: String, required: true, unique: true },
+  views: { type: Number, default: 0 },
+});
+
+const ViewCount = mongoose.model("ViewCount", viewCountSchema);
 
 type DynamicParams = { params: { slug: string } };
 
 export async function GET(_: NextRequest, { params }: DynamicParams) {
   const slug = params.slug;
 
-  const views = viewCounts[slug] || 0;
+  const viewCount = await ViewCount.findOne({ slug });
+  const views = viewCount ? viewCount.views : 0;
 
   return new Response(JSON.stringify({ views }), {
     status: 200,
@@ -17,10 +33,13 @@ export async function GET(_: NextRequest, { params }: DynamicParams) {
 export async function POST(_: NextRequest, { params }: DynamicParams) {
   const slug = params.slug;
 
-  const views = (viewCounts[slug] || 0) + 1;
-  viewCounts[slug] = views;
+  const viewCount = await ViewCount.findOneAndUpdate(
+    { slug },
+    { $inc: { views: 1 } },
+    { new: true, upsert: true },
+  );
 
-  return new Response(JSON.stringify({ views }), {
+  return new Response(JSON.stringify({ views: viewCount.views }), {
     status: 200,
   });
 }
