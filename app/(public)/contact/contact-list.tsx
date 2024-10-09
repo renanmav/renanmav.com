@@ -7,6 +7,7 @@ import {
   FaInstagram,
   FaTelegram,
   FaWhatsapp,
+  FaTwitter,
 } from "react-icons/fa";
 
 export default function ContactList() {
@@ -28,6 +29,12 @@ export default function ContactList() {
       link: myInfo.github,
       value: myInfo.github,
       icon: <FaGithub />,
+    },
+    {
+      name: "Twitter",
+      link: myInfo.twitter,
+      value: myInfo.twitter,
+      icon: <FaTwitter />,
     },
     {
       name: "Instagram",
