@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 if (!process.env.MONGODB_URI) {
@@ -34,14 +34,10 @@ export async function GET(_: NextRequest, { params }: DynamicParams) {
 
     console.log(`GET /blog/api/views/${slug} - ${views} views`);
 
-    return new Response(JSON.stringify({ views }), {
-      status: 200,
-    });
+    return NextResponse.json({ views }, { status: 200 });
   } catch (error) {
     console.error("Error fetching views:", error);
-    return new Response(JSON.stringify({ views: 0 }), {
-      status: 500,
-    });
+    return NextResponse.json({ views: 0 }, { status: 500 });
   }
 }
 
@@ -58,13 +54,9 @@ export async function POST(_: NextRequest, { params }: DynamicParams) {
 
     console.log(`POST /blog/api/views/${slug} - ${views} views`);
 
-    return new Response(JSON.stringify({ views }), {
-      status: 200,
-    });
+    return NextResponse.json({ views }, { status: 200 });
   } catch (error) {
     console.error("Error incrementing views:", error);
-    return new Response(JSON.stringify({ views: 0 }), {
-      status: 500,
-    });
+    return NextResponse.json({ views: 0 }, { status: 500 });
   }
 }
