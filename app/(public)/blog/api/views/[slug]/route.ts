@@ -15,7 +15,12 @@ const viewCountSchema = new mongoose.Schema({
   views: { type: Number, default: 0 },
 });
 
-const ViewCount = mongoose.model("ViewCount", viewCountSchema);
+let ViewCount: mongoose.Model<{ slug: string; views: number }> | undefined;
+if (mongoose.models.ViewCount) {
+  ViewCount = mongoose.models.ViewCount;
+} else {
+  ViewCount = mongoose.model("ViewCount", viewCountSchema);
+}
 
 type DynamicParams = { params: { slug: string } };
 
@@ -23,7 +28,7 @@ export async function GET(_: NextRequest, { params }: DynamicParams) {
   const slug = params.slug;
   console.log("GET /blog/api/views/[slug]", slug);
 
-  const viewCount = await ViewCount.findOne({ slug });
+  const viewCount = await ViewCount?.findOne({ slug });
   const views = viewCount ? viewCount.views : 0;
 
   console.log(`GET /blog/api/views/${slug} - ${views} views`);
@@ -36,12 +41,12 @@ export async function GET(_: NextRequest, { params }: DynamicParams) {
 export async function POST(_: NextRequest, { params }: DynamicParams) {
   const slug = params.slug;
 
-  const viewCount = await ViewCount.findOneAndUpdate(
+  const viewCount = await ViewCount?.findOneAndUpdate(
     { slug },
     { $inc: { views: 1 } },
     { new: true, upsert: true },
   );
-  const views = viewCount.views;
+  const views = viewCount?.views;
 
   console.log(`POST /blog/api/views/${slug} - ${views} views`);
 

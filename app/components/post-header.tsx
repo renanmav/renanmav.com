@@ -1,13 +1,13 @@
-import Divider from "app/(private)/cv/divider";
 import { formatDate } from "app/formatDate";
+import { PostViews } from "./post-views";
 
 type Props = {
   title: string;
   publishedAt: string;
-  views: number;
+  slug: string;
 };
 
-export function PostHeader({ title, publishedAt, views }: Props) {
+export function PostHeader({ title, publishedAt, slug }: Props) {
   return (
     <div className="flex flex-row items-center justify-between">
       <div className="flex flex-col">
@@ -15,7 +15,7 @@ export function PostHeader({ title, publishedAt, views }: Props) {
         <p className="text-base text-neutral-400">{formatDate(publishedAt)}</p>
       </div>
       <div className="mx-4 grow border-b border-neutral-200 dark:border-neutral-800" />
-      <p className="text-base text-neutral-400">{views} views</p>
+      <PostViews slug={slug} />
     </div>
   );
 }

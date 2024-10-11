@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
 import { PostHeader } from "app/components/post-header";
-import { baseUrl } from "app/sitemap";
+import { BASE_URL } from "app/constants";
 
-import { getBlogPosts, getPostViews } from "../utils";
+import { getBlogPosts } from "../utils";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -27,7 +27,7 @@ export function generateMetadata({ params }) {
   } = post.metadata;
   let ogImage = image
     ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+    : `${BASE_URL}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -37,7 +37,7 @@ export function generateMetadata({ params }) {
       description,
       type: "article",
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `${BASE_URL}/blog/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -60,13 +60,6 @@ export default async function BlogPostPage({ params }) {
     notFound();
   }
 
-  let views = 0;
-  try {
-    views = await getPostViews(post.slug);
-  } catch (error) {
-    console.error("Error fetching post views:", error);
-  }
-
   return (
     <section className="scroll-fade-container">
       <script
@@ -81,9 +74,9 @@ export default async function BlogPostPage({ params }) {
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
             image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
+              ? `${BASE_URL}${post.metadata.image}`
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
+            url: `${BASE_URL}/blog/${post.slug}`,
             author: {
               "@type": "Person",
               name: "My Portfolio",
@@ -107,7 +100,7 @@ export default async function BlogPostPage({ params }) {
       <PostHeader
         title={post.metadata.title}
         publishedAt={post.metadata.publishedAt}
-        views={views}
+        slug={post.slug}
       />
       <article className="prose text-base">
         <CustomMDX

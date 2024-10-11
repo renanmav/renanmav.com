@@ -5,12 +5,11 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { baseUrl } from "./sitemap";
-import { myInfo } from "./constants";
+import { myInfo, BASE_URL } from "./constants";
 import { ThemeProvider } from "./components/theme-provider";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(BASE_URL),
   title: {
     default: myInfo.name,
     template: "%s",
@@ -20,13 +19,13 @@ export const metadata: Metadata = {
     title: myInfo.name,
     siteName: myInfo.name,
     description: myInfo.description,
-    url: baseUrl,
+    url: BASE_URL,
     type: "website",
     locale: "en_US",
     alternateLocale: "pt_BR",
     images: [
       {
-        url: new URL("/unfurl.png", baseUrl).href,
+        url: new URL("/unfurl.png", BASE_URL).href,
         width: 800,
         height: 600,
         alt: myInfo.name,

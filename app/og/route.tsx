@@ -1,16 +1,15 @@
 import { ImageResponse } from "next/og";
 
-import { myInfo } from "app/constants";
-import { baseUrl } from "app/sitemap";
+import { BASE_URL, myInfo } from "app/constants";
 
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const title = url.searchParams.get("title") || myInfo.name;
 
-    const backgroundImageUrl = new URL("/unfurl-blog-post.png", baseUrl);
+    const backgroundImageUrl = new URL("/unfurl-blog-post.png", BASE_URL);
 
-    const font = await fetch(new URL("/Inter-Bold.ttf", baseUrl));
+    const font = await fetch(new URL("/Inter-Bold.ttf", BASE_URL));
     if (!font.ok) throw new Error("Failed to fetch the font file");
     const fontData = await font.arrayBuffer();
 
