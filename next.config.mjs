@@ -3,11 +3,15 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/blog/api/views/:slug",
+        source: "/blog/api/views/*",
         headers: [
           {
             key: "Access-Control-Allow-Origin",
             value: "*",
+          },
+          {
+            key: "Access-Control-Allow-Credentials",
+            value: "true",
           },
           {
             key: "Access-Control-Allow-Methods",
@@ -15,7 +19,8 @@ const nextConfig = {
           },
           {
             key: "Access-Control-Allow-Headers",
-            value: "Content-Type, Authorization",
+            value:
+              "Accept, Accept-Version, Content-Length, Content-Type, Authorization",
           },
         ],
       },

@@ -8,11 +8,11 @@ async function getPostViews(slug: string) {
   console.log(`getPostViews(${slug})`);
   const res = await fetch(`${BASE_URL}/blog/api/views/${slug}`, {
     method: "POST",
-    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
     },
+    cache: "no-store",
+    credentials: "include",
     redirect: "follow",
   });
   if (!res.ok) {
