@@ -9,7 +9,15 @@ async function getPostViews(slug: string) {
   const res = await fetch(`${BASE_URL}/blog/api/views/${slug}`, {
     method: "POST",
     cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    redirect: "follow",
   });
+  if (!res.ok) {
+    throw new Error("Failed to fetch views");
+  }
   const data = await res.json();
   return data.views;
 }
@@ -19,7 +27,15 @@ type Props = {
 };
 
 export function PostViews({ slug }: Props) {
-  const { data, isLoading } = useSWR(`${slug}-views`, () => getPostViews(slug));
+  const { data, isLoading } = useSWR(
+    `${slug}-views`,
+    () => getPostViews(slug),
+    {
+      fallbackData: 0,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    },
+  );
 
   return (
     <div className="flex flex-row items-center gap-1 text-base text-neutral-400">
