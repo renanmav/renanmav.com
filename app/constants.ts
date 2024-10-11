@@ -1,7 +1,7 @@
 export const BASE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
-    : "https://renanmav.com";
+    : "https://www.renanmav.com";
 
 export const myInfo = {
   name: "Renan Mav",
