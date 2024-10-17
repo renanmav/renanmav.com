@@ -1,0 +1,53 @@
+---
+title: "Experimenting with Nitro modules"
+publishedAt: "2024-10-17"
+summary: "Creating my first library with Nitro modules"
+---
+
+## Nitro? Never heard of it
+
+TODO: intro to nitro
+
+https://github.com/mrousavy/nitro/blob/main/docs/docs/using-nitro-in-a-library.md
+
+## What are we building?
+
+TODO: Intro to SFSafariViewController from Apple
+
+- https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller
+- https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession
+- https://developer.apple.com/documentation/webkit/wkwebview
+
+## Defining specs
+
+SFSafariViewController.nitro.ts
+
+```ts
+import type { HybridObject } from "react-native-nitro-modules";
+
+export interface SFSafariViewController
+  extends HybridObject<{ ios: "swift"; android: "kotlin" }> {
+  present(url: string): void;
+  dismiss(): void;
+}
+```
+
+## Example
+
+Add a runnable app with react-native-community/cli
+
+## Implement your native module
+
+I'm not a Swift or Kotlin expert
+
+### Swift
+
+Implement `HybridSFSafariViewController.swift`
+
+### Kotlin
+
+TODO
+
+## Resouces
+
+- https://github.com/BubbleTrouble14/react-native-nitro-bip39
