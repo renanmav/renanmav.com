@@ -68,14 +68,63 @@ Bisecting: 30 revisions left to test after this (roughly 5 steps)
 [4ff54139b7922f006f862d548e1c3c3345716d2f] fix(ci): typo
 ```
 
-It means that there are 30 commits left to test.
+It means that there are 30 commits left to test. We can see that there are 5 steps left to test.  It cuts the commit history down in halves until it finds the original bad commit.
 
-We can see that there are 5 steps left to test.
+Now, we need to test the commit to see if it's good or bad.
 
+In case of Bun, there's this guide https://bun.sh/docs/project/contributing. We can use Docker to test the commit.
 
+```bash
+git bisect run docker run --rm oven/bun:4ff54139b7922f006f862d548e1c3c3345716d2f --version
+```
 
+It outputs the following:
 
+```bash
+$ ./bun-debug --version
+[SYS] read(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug], 4096) = 4096 (0.037ms)
+[SYS] close(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug])
+1.1.31-debug
+```
 
+After following https://bun.sh/docs/project/contributing, we can see that the error is coming from `clap` dependency.
+
+```
+./bun-debug create expo ./awesome-project -t tabs
+[SYS] read(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug], 4096) = 4096 (0.033ms)
+[SYS] close(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug])
+error: Invalid Argument '-t'
+note: Release build will not have this trace by default:
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/streaming.zig:231:13: 0x10254137b in err__anon_122110 (bun-debug)
+            return _err;
+            ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/streaming.zig:187:13: 0x101fac2cf in chainging (bun-debug)
+            return parser.err(arg, .{ .short = arg[index] }, error.InvalidArgument);
+            ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/streaming.zig:121:34: 0x101fab33b in normal (bun-debug)
+                .short => return try parser.chainging(.{
+                                 ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/streaming.zig:55:35: 0x101b259cf in next (bun-debug)
+                .normal => return try parser.normal(),
+                                  ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/comptime.zig:76:20: 0x101dd51b7 in parse__anon_87277 (bun-debug)
+            while (try stream.next()) |arg| {
+                   ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap.zig:333:12: 0x101dd58eb in parseEx__anon_87276 (bun-debug)
+    return try Clap.parse(iter, opt);
+           ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap.zig:316:16: 0x101dd5ac7 in parse__anon_87275 (bun-debug)
+    res.clap = try parseEx(Id, params, &iter, .{
+               ^
+/Users/renanmav/renanmav/bun/src/cli/create_command.zig:216:13: 0x101dd5d37 in parse (bun-debug)
+            return err;
+            ^
+/Users/renanmav/renanmav/bun/src/cli/create_command.zig:1680:32: 0x101dd64a3 in extractInfo (bun-debug)
+        const create_options = try CreateOptions.parse(ctx);
+                               ^
+/Users/renanmav/renanmav/bun/src/cli.zig:1972:45: 0x101df8fff in start (bun-debug)
+                const create_command_info = try CreateCommand.extractInfo(ctx);
+```
 
 
 
