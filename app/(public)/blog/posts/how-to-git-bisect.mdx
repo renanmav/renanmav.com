@@ -17,7 +17,7 @@ The more narrow the range you give to `git bisect`, the better.
 
 Let's solve a real-world problem using `git bisect`.
 
-I noticed a small bug on Bun CLI when using short flags. Check this GitHub issue https://github.com/oven-sh/bun/issues/7114.
+I noticed a small bug on Bun CLI when using short flags. Check this GitHub issue https://github.com/oven-sh/bun/issues/7114. 
 
 I'm using `bun@1.0.8` and the issue mentions that it worked correctly on `1.0.7`.
 
@@ -126,8 +126,9 @@ note: Release build will not have this trace by default:
                 const create_command_info = try CreateCommand.extractInfo(ctx);
 ```
 
+Look into https://github.com/oven-sh/bun/pull/2238, that might be the commit that introduced the bug.
 
-
+Try to bump or revert the zig-clap version.
 
 
 
