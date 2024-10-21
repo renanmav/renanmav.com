@@ -1,0 +1,83 @@
+---
+title: "Experimenting with Nitro modules"
+publishedAt: "2024-10-17"
+summary: "Creating my first library with Nitro modules"
+---
+
+Hey there! If you're a React Native developer and you follow enough RN engineers on X, you've probably heard of [Nitro](https://github.com/mrousavy/nitro). Nitro Modules are a [new way for building cross-platform libraries for React Native](https://nitro.margelo.com/docs/using-nitro-in-a-library). It's an alternative to the traditional approach of building a RN library, either via official docs for [Native modules](https://reactnative.dev/docs/native-modules-intro), [Turbo modules](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/turbo-modules.md) or [Expo modules](https://docs.expo.dev/modules/overview).
+
+It recently became stable and I thought it would be a good time to experiment with.
+
+## What are the benefits?
+
+- Statically typed
+- No glue code
+- No runtime overhead
+- Fast performance
+- JSI-based
+- C++ codegen
+
+Checkout these resources for more information:
+
+- https://www.reactnativeradio.com/episodes/rnr-310-nitro-with-marc-rousavy
+- https://www.callstack.com/podcasts/superfast-nitro-modules-with-marc-rousavy
+
+## What are we building?
+
+FYI - **I'm not an experienced library author**. This is gonna be my first time building this kind of project, so I'll be learning a lot. I want to build a module that's simple and useful.
+
+I've chosen to build a module that opens a website in an in-app-browser _(commonly referred by the IAB acronym)_ experience, heavily inspired by the [react-native-inappbrowser-reborn](https://github.com/proyecto26/react-native-inappbrowser) package.
+
+🍎 For Apple apps, we want to open a URL in a SFSafariViewController.
+
+- https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller
+- https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession
+- https://developer.apple.com/documentation/webkit/wkwebview
+
+🤖 For Android apps, we want to open a URL in a Chrome Custom Tab.
+
+- https://developer.android.com/reference/androidx/browser/customtabs
+
+
+## Defining specs
+
+SFSafariViewController.nitro.ts
+
+```ts
+import type { HybridObject } from "react-native-nitro-modules";
+
+export interface SFSafariViewController
+  extends HybridObject<{ ios: "swift" }> {
+  present(url: string): void;
+  dismiss(): void;
+}
+```
+
+## Example
+
+Add a runnable app with react-native-community/cli
+
+## Implement your native module
+
+I'm not a Swift or Kotlin expert 🤓
+
+### Swift
+
+Implement `HybridSFSafariViewController.swift`
+
+### Kotlin
+
+Implement `HybridChromeCustomTabs.kt`
+
+## Use the module on the app
+
+Use the native functions within the React Native codebase.
+
+## Old arch vs new arch
+
+TODO: test the module on an old arch app and a new arch app
+
+## Resources
+
+- https://github.com/patrickkabwe/react-native-nitro-in-app-browser
+- https://github.com/BubbleTrouble14/react-native-nitro-bip39
