@@ -2,6 +2,9 @@ import { ImageResponse } from "next/og";
 
 import { BASE_URL, myInfo } from "app/constants";
 
+const TEXT_COLOR = "#fff";
+const TEXT_SHADOW_COLOR = "#24323B";
+
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
@@ -33,9 +36,8 @@ export async function GET(request: Request) {
               style={{
                 fontFamily: '"Inter"',
                 fontSize: "72px",
-                color: "#fff",
-                textShadow:
-                  "-1px -1px 0 #526f80, 1px -1px 0 #526f80, -1px 1px 0 #526f80, 1px 1px 0 #526f80",
+                color: TEXT_COLOR,
+                textShadow: `-1px -1px 0 ${TEXT_SHADOW_COLOR}, 1px -1px 0 ${TEXT_SHADOW_COLOR}, -1px 1px 0 ${TEXT_SHADOW_COLOR}, 1px 1px 0 ${TEXT_SHADOW_COLOR}`,
               }}
             >
               {title}
