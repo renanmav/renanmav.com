@@ -28,4 +28,6 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Different layouts
 
-I'm using [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups) to organize routes and enable different layouts based on route grouping. Checkout `app/(public)` and `app/(private)`. _(names are subject to change)_
+I'm using [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups) to organize routes and enable different layouts based on route grouping.
+
+Checkout `app/(public)` and `app/(private)`. _(names are subject to change)_

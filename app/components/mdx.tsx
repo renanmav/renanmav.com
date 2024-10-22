@@ -2,12 +2,11 @@ import React from "react";
 import Image from "next/image";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 
-import YoutubeVideo from "./youtube-video";
-
-// TODO: use https://github.com/react-syntax-highlighter/react-syntax-highlighter
-
+import Alert from "./alert";
 import Link from "./link";
+import Code from "./code";
 import DateRange from "./date-range";
+import YoutubeVideo from "./youtube-video";
 import LateralIndex from "./lateral-index";
 
 function Table({ data }) {
@@ -54,17 +53,6 @@ function RoundedImage(props) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
-function Code({ children, ...props }) {
-  return (
-    <code
-      className="rounded-sm bg-gray-100 p-1 text-sm dark:bg-[rgb(23,23,23)] dark:text-white"
-      {...props}
-    >
-      {children}
-    </code>
-  );
-}
-
 function slugify(str) {
   return str
     .toString()
@@ -98,6 +86,52 @@ function createHeading(level) {
   return Heading;
 }
 
+function withLinkifyText(Element: React.ElementType) {
+  return function LinkifiedTextComponent({ children, ...props }) {
+    if (typeof children === "string") {
+      const urlRegex = /(https?:\/\/[^\s]+)/gi;
+      const parts = children.split(urlRegex);
+
+      return (
+        <Element {...props}>
+          {parts.map((part, index) => {
+            if (part.match(urlRegex)) {
+              return (
+                <Link key={index} href={part} openInNewTab>
+                  {part}
+                </Link>
+              );
+            }
+            return part;
+          })}
+        </Element>
+      );
+    }
+
+    return <Element {...props}>{children}</Element>;
+  };
+}
+
+const CustomParagraph = withLinkifyText("p");
+const CustomListItem = withLinkifyText("li");
+
+function Quote({ children }) {
+  return (
+    <blockquote
+      style={{
+        borderLeft: "4px solid #ddd",
+        marginLeft: 0,
+        marginRight: 0,
+        paddingLeft: "1em",
+        color: "#666",
+        fontStyle: "italic",
+      }}
+    >
+      {children}
+    </blockquote>
+  );
+}
+
 let components = {
   h1: createHeading(1),
   h2: createHeading(2),
@@ -111,6 +145,10 @@ let components = {
   Table,
   DateRange,
   YoutubeVideo,
+  p: CustomParagraph,
+  li: CustomListItem,
+  blockquote: Quote,
+  Alert,
 };
 
 interface CustomMDXProps extends MDXRemoteProps {
