@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 
-import Alert from "./alert";
+import Alert from "./Alert";
 import Link from "./link";
 import Code from "./code";
 import DateRange from "./date-range";
