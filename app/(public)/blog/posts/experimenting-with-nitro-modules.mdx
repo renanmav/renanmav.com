@@ -1,0 +1,149 @@
+---
+title: "Experimenting with Nitro modules"
+publishedAt: "2024-11-01"
+summary: "Creating my first library with Nitro modules"
+---
+
+Hey there! If you're a React Native developer and you follow enough RN engineers on X, you've probably heard about [Nitro](https://github.com/mrousavy/nitro). **Nitro Modules are a new way for building cross-platform libraries for React Native**. It's an alternative to the pre-existing approachs for building a RN library using [Native modules](https://reactnative.dev/docs/native-modules-intro), [Turbo modules](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/turbo-modules.md) or [Expo modules](https://docs.expo.dev/modules/overview).
+
+It recently became stable and I thought it would be a good time to experiment with.
+
+## What are the benefits?
+
+- Statically typed
+- Fast performance
+- JSI-based
+- C++ codegen
+- No runtime overhead
+
+Check out the [Nitro benchmarks](https://github.com/mrousavy/NitroBenchmarks) to see how it compares to the other approaches.
+
+## What are we building?
+
+I want to build a module that's simple yet useful.
+
+<Alert type="Note">
+  **I'm not an experienced library author**. This is gonna be my first time building this kind of project, so I'll be learning along the way. I apologize in advance for any mistakes.
+</Alert>
+
+I've chosen to build a module that opens a website in an in-app-browser experience, heavily inspired by the [react-native-inappbrowser-reborn](https://github.com/proyecto26/react-native-inappbrowser) package, commonly referred by the IAB acronym.
+
+🍎 For iOS, we'll use [SFSafariViewController](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller)
+
+🤖 For Android, we'll use [Chrome Custom Tabs](https://developer.android.com/reference/androidx/browser/customtabs)
+
+## Setting up the project
+
+You can use Nitro in an existing app or within a library. I'll be using a new project for this experiment. Luckily, there's a [template](https://github.com/mrousavy/nitro/tree/main/packages/template) that makes it easier to get started.
+
+Make sure you replace all `<<foo>>` with the correct values. Remember to also rename folders.
+
+## Defining specs
+
+We start by defining the specs for our module. Nitrogen will generate the native and C++ code for autolinking based on these specs.
+
+For iOS, you'll have `src/specs/SFSafariViewController.nitro.ts`
+
+```ts
+import type { HybridObject } from 'react-native-nitro-modules'
+
+export interface SFSafariViewController 
+    extends HybridObject<{ ios: 'swift' }> {
+  present(params: SFSafariViewControllerPresentParams): void
+  dismiss(): void
+}
+
+export interface SFSafariViewControllerPresentParams {
+  url: string
+  modalPresentationStyle?: ModalPresentationStyle
+}
+
+/**
+ * Based on UIModalPresentationStyle
+ * @see https://developer.apple.com/documentation/uikit/uimodalpresentationstyle
+ */
+export enum ModalPresentationStyle {
+  Automatic = 'automatic',
+  FullScreen = 'fullScreen',
+  PageSheet = 'pageSheet',
+}
+```
+
+For Android, you'll have `src/specs/ChromeCustomTabs.nitro.ts`
+
+```ts
+import type { HybridObject } from 'react-native-nitro-modules'
+
+export interface ChromeCustomTabs 
+    extends HybridObject<{ android: 'kotlin' }> {
+  launch(params: ChromeCustomTabsLaunchParams): void
+}
+export interface ChromeCustomTabsLaunchParams {
+  url: string
+}
+```
+
+## Update `nitro.json`
+
+Once specs are defined, you can update `nitro.json` to include them.
+
+```json
+{
+  "cxxNamespace": ["inappbrowser"],
+  "ios": {
+    "iosModulename": "NitroInAppBrowser"
+  },
+  "android": {
+    "androidNamespace": ["inappbrowser"],
+    "androidCxxLibName": "NitroInAppBrowser"
+  },
+  "autolinking": {
+    "SFSafariViewController": { // name used to register the module within registry, must match the name in the specs
+      "swift": "HybridSFSafariViewController" // name here must match the class name in the swift module/file
+    },
+    "ChromeCustomTabs": { // name used to register the module within registry, must match the name in the specs
+      "kotlin": "HybridChromeCustomTabs" // name here must match the class name in the kotlin module/file
+    }
+  },
+  "ignorePaths": ["node_modules"]
+}
+```
+
+## Example
+
+Add a runnable app with react-native-community/cli
+
+## Implement your native module
+
+I'm not a Swift or Kotlin expert 🤓
+
+### Swift
+
+Implement `HybridSFSafariViewController.swift`
+
+### Kotlin
+
+Implement `HybridChromeCustomTabs.kt`
+
+## Use the module on the app
+
+Use the native functions within the React Native codebase.
+
+## Old arch vs new arch
+
+TODO: test the module on an old arch app and a new arch app
+
+## Resources
+
+Nitro modules in the wild:
+
+- https://github.com/patrickkabwe/react-native-nitro-in-app-browser
+- https://github.com/BubbleTrouble14/react-native-nitro-bip39
+
+Podcasts and videos about Nitro:
+
+<div className="flex flex-col gap-4">
+  <iframe frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/47d79532-dd2b-4642-a60f-c1f6cc985253?dark=true" className="rounded-md w-full md:w-auto h-auto md:h-[200px]" />
+  <iframe src="https://www.youtube.com/embed/p54Dcc1FsZk?si=uUeiXpnp20HLYV6c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen className="rounded-md w-full md:w-auto h-auto md:h-[315px]" />
+</div>
+
