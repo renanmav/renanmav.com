@@ -8,7 +8,7 @@ const config = {
   },
   overrides: [
     {
-      files: ["app/components/*.tsx"],
+      files: ["app/components/**/*.tsx"],
       rules: {
         "filenames/match-exported": "error",
         "filenames/no-index": "error",
