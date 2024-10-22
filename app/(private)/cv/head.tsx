@@ -3,7 +3,7 @@ import { FaLinkedin, FaGithub, FaLink } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 
 import { myInfo } from "app/constants";
-import Link from "app/components/link";
+import Link from "app/components/Link";
 
 export default function Head() {
   return (
@@ -82,8 +82,14 @@ function ContactInfo() {
   return (
     <div className="col-span-2 flex basis-1/4 flex-row items-end justify-evenly gap-4 self-end md:flex-col md:gap-1">
       {contactList.map((contact, index) => (
-        <Link key={index} href={contact.href} className="flex flex-row items-center gap-2">
-          <span className="hidden md:block">{contact.text.replace("https://", "")}</span>
+        <Link
+          key={index}
+          href={contact.href}
+          className="flex flex-row items-center gap-2"
+        >
+          <span className="hidden md:block">
+            {contact.text.replace("https://", "")}
+          </span>
           {contact.Icon && <contact.Icon className="size-7 md:size-5" />}
         </Link>
       ))}

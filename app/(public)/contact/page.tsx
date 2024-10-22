@@ -1,4 +1,4 @@
-import Link from "app/components/link";
+import Link from "app/components/Link";
 
 import YupThatsMe from "./yup-thats-me";
 import ContactList from "./contact-list";

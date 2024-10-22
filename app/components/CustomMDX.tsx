@@ -3,11 +3,11 @@ import Image from "next/image";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 
 import Alert from "./Alert";
-import Link from "./link";
-import Code from "./code";
-import DateRange from "./date-range";
-import YoutubeVideo from "./youtube-video";
-import LateralIndex from "./lateral-index";
+import Link from "./Link";
+import Code from "./Code";
+import DateRange from "./DateRange";
+import YoutubeVideo from "./YoutubeVideo";
+import LateralIndex from "./LateralIndex";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (

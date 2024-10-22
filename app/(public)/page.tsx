@@ -1,6 +1,6 @@
 import { BlogPosts } from "app/components/posts";
 import { myInfo } from "app/constants";
-import Link from "app/components/link";
+import Link from "app/components/Link";
 
 export default function IndexPage() {
   return (

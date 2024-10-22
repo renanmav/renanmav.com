@@ -1,4 +1,4 @@
-import Link from "app/components/link";
+import Link from "app/components/Link";
 import { myInfo } from "app/constants";
 import {
   FaEnvelope,

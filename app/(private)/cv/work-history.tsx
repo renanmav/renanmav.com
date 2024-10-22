@@ -1,4 +1,4 @@
-import Link from "app/components/link";
+import Link from "app/components/Link";
 
 import Divider from "./divider";
 
@@ -236,7 +236,9 @@ function Header() {
   return (
     <div className="mb-2 flex">
       <h2 className="basis-1/2 font-bold uppercase">Work History</h2>
-      <h2 className="hidden basis-1/2 font-bold uppercase md:block">Highlights</h2>
+      <h2 className="hidden basis-1/2 font-bold uppercase md:block">
+        Highlights
+      </h2>
     </div>
   );
 }
