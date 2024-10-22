@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { myInfo, BASE_URL } from "./constants";
-import { ThemeProvider } from "./components/theme-provider";
+import ThemeProvider from "./components/ThemeProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

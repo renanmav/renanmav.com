@@ -2,7 +2,7 @@ import { myInfo } from "app/constants";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ThemeToggle } from "./theme-toggle";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   return (

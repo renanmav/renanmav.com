@@ -4,7 +4,8 @@ import Highlight, { Prism } from "react-syntax-highlighter";
 import type { SyntaxHighlighterProps } from "react-syntax-highlighter";
 import { githubGist } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useTheme } from "./theme-provider";
+
+import { useTheme } from "./ThemeProvider";
 
 type CodeProps = {
   children: React.ReactNode;

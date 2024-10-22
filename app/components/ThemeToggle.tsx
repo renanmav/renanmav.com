@@ -2,9 +2,9 @@
 
 import { LuSunMedium, LuMoonStar } from "react-icons/lu";
 
-import { useTheme } from "./theme-provider";
+import { useTheme } from "./ThemeProvider";
 
-export function ThemeToggle() {
+export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
   return (
