@@ -1,5 +1,6 @@
 import { formatDate } from "app/formatDate";
-import { PostViews } from "./post-views";
+
+import PostViews from "./PostViews";
 
 type Props = {
   title: string;
@@ -7,7 +8,7 @@ type Props = {
   slug: string;
 };
 
-export function PostHeader({ title, publishedAt, slug }: Props) {
+export default function PostHeader({ title, publishedAt, slug }: Props) {
   return (
     <div className="flex flex-row items-center justify-between">
       <div className="flex flex-col">

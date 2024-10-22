@@ -26,7 +26,7 @@ type Props = {
   slug: string;
 };
 
-export function PostViews({ slug }: Props) {
+export default function PostViews({ slug }: Props) {
   const { data, isLoading } = useSWR(
     `${slug}-views`,
     () => getPostViews(slug),

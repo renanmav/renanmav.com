@@ -1,5 +1,5 @@
-import { BlogPosts } from "app/components/posts";
 import { myInfo } from "app/constants";
+import BlogPosts from "app/components/Posts";
 import Link from "app/components/Link";
 
 export default function IndexPage() {

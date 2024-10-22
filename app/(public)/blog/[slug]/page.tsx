@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import CustomMDX from "app/components/CustomMDX";
-import { PostHeader } from "app/components/post-header";
+
 import { BASE_URL } from "app/constants";
+import CustomMDX from "app/components/CustomMDX";
+import PostHeader from "app/components/PostHeader";
 
 import { getBlogPosts } from "../utils";
 
