@@ -155,7 +155,7 @@ interface CustomMDXProps extends MDXRemoteProps {
   showLateralIndex?: string;
 }
 
-export function CustomMDX({
+export default function CustomMDX({
   showLateralIndex = "true",
   ...props
 }: CustomMDXProps) {
