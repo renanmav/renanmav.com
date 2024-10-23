@@ -30,7 +30,7 @@ I've chosen to build a module that opens a website in an in-app-browser experien
 
 🍎 For iOS, we'll use [SFSafariViewController](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller)
 
-🤖 For Android, we'll use [Chrome Custom Tabs](https://developer.android.com/reference/androidx/browser/customtabs)
+🤖 For Android, we'll use [ChromeCustomTabs](https://developer.android.com/reference/androidx/browser/customtabs)
 
 ## Setting up the project
 
@@ -40,11 +40,11 @@ Make sure you replace all `<<foo>>` with the correct values. Remember to also re
 
 ## Defining specs
 
-We start by defining the specs for our module. Nitrogen will generate the native and C++ code for autolinking based on these specs.
+We start by defining the specs for our module. These are simple TypeScript interfaces that describe the native module and its methods. Nitrogen will generate the native and C++ code for autolinking based on these specs.
 
 For iOS, you'll have `src/specs/SFSafariViewController.nitro.ts`
 
-```ts
+```typescript
 import type { HybridObject } from 'react-native-nitro-modules'
 
 export interface SFSafariViewController 
@@ -71,7 +71,7 @@ export enum ModalPresentationStyle {
 
 For Android, you'll have `src/specs/ChromeCustomTabs.nitro.ts`
 
-```ts
+```typescript
 import type { HybridObject } from 'react-native-nitro-modules'
 
 export interface ChromeCustomTabs 
@@ -111,17 +111,241 @@ Once specs are defined, you can update `nitro.json` to include them.
 
 ## Example
 
-Add a runnable app with react-native-community/cli
+To test your module, you will need a runnable application. You can create one in an `/example` folder using either `react-native-community/cli` or `expo-cli`.
+
+```bash
+# using react-native-community/cli
+npx react-native-community@latest init NitroInAppBrowser
+
+# using expo-cli
+npx expo init NitroInAppBrowser
+```
+
+Do some basic setup for the app to run (install pods, etc).
+
+Install the local module in the example app. You can either use `link` or `file` version in package.json. I later found out that using `link` was causing issues with the autolinking process — so I recommend using the `file` strategy combined with a postinstall `rm -rf` strategy to avoid circular dependencies.
+
+`example/package.json`
+
+```json
+"scripts": {
+  ...
+  "postinstall": "./scripts/postinstall.sh"
+},
+"dependencies": {
+  "react": "18.3.1",
+  "react-native": "0.75.4",
+  "react-native-in-app-browser": "file:../",
+  "react-native-nitro-modules": "*"
+},
+```
+
+`example/scripts/postinstall.sh`
+
+```bash
+#!/bin/bash
+
+folders=(
+  "./node_modules/react-native-in-app-browser/example"
+  "./node_modules/react-native-in-app-browser/node_modules"
+)
+
+for folder in "${folders[@]}"; do
+  if [ -d "$folder" ]; then
+    echo "Removing $folder"
+    rm -rf "$folder"
+  else
+    echo "Folder $folder does not exist, skipping"
+  fi
+done
+
+echo "Post-install completed."
+exit 0
+```
+
+Oh, you'll also need a custom `metro.config.js` to correctly resolve the local module.
+
+`example/metro.config.js`
+
+```javascript
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config')
+const path = require('path')
+const escape = require('escape-string-regexp')
+const exclusionList = require('metro-config/src/defaults/exclusionList')
+const pak = require('../package.json')
+
+const root = path.resolve(__dirname, '..')
+const modules = Object.keys({ ...pak.peerDependencies })
+
+/**
+ * Metro configuration
+ * https://facebook.github.io/metro/docs/configuration
+ *
+ * @type {import('metro-config').MetroConfig}
+ */
+const config = {
+  watchFolders: [root],
+
+  // We need to make sure that only one version is loaded for peerDependencies
+  // So we block them at the root, and alias them to the versions in example's node_modules
+  resolver: {
+    blacklistRE: exclusionList(
+      modules.map(
+        (m) =>
+          new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`)
+      )
+    ),
+
+    extraNodeModules: modules.reduce((acc, name) => {
+      acc[name] = path.join(__dirname, 'node_modules', name)
+      return acc
+    }, {}),
+  },
+
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true,
+      },
+    }),
+  },
+}
+
+module.exports = mergeConfig(getDefaultConfig(__dirname), config)
+```
+
+That should be it! 🎉
 
 ## Implement your native module
 
-I'm not a Swift or Kotlin expert 🤓
+Again, I'm not a Swift or Kotlin expert 🤓
+
+I'm getting help from Cursor, ChatGPT and some GitHub search to implement the native code. <span className="italic text-sm text-gray-400  dark:text-gray-600 font-light">learning the language and concepts during the process...</span>
 
 ### Swift
 
-Implement `HybridSFSafariViewController.swift`
+It's time to dive into Apple's modern language. 🍎
+
+I like to open the `/example/ios` folder in Xcode and run the app from there. You won't need to link the native module after doing changes because `/examples/node_modules/react-native-in-app-browser` is a symbolic link. 😉
+
+Implement `HybridSFSafariViewController.swift` by adding inheritance from the C++ generated specs. XCode helps a lot with the autocompletion of missing methods.
+
+**TODO**: explain these
+- `hybridContext`
+- `memorySize`
+
+`ios/HybridSFSafariViewController.swift`
+
+```swift
+import Foundation
+import SafariServices
+
+class HybridSFSafariViewController: HybridSFSafariViewControllerSpec {
+  var hybridContext = margelo.nitro.HybridContext()
+  
+  var memorySize: Int {
+    return getSizeOf(self)
+  }
+  
+  func present(params: SFSafariViewControllerPresentParams) throws -> Void {
+    NSLog("HybridSFSafariViewController.present(url:%@) is being called", params.url)
+    
+    guard let nativeUrl = URL(string: params.url) else {
+      throw NSError(domain: "HybridSFSafariViewController", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])
+    }
+    
+    let safariViewController = SFSafariViewController(url: nativeUrl)
+    
+    let style: UIModalPresentationStyle
+    switch params.modalPresentationStyle {
+    case .fullscreen:
+      style = .fullScreen
+    case .pagesheet:
+      style = .pageSheet
+    default:
+      style = .automatic
+    }
+    safariViewController.modalPresentationStyle = style
+    
+    DispatchQueue.main.async {
+      if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+         let window = windowScene.windows.first,
+         let rootViewController = window.rootViewController {
+        let topViewController = rootViewController.topMostViewController()
+        topViewController.present(safariViewController, animated: true, completion: nil)
+      } else {
+        NSLog("Failed to find top view controller to present SFSafariViewController")
+      }
+    }
+  }
+  
+  func dismiss() throws -> Void {
+    DispatchQueue.main.async {
+      if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+         let window = windowScene.windows.first,
+         let rootViewController = window.rootViewController {
+        
+        let topViewController = rootViewController.topMostViewController()
+        
+        // Search for SFSafariViewController in the view controller hierarchy
+        if let safariViewController = topViewController.findSFSafariViewController() {
+          safariViewController.dismiss(animated: true, completion: nil)
+        } else {
+          NSLog("No SFSafariViewController found to dismiss")
+        }
+      } else {
+        NSLog("Failed to find top view controller to dismiss SFSafariViewController")
+      }
+    }
+  }
+}
+```
+
+In order for that to work, you'll also need some helper recursive extensions.
+
+`ios/UIViewController+Extensions.swift`
+
+```swift
+import UIKit
+import SafariServices
+
+extension UIViewController {
+  func topMostViewController() -> UIViewController {
+    if let presented = self.presentedViewController {
+      return presented.topMostViewController()
+    }
+    
+    if let navigation = self as? UINavigationController {
+      return navigation.visibleViewController?.topMostViewController() ?? navigation
+    }
+    
+    if let tab = self as? UITabBarController {
+      return tab.selectedViewController?.topMostViewController() ?? tab
+    }
+    
+    return self
+  }
+  
+  func findSFSafariViewController() -> SFSafariViewController? {
+    if let safariVC = self as? SFSafariViewController {
+      return safariVC
+    }
+    
+    for child in children {
+      if let childSafariVC = child.findSFSafariViewController() {
+        return childSafariVC
+      }
+    }
+    
+    return presentedViewController?.findSFSafariViewController()
+  }
+}
+```
 
 ### Kotlin
+
+Now, it's time to implement the Android side. 🤖
 
 Implement `HybridChromeCustomTabs.kt`
 
@@ -146,4 +370,3 @@ Podcasts and videos about Nitro:
   <iframe frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/47d79532-dd2b-4642-a60f-c1f6cc985253?dark=true" className="rounded-md w-full md:w-auto h-auto md:h-[200px]" />
   <iframe src="https://www.youtube.com/embed/p54Dcc1FsZk?si=uUeiXpnp20HLYV6c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen className="rounded-md w-full md:w-auto h-auto md:h-[315px]" />
 </div>
-
