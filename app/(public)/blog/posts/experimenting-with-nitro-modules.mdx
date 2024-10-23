@@ -11,7 +11,7 @@ It recently became stable and I thought it would be a good time to experiment wi
 ## What are the benefits?
 
 - **Statically typed**: TypeScript for the win 💪
-- **JSI-based**: it's bridgeless baby 💁‍♀️
+- **JSI-based**: it's <span className="line-through">Britney</span> Bridgeless, bitch 💁‍♀️
 - **C++ codegen**: thin runtime layer close to zero overhead 🚀
 - **Fast performance**: multiply the speed of execution by 5~15 folds 💨
 
@@ -348,11 +348,84 @@ Note that you can access the `applicationContext` from the `NitroModules` class.
 
 ## Use the module on the app
 
-Use the native functions within the React Native codebase.
+Let's turn our attention back to the JavaScript world.
+
+We now can use the native functions within the React Native codebase by calling `NitroModules.createHybridObject`.
+
+`src/SFSafariViewController.ts`
+
+```typescript
+import { NitroModules } from 'react-native-nitro-modules'
+import type { SFSafariViewController as SFSafariViewControllerInterface } from './specs/SFSafariViewController.nitro'
+
+export const SFSafariViewController =
+  NitroModules.createHybridObject<SFSafariViewControllerInterface>(
+    'SFSafariViewController' // name used to register the module within registry, check `nitro.json`
+  )
+```
+
+`src/ChromeCustomTabs.ts`
+
+```typescript
+import { NitroModules } from 'react-native-nitro-modules'
+import type { ChromeCustomTabs as ChromeCustomTabsInterface } from './specs/ChromeCustomTabs.nitro'
+
+export const ChromeCustomTabs =
+  NitroModules.createHybridObject<ChromeCustomTabsInterface>(
+    'ChromeCustomTabs' // name used to register the module within registry, check `nitro.json`
+  )
+```
+
+`src/InAppBrowser.ts`
+
+```typescript
+import { Platform } from 'react-native'
+
+import { SFSafariViewController } from './SFSafariViewController'
+import { ChromeCustomTabs } from './ChromeCustomTabs'
+
+interface InAppBrowserType {
+  open: (url: string) => void
+}
+
+export const InAppBrowser: InAppBrowserType = {
+  open: (url: string) => {
+    const openNative = Platform.select({
+      ios: () => SFSafariViewController.present({ url }),
+      android: () => ChromeCustomTabs.launch({ url }),
+    })
+
+    if (!openNative) {
+      throw new Error('InAppBrowser is not supported on this platform')
+    }
+
+    openNative()
+  },
+}
+```
+
+With that TypeScript implementation, you should be able to use the module in your app.
+
+`example/App.tsx`
+
+```typescript
+import { InAppBrowser } from 'react-native-in-app-browser'
+
+function App() {
+  return (
+    <Button 
+      title="Open in-app browser" 
+      onPress={() => {
+        InAppBrowser.open('https://margelo.com')
+      }}
+    />
+  )
+}
+```
 
 ## Old arch vs new arch
 
-TODO: test the module on an old arch app and a new arch app
+**TODO**: test the module on an old arch app and a new arch app
 
 ## Next steps
 
