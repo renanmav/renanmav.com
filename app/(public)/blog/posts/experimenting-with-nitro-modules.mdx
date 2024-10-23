@@ -10,11 +10,10 @@ It recently became stable and I thought it would be a good time to experiment wi
 
 ## What are the benefits?
 
-- Statically typed
-- Fast performance
-- JSI-based
-- C++ codegen
-- No runtime overhead
+- **Statically typed**: TypeScript for the win 💪
+- **JSI-based**: it's bridgeless baby 💁‍♀️
+- **C++ codegen**: thin runtime layer close to zero overhead 🚀
+- **Fast performance**: multiply the speed of execution by 5~15 folds 💨
 
 Check out the [Nitro benchmarks](https://github.com/mrousavy/NitroBenchmarks) to see how it compares to the other approaches.
 
@@ -28,9 +27,9 @@ I want to build a module that's simple yet useful.
 
 I've chosen to build a module that opens a website in an in-app-browser experience, heavily inspired by the [react-native-inappbrowser-reborn](https://github.com/proyecto26/react-native-inappbrowser) package, commonly referred by the IAB acronym.
 
-🍎 For iOS, we'll use [SFSafariViewController](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller)
+🍎 For iOS, we'll use [SFSafariViewController](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller) primitive.
 
-🤖 For Android, we'll use [ChromeCustomTabs](https://developer.android.com/reference/androidx/browser/customtabs)
+🤖 For Android, we'll use [ChromeCustomTabs](https://developer.android.com/reference/androidx/browser/customtabs) primitive.
 
 ## Setting up the project
 
@@ -50,22 +49,10 @@ import type { HybridObject } from 'react-native-nitro-modules'
 export interface SFSafariViewController 
     extends HybridObject<{ ios: 'swift' }> {
   present(params: SFSafariViewControllerPresentParams): void
-  dismiss(): void
 }
 
 export interface SFSafariViewControllerPresentParams {
   url: string
-  modalPresentationStyle?: ModalPresentationStyle
-}
-
-/**
- * Based on UIModalPresentationStyle
- * @see https://developer.apple.com/documentation/uikit/uimodalpresentationstyle
- */
-export enum ModalPresentationStyle {
-  Automatic = 'automatic',
-  FullScreen = 'fullScreen',
-  PageSheet = 'pageSheet',
 }
 ```
 
@@ -111,19 +98,24 @@ Once specs are defined, you can update `nitro.json` to include them.
 
 ## Example
 
-To test your module, you will need a runnable application. You can create one in an `/example` folder using either `react-native-community/cli` or `expo-cli`.
+To test your module, you will need a **runnable application**. You can create one in an `/example` folder using either `react-native-community/cli` or `expo-cli`.
 
 ```bash
 # using react-native-community/cli
-npx react-native-community@latest init NitroInAppBrowser
+npx @react-native-community/cli@latest init NitroInAppBrowser
 
 # using expo-cli
-npx expo init NitroInAppBrowser
+npx create-expo-app@latest NitroInAppBrowser
 ```
 
 Do some basic setup for the app to run (install pods, etc).
 
-Install the local module in the example app. You can either use `link` or `file` version in package.json. I later found out that using `link` was causing issues with the autolinking process — so I recommend using the `file` strategy combined with a postinstall `rm -rf` strategy to avoid circular dependencies.
+Install the local module in the example app. You can either use `link:../` or `file:../` version in package.json. Some links about using local modules:
+
+- https://docs.npmjs.com/cli/v7/configuring-npm/package-json#local-paths
+- https://stackoverflow.com/questions/20888576/how-to-develop-npm-module-locally
+
+I later found out that using `link` was causing issues with the autolinking process — so I recommend using the `file` strategy combined with a postinstall `rm -rf` strategy to avoid circular dependencies.
 
 `example/package.json`
 
@@ -217,6 +209,8 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config)
 
 That should be it! 🎉
 
+Test it by running a local build of the example app and importing a mocked module from your local dependency.
+
 ## Implement your native module
 
 Again, I'm not a Swift or Kotlin expert 🤓
@@ -257,17 +251,6 @@ class HybridSFSafariViewController: HybridSFSafariViewControllerSpec {
     
     let safariViewController = SFSafariViewController(url: nativeUrl)
     
-    let style: UIModalPresentationStyle
-    switch params.modalPresentationStyle {
-    case .fullscreen:
-      style = .fullScreen
-    case .pagesheet:
-      style = .pageSheet
-    default:
-      style = .automatic
-    }
-    safariViewController.modalPresentationStyle = style
-    
     DispatchQueue.main.async {
       if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
          let window = windowScene.windows.first,
@@ -276,26 +259,6 @@ class HybridSFSafariViewController: HybridSFSafariViewControllerSpec {
         topViewController.present(safariViewController, animated: true, completion: nil)
       } else {
         NSLog("Failed to find top view controller to present SFSafariViewController")
-      }
-    }
-  }
-  
-  func dismiss() throws -> Void {
-    DispatchQueue.main.async {
-      if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-         let window = windowScene.windows.first,
-         let rootViewController = window.rootViewController {
-        
-        let topViewController = rootViewController.topMostViewController()
-        
-        // Search for SFSafariViewController in the view controller hierarchy
-        if let safariViewController = topViewController.findSFSafariViewController() {
-          safariViewController.dismiss(animated: true, completion: nil)
-        } else {
-          NSLog("No SFSafariViewController found to dismiss")
-        }
-      } else {
-        NSLog("Failed to find top view controller to dismiss SFSafariViewController")
       }
     }
   }
@@ -326,20 +289,6 @@ extension UIViewController {
     
     return self
   }
-  
-  func findSFSafariViewController() -> SFSafariViewController? {
-    if let safariVC = self as? SFSafariViewController {
-      return safariVC
-    }
-    
-    for child in children {
-      if let childSafariVC = child.findSFSafariViewController() {
-        return childSafariVC
-      }
-    }
-    
-    return presentedViewController?.findSFSafariViewController()
-  }
 }
 ```
 
@@ -347,7 +296,55 @@ extension UIViewController {
 
 Now, it's time to implement the Android side. 🤖
 
-Implement `HybridChromeCustomTabs.kt`
+Implement `HybridChromeCustomTabs.kt` in a similar fashion, extending the C++ generated specs, and complying with the interface.
+
+`android/src/main/java/com/margelo/nitro/inappbrowser/HybridChromeCustomTabs.kt`
+
+```kotlin
+package com.margelo.nitro.inappbrowser
+
+import android.net.Uri
+import android.util.Log
+import androidx.browser.customtabs.CustomTabsIntent
+import com.margelo.nitro.NitroModules
+
+class HybridChromeCustomTabs : HybridChromeCustomTabsSpec() {
+  companion object {
+    const val TAG = "HybridChromeCustomTabs"
+  }
+
+  override val memorySize: Long
+    get() = 0L
+
+  private val applicationContext = NitroModules.applicationContext
+
+  override fun launch(params: ChromeCustomTabsLaunchParams) {
+    Log.d(TAG, "launch: ${params.url}")
+
+    val customTabsIntent = CustomTabsIntent.Builder().build()
+
+    try {
+      val context = applicationContext?.currentActivity
+      if (context == null) {
+        Log.e(TAG, "Error launching Custom Tab: Context is null")
+        return
+      }
+
+      val uri = Uri.parse(params.url)
+      if (uri == null) {
+        Log.e(TAG, "Error launching Custom Tab: Invalid URL")
+        return
+      }
+
+      customTabsIntent.launchUrl(context, uri)
+    } catch (e: Exception) {
+      Log.e(TAG, "Error launching Custom Tab: ${e.message}", e)
+    }
+  }
+}
+```
+
+Note that you can access the `applicationContext` from the `NitroModules` class. You don't need to register the kotlin class in `NitroInAppBrowserPackage.java`, that's automatically done by nitrogen autolinking combined with a static java call to `System.loadLibrary("NitroInAppBrowser")`.
 
 ## Use the module on the app
 
@@ -356,6 +353,14 @@ Use the native functions within the React Native codebase.
 ## Old arch vs new arch
 
 TODO: test the module on an old arch app and a new arch app
+
+## Next steps
+
+Using Nitro:
+- [ ] Learn about properties getters and setters
+- [ ] Learn about events
+- [ ] Learn about promises
+- [ ] Build a Hybrid view component
 
 ## Resources
 
