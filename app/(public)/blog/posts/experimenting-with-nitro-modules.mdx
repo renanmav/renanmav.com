@@ -102,10 +102,10 @@ To test your module, you will need a **runnable application**. You can create on
 
 ```bash
 # using react-native-community/cli
-npx @react-native-community/cli@latest init NitroInAppBrowser
+npx @react-native-community/cli@latest init NitroInAppBrowserExample
 
 # using expo-cli
-npx create-expo-app@latest NitroInAppBrowser
+npx create-expo-app@latest NitroInAppBrowserExample
 ```
 
 Do some basic setup for the app to run (install pods, etc).
@@ -225,9 +225,14 @@ I like to open the `/example/ios` folder in Xcode and run the app from there. Yo
 
 Implement `HybridSFSafariViewController.swift` by adding inheritance from the C++ generated specs. XCode helps a lot with the autocompletion of missing methods.
 
-**TODO**: explain these
-- `hybridContext`
-- `memorySize`
+You can see the spec enforces these two properties:
+
+- `hybridContext`: a property that handles the context in which this hybrid object operates. This is particularly useful when you need to maintain a consistent state or perform operations that require both JavaScript and native capabilities. It helps in bridging the gap between the two environments, ensuring that the object behaves correctly regardless of where it is being used.
+- `memorySize`: a property that defines its memory usage. Since Hybrid Objects are implemented in native code, the JavaScript runtime does not inherently know their memory footprint. By specifying `memorySize`, you can inform the JavaScript garbage collector about the actual memory usage of these objects. Can also be implemented as a function `getMemorySize() -> Int`.
+
+<Alert type="Tip">
+  It's safe to return `0` if you don't know the size, but it's recommended to estimate the actual size of native object if possible. On Swift, you can use the `getSizeOf` function to get the size of the object. 
+</Alert>
 
 `ios/HybridSFSafariViewController.swift`
 
@@ -425,15 +430,35 @@ function App() {
 
 ## Old arch vs new arch
 
-**TODO**: test the module on an old arch app and a new arch app
+While this post was being written, Meta released a new version of React Native (0.76) that [ships with the new architecture by default](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here). Nitro modules are compatible with both the new and old architecture. You can test it out by running the example app with the new arch enabled.
+
+On Android, modify the `android/gradle.properties` file and turn off the `newArchEnabled` flag
+
+```diff
+-newArchEnabled=true
++newArchEnabled=false
+```
+
+On iOS, you can reinstall the dependencies by running the command:
+
+```bash
+RCT_NEW_ARCH_ENABLED=0 bundle exec pod install
+```
 
 ## Next steps
 
-Using Nitro:
-- [ ] Learn about properties getters and setters
-- [ ] Learn about events
-- [ ] Learn about promises
-- [ ] Build a Hybrid view component
+Things I'd like to try:
+
+- Learn about properties getters and setters
+- Learn about events
+- Learn about promises
+- Build a Hybrid view component
+
+Here's the [final code](https://github.com/renanmav/react-native-in-app-browser) for the module if you want to check it out. Also available as an NPM package:
+
+```bash
+npx install @renanmav/react-native-in-app-browser
+```
 
 ## Resources
 

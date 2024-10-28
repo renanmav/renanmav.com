@@ -51,8 +51,8 @@ export default function Code({
   }
 
   return (
-    <code className="rounded-sm bg-gray-100 p-1 text-sm text-[rgb(215,58,73)] dark:bg-[rgb(23,23,23)] dark:text-[rgb(255,121,198)]">
-      {childrenString}
+    <code className="break-words rounded-sm bg-gray-100 p-1 text-sm text-[rgb(215,58,73)] dark:bg-[rgb(23,23,23)] dark:text-[rgb(255,121,198)]">
+      <span className="whitespace-pre-wrap">{childrenString}</span>
     </code>
   );
 }
