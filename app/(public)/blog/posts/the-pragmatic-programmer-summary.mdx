@@ -123,7 +123,38 @@ The more effective you communicate, the more influential you become.
 
 ## Chapter 2: A Pragmatic Approach
 
-TODO
+Software development applies certain ideas that are almost <Tooltip content="something that is universally accepted as true, requiring no proof because it's self-evident.">axiomatic</Tooltip>, and processes that are virtually universal, but they're rarely documented as such. This chapter talks about those, such as:
+
+- The evils of duplication
+- Orthogonality
+- Reversibility
+- Tracer bullets
+- Prototypes and Post-it Notes
+- Domain Languages
+- Estimating
+
+{/* The evils of duplication */}
+
+Unfortunately, knowledge isn't stable. It changes, often rapidly. Our understanding of our system changes day by day. It's very easy to duplicate knowledge during those changes. If you have the same thing expressed in two or more places, you change one place, and you have to remember to change the others. This isn't a question of whether you'll remember: it's a question of when you'll forget. Memory is a fragile thing. At these times, you need to make sure that you have a single source of truth.
+
+<Alert type="tip">
+  DRY — Don't Repeat Yourself. Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.
+</Alert>
+
+The DRY principle is a powerful tool to develop software reliably, easier to understand and maintain. Often, duplication arises from:
+
+- **<Tooltip content="something that happens unintentionally or accidentally, often due to a lack of attention or care.">Inadvertent</Tooltip> duplication**: developers don't realize that they're duplicating code, usually because flaws of design and communication.
+- **Impatient duplication**: developers get lazy and copy code to get things done easier, or faster because of deadlines and time pressure.
+- **Imposed duplication**: developers feel they have no choice, the environment seems to require duplication.
+- **Interdeveloper duplication**: multiple people on a team (or different teams) duplicate a piece of knowledge because they don't know about each other's work.
+
+You can overcome these duplication issues with simple techniques. For example, you can use a single source of truth, such as a metadata file that can automatically generate other representations in different formats and languages. If the problem is about communication, programmatic programmers set up forums to discuss common issues. The idea is to facilitate the exchange of knowledge, and make it easier to reuse it.
+
+<Alert type="tip">
+  Make it easy to reuse. It it's easy to reuse, people will. Create an environment that supports reuse.
+</Alert>
+
+{/* Orthogonality */}
 
 ## Chapter 3: The Basic Tools
 
