@@ -9,6 +9,7 @@ import DateRange from "./DateRange";
 import YoutubeVideo from "./YoutubeVideo";
 import LateralIndex from "./LateralIndex";
 import Tooltip from "./Tooltip";
+import Highlight from "./Highlight";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -142,6 +143,7 @@ let components = {
   blockquote: Quote,
   Alert,
   Tooltip,
+  Highlight,
 };
 
 interface CustomMDXProps extends MDXRemoteProps {
