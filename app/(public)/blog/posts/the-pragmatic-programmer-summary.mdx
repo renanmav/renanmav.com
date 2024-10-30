@@ -156,6 +156,20 @@ You can overcome these duplication issues with simple techniques. For example, y
 
 {/* Orthogonality */}
 
+Orthogonality, in computing, references a kind of independence or decoupling. The term is borrowed from geometry. <Highlight color="green">Two or more things are orthogonal if changes in one do not affect any of the others</Highlight>. Move along one of the lines, and your position projected onto the other doesn't change. In an orthogonal system, the database code would be separate from the user interface code. An example of a non-orthogonal system is the helicopter control: an unbelievablyy complex system, where every change impacts all the other inputs. When components of any system are highly interdependent, there is no such thing as a local fix. In software development, we often want to avoid this kind of non-orthogonal behavior.
+
+<Alert type="tip">
+  Eliminate effects between unrelated things. Design components that are self-contained, independent, and have a single, well-defined purpose.
+</Alert>
+
+You get two major benefits if you write orthogonal code: increased productivity and reduced risk. Changes are localized. You get more functionality per unit effort by combining orthogonal components. To achieve that, organize code and teams into groups with well-defined responsabilities and minimal overlap. Start by separating infrastructure from application. Orthogonal teams are more efficient, encourage subteams to communicate constantly with each other.
+
+To design orthogonal systems, organize components into layers. An easy test for orthogonal designs is to ask "If I change X, will it affect Y?" If the answer is "None", then X and Y are orthogonal. When you come across a problem, assess how localized the fix is.
+
+{/* Reversibility */}
+
+
+
 ## Chapter 3: The Basic Tools
 
 TODO
