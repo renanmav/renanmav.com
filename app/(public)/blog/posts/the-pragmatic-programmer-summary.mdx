@@ -164,11 +164,67 @@ Orthogonality, in computing, references a kind of independence or decoupling. Th
 
 You get two major benefits if you write orthogonal code: increased productivity and reduced risk. Changes are localized. You get more functionality per unit effort by combining orthogonal components. To achieve that, organize code and teams into groups with well-defined responsabilities and minimal overlap. Start by separating infrastructure from application. Orthogonal teams are more efficient, encourage subteams to communicate constantly with each other.
 
-To design orthogonal systems, organize components into layers. An easy test for orthogonal designs is to ask "If I change X, will it affect Y?" If the answer is "None", then X and Y are orthogonal. When you come across a problem, assess how localized the fix is.
+To design orthogonal systems, organize components into layers. An easy test for orthogonal designs is to ask "If I change X, will it affect Y?" If the answer is "None", then X and Y are orthogonal. Also, when you come across a problem, assess how localized the fix is.
 
 {/* Reversibility */}
 
+<Highlight color="green">Nothing is more dangerous than an idea when it's the only one you have</Highlight>. We don't always make the best decisions the first time around, so be prepared to reverse your decisions. Don't assume that a decision is cast in stone, instead, think about decisions as being written in the sand at the beach. It's a mistake to not be prepared for the contingencies that will arise. Think about them up front. Use encapsulation, lightweight coupling and metadata to help you abstract vendors, technologies and whatnot. No one knows what the future may hold.
 
+<Alert type="tip">
+  There are no final decisions. Plan for change.
+</Alert>
+
+{/* Tracer bullets */}
+
+Tracer bullets are a technique to help you identify the target while shooting. It's very similar to proof of concepts, users get to see something working early and developers build a structure to work in. It doesn't always hit the target, but it helps you identify the direction. You use this technique in situations where you're not 100% certain of where you're going. Gather feedback early and often.
+
+<Alert type="tip">
+  Use tracer bullets to find the target by trying things and seeing how close they land.
+</Alert>
+
+{/* Prototypes and Post-it Notes */}
+
+Prototyping is different because you throw away whatever you lashed together when trying out the concept, and recode it properly using the lessons you've learned. Prototype anything that carries a large amount of risk. Prototyping generates disposable code. Tracer code is lean but complete, and forms part of the skeleton of the final system.
+
+<Alert type="tip">
+  Prototype to learn. Its value lies not in the code you produce, but in the lessons you learn.
+</Alert>
+
+{/* Domain languages */}
+
+Domain languages are specialized languages that are used to solve a particular problem. They are often used to describe the problem domain in a way that is more natural and easier to understand than traditional languages. Languages influence how you think about a problem, and how you think about communication. Choose the right language for the job. You wouldn't use a SQL-like language to write a concurrent program.
+
+<Alert type="tip">
+  Program close to the problem domain. Design and code in your user's language.
+</Alert>
+
+{/* Estimating */}
+
+<Highlight color="green">How many months will it take to deliver your project?</Highlight> This is one of my favorite questions. All answers are estimates, it's just a matter of how accurate they are. When someone asks you for an estimate, think about the context in which your answer will be taken. Do they need high accuracy, or just a <Tooltip content="a number that is a guess, but one that you believe is near the correct number.">ballpark figure</Tooltip>?
+
+<Alert type="tip">
+  Estimate before you start. You'll spot potential problems up front.
+</Alert>
+
+The units you use make a difference. Choose the units of your answer to reflect the accuracy you intend to convey. This time scale is recommended by the book:
+
+<Table
+  data={{
+    headers: ["Duration", "Quote estimate in"],
+    rows: [
+      ["1-15 days", "days"],
+      ["3-8 weeks", "weeks"],
+      ["8-30 weeks", "months"],
+      ["30+ weeks", "think hard before giving an estimate"],
+    ],
+  }}
+/>
+
+Start keeping a log of your estimates. For each, track how accurate you turned out to be. If your error was greater than 50%, try to find out where your estimate went wrong.
+
+<Alert type="tip">
+  Iterate the schedule with the code. Use experience you gain as you implement to refine the project time scales.
+</Alert>
 
 ## Chapter 3: The Basic Tools
 
