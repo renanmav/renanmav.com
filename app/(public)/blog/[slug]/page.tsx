@@ -99,9 +99,10 @@ export default async function BlogPostPage({ params }) {
         }}
       />
       <PostHeader
+        slug={post.slug}
         title={post.metadata.title}
         publishedAt={post.metadata.publishedAt}
-        slug={post.slug}
+        readingTimeInMinutes={post.metadata.readingTimeInMinutes}
       />
       <article className="prose text-base">
         <CustomMDX

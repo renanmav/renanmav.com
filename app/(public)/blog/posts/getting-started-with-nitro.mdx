@@ -1,10 +1,13 @@
 ---
-title: "Experimenting with Nitro modules"
+title: "Getting started with Nitro"
 publishedAt: "2024-11-06"
 summary: "Creating my first library with Nitro modules"
+readingTimeInMinutes: 15
 ---
 
-Hey there! If you're a React Native developer and you follow enough RN engineers on X, you've probably heard about [Nitro](https://github.com/mrousavy/nitro). **Nitro Modules are a new way for building cross-platform libraries for React Native**. It's an alternative to the pre-existing approachs for building libraries using [Native modules](https://reactnative.dev/docs/native-modules-intro), [Turbo modules](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/turbo-modules.md) or [Expo modules](https://docs.expo.dev/modules/overview).
+Hey there! 👋🤓
+
+If you're a React Native developer and you follow enough RN engineers on X, you've probably heard about [Nitro](https://github.com/mrousavy/nitro). **Nitro Modules are a new way for building cross-platform libraries for React Native**. It's an alternative to the pre-existing approachs for building libraries using [Native modules](https://reactnative.dev/docs/native-modules-intro), [Turbo modules](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/turbo-modules.md) or [Expo modules](https://docs.expo.dev/modules/overview).
 
 It recently became stable and I thought it would be a good time to experiment with.
 
@@ -421,18 +424,22 @@ function App() {
     <Button 
       title="Open in-app browser" 
       onPress={() => {
-        InAppBrowser.open('https://margelo.com')
+        InAppBrowser.open('https://reactnative.dev')
       }}
     />
   )
 }
 ```
 
+Here's a quick demo of the module in action:
+
+<YoutubeVideo videoId="GHdVXfSaEAE" autoplay={false} loop={false} aspectRatio="16:9.35" scale={4} />
+
 ## Old arch vs new arch
 
 While this post was being written, Meta released a new version of React Native (0.76) that [ships with the new architecture by default](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here). Nitro modules are compatible with both the new and old architecture. You can test it out by running the example app with the new arch enabled.
 
-On Android, modify the `android/gradle.properties` file and turn off the `newArchEnabled` flag
+On Android, modify the `android/gradle.properties` file and turn off the `newArchEnabled` flag:
 
 ```diff
 -newArchEnabled=true
@@ -450,9 +457,9 @@ RCT_NEW_ARCH_ENABLED=0 bundle exec pod install
 Things I'd like to try:
 
 - Learn about properties getters and setters
-- Learn about events
-- Learn about promises
-- Build a Hybrid view component
+- Learn about events emitters and subscribers
+- Learn about promises and async/await
+- Build a Hybrid view component `WKWebView`
 
 Here's the [final code](https://github.com/renanmav/react-native-in-app-browser) for the module if you want to check it out. Also available as an NPM package:
 
@@ -462,10 +469,11 @@ npx install @renanmav/react-native-in-app-browser
 
 ## Resources
 
-Nitro modules in the wild:
+Other nitro modules in the wild:
 
 - https://github.com/patrickkabwe/react-native-nitro-in-app-browser
 - https://github.com/BubbleTrouble14/react-native-nitro-bip39
+- https://github.com/4cc3ssX/react-native-nitro-totp
 
 Podcasts and videos about Nitro:
 
