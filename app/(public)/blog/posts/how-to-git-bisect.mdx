@@ -1,15 +1,17 @@
 ---
-title: "How to use git bisect"
+title: "How to git bisect"
 publishedAt: "2024-10-18"
 summary: "Guide to using git bisect to find the commit that introduced a bug"
+readingTimeInMinutes: 3
 ---
 
 `git bisect` is a command that helps you find the commit that introduced a bug through binary search. It's a very useful tool when you have a regression in your codebase.
 
-## How to use it
+## Algorithm
 
-1. Start by finding the last good commit.
+1. Find the last good working commit.
 2. Find a following bad commit.
+3. For each commit in between, test if it's good or bad.
 
 The more narrow the range you give to `git bisect`, the better.
 
@@ -68,29 +70,27 @@ Bisecting: 30 revisions left to test after this (roughly 5 steps)
 [4ff54139b7922f006f862d548e1c3c3345716d2f] fix(ci): typo
 ```
 
-It means that there are 30 commits left to test. We can see that there are 5 steps left to test.  It cuts the commit history down in halves until it finds the original bad commit.
+It means that there are 30 commits left to test. We can see that there are 5 steps left to test. It cuts the commit history down in halves until it finds the original bad commit.
 
-Now, we need to test the commit to see if it's good or bad.
-
-In case of Bun, there's this guide https://bun.sh/docs/project/contributing. We can use Docker to test the commit.
+For each revision, we need to test the commit to see if it's good or bad, by building the commit and running the tests. Once you have the good/bad result, you need to tell git if it's good or bad. You can use the following commands:
 
 ```bash
-git bisect run docker run --rm oven/bun:4ff54139b7922f006f862d548e1c3c3345716d2f --version
+git bisect good
+# or
+git bisect bad
 ```
 
-It outputs the following:
+In case of Bun, there's this guide https://bun.sh/docs/project/contributing.
+
+After building the commit, we can see that the error is coming from `clap` dependency.
 
 ```bash
-$ ./bun-debug --version
+$ ./build/debug/bun-debug --version
 [SYS] read(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug], 4096) = 4096 (0.037ms)
 [SYS] close(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug])
 1.1.31-debug
-```
 
-After following https://bun.sh/docs/project/contributing, we can see that the error is coming from `clap` dependency.
-
-```
-./bun-debug create expo ./awesome-project -t tabs
+$ ./build/debug/bun-debug create expo ./awesome-project -t tabs
 [SYS] read(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug], 4096) = 4096 (0.033ms)
 [SYS] close(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug])
 error: Invalid Argument '-t'
@@ -126,15 +126,15 @@ note: Release build will not have this trace by default:
                 const create_command_info = try CreateCommand.extractInfo(ctx);
 ```
 
-Look into https://github.com/oven-sh/bun/pull/2238, that might be the commit that introduced the bug.
+Based on the history, looks like https://github.com/oven-sh/bun/pull/2238 might be the commit that introduced the bug.
 
-Try to bump or revert the zig-clap version.
+So, the answer to solve this bug is to try to bump, revert or patch the `zig-clap` dependency responsible for parsing command line flags.
 
+Trying that here: https://github.com/oven-sh/bun/pull/14845
 
+## Conclusion
 
-
-
-
+`git bisect` is a very useful tool to have in your toolbox. It allows you to find the commit that introduced a regression through iterative elimination.
 
 ## Resources
 
