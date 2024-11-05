@@ -19,11 +19,10 @@ export default function IndexPage() {
 }
 
 function MeNowadays() {
-  // TODO: add /now page and reference it here
   return (
     <p id="me-nowadays" className="mb-4 text-base">
-      I am currently living in {myInfo.address} and working as a software
-      enginner at {myInfo.company}.
+      If you want to see what I'm currently doing, check my{" "}
+      <Link href="/now">/now page</Link>.
     </p>
   );
 }

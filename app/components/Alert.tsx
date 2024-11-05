@@ -36,7 +36,7 @@ export default function Alert({ type, children }: AlertProps) {
 
   return (
     <div
-      className="mb-4 flex flex-col border-l-4 pl-4 pt-2"
+      className="my-4 flex flex-col border-l-4 pl-4 pt-2"
       style={{ borderColor: alertType.borderColor }}
     >
       <div className="flex items-center gap-2">
