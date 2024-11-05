@@ -5,6 +5,8 @@ interface Props {
   title?: string;
   aspectRatio?: `${number}:${number}`;
   scale?: number;
+  autoplay?: boolean;
+  loop?: boolean;
 }
 
 export default function YoutubeVideo({
@@ -12,14 +14,20 @@ export default function YoutubeVideo({
   title,
   aspectRatio = "16:9",
   scale = 3,
+  autoplay = true,
+  loop = true,
 }: Props) {
   const [width, height] = aspectRatio.split(":").map(Number);
+
+  const src = `https://www.youtube.com/embed/${videoId}?autoplay=${String(autoplay)}&rel=0&loop=${String(loop)}`;
+
+  console.log(src);
 
   return (
     <div className="my-2 flex justify-center">
       <iframe
         title={title}
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&loop=1`}
+        src={src}
         allow="autoplay; web-share"
         allowFullScreen
         width={width * 10 * scale}
