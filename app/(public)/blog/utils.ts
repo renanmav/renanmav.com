@@ -7,7 +7,7 @@ type Metadata = {
   summary: string;
   image?: string;
   showLateralIndex?: string;
-  readingTime?: string;
+  readingTimeInMinutes?: string;
 };
 
 function parseFrontmatter(fileContent: string) {

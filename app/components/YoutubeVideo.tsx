@@ -21,8 +21,6 @@ export default function YoutubeVideo({
 
   const src = `https://www.youtube.com/embed/${videoId}?autoplay=${String(autoplay)}&rel=0&loop=${String(loop)}`;
 
-  console.log(src);
-
   return (
     <div className="my-2 flex justify-center">
       <iframe

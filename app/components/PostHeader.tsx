@@ -3,17 +3,17 @@ import { formatDate } from "app/formatDate";
 import PostViews from "./PostViews";
 
 type Props = {
+  slug: string;
   title: string;
   publishedAt: string;
-  slug: string;
-  readingTime?: string;
+  readingTimeInMinutes?: string;
 };
 
 export default function PostHeader({
+  slug,
   title,
   publishedAt,
-  slug,
-  readingTime,
+  readingTimeInMinutes: readingTime,
 }: Props) {
   return (
     <div className="flex flex-row items-center justify-between">
