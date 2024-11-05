@@ -8,7 +8,7 @@ export const myInfo = {
   description: "Developer, Driver, Jesus Follower",
   email: "me@renanmav.com",
   phone: "+55 63 98461-0014",
-  address: "Brazil 🇧🇷",
+  address: "Brasília, Brazil 🇧🇷",
   twitter: "https://x.com/renanmav",
   linkedin: "https://linkedin.com/in/renanmav",
   github: "https://github.com/renanmav",
