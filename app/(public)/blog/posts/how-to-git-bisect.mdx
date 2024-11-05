@@ -1,0 +1,143 @@
+---
+title: "How to git bisect"
+publishedAt: "2024-10-18"
+summary: "Guide to using git bisect to find the commit that introduced a bug"
+readingTimeInMinutes: 3
+---
+
+`git bisect` is a command that helps you find the commit that introduced a bug through binary search. It's a very useful tool when you have a regression in your codebase.
+
+## Algorithm
+
+1. Find the last good working commit.
+2. Find a following bad commit.
+3. For each commit in between, test if it's good or bad.
+
+The more narrow the range you give to `git bisect`, the better.
+
+## Example
+
+Let's solve a real-world problem using `git bisect`.
+
+I noticed a small bug on Bun CLI when using short flags. Check this GitHub issue https://github.com/oven-sh/bun/issues/7114. 
+
+I'm using `bun@1.0.8` and the issue mentions that it worked correctly on `1.0.7`.
+
+### Find the last good commit
+
+So, the first thing I want to do is to find the last good commit. We'll use the following command to find the commit hash of `1.0.7`:
+
+```bash
+git rev-list -n 1 bun-v1.0.7
+```
+
+It outputs the following **good** commit hash:
+
+```bash
+b0393fba6200d8573f3433fb0af258a0e33ac157
+```
+
+### Find the bad commit
+
+Now, we need to find the commit that introduced the bug.
+
+We'll use the following command to find the commit hash of `1.0.8`:
+
+```bash
+git rev-list -n 1 bun-v1.0.8
+```
+
+It outputs the following **bad** commit hash:
+
+```bash
+2a405f691e80725fe0b97b93afd3b8cfed13fa5f
+```
+
+### Run `git bisect`
+
+Now, we can start using `git bisect` to find the commit that introduced the bug.
+
+```bash
+git bisect start
+git bisect good b0393fba6200d8573f3433fb0af258a0e33ac157
+git bisect bad 2a405f691e80725fe0b97b93afd3b8cfed13fa5f
+```
+
+It outputs the following:
+
+```bash
+Bisecting: 30 revisions left to test after this (roughly 5 steps)
+[4ff54139b7922f006f862d548e1c3c3345716d2f] fix(ci): typo
+```
+
+It means that there are 30 commits left to test. We can see that there are 5 steps left to test. It cuts the commit history down in halves until it finds the original bad commit.
+
+For each revision, we need to test the commit to see if it's good or bad, by building the commit and running the tests. Once you have the good/bad result, you need to tell git if it's good or bad. You can use the following commands:
+
+```bash
+git bisect good
+# or
+git bisect bad
+```
+
+In case of Bun, there's this guide https://bun.sh/docs/project/contributing.
+
+After building the commit, we can see that the error is coming from `clap` dependency.
+
+```bash
+$ ./build/debug/bun-debug --version
+[SYS] read(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug], 4096) = 4096 (0.037ms)
+[SYS] close(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug])
+1.1.31-debug
+
+$ ./build/debug/bun-debug create expo ./awesome-project -t tabs
+[SYS] read(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug], 4096) = 4096 (0.033ms)
+[SYS] close(3[/Users/renanmav/renanmav/bun/build/debug/bun-debug])
+error: Invalid Argument '-t'
+note: Release build will not have this trace by default:
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/streaming.zig:231:13: 0x10254137b in err__anon_122110 (bun-debug)
+            return _err;
+            ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/streaming.zig:187:13: 0x101fac2cf in chainging (bun-debug)
+            return parser.err(arg, .{ .short = arg[index] }, error.InvalidArgument);
+            ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/streaming.zig:121:34: 0x101fab33b in normal (bun-debug)
+                .short => return try parser.chainging(.{
+                                 ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/streaming.zig:55:35: 0x101b259cf in next (bun-debug)
+                .normal => return try parser.normal(),
+                                  ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap/comptime.zig:76:20: 0x101dd51b7 in parse__anon_87277 (bun-debug)
+            while (try stream.next()) |arg| {
+                   ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap.zig:333:12: 0x101dd58eb in parseEx__anon_87276 (bun-debug)
+    return try Clap.parse(iter, opt);
+           ^
+/Users/renanmav/renanmav/bun/src/deps/zig-clap/clap.zig:316:16: 0x101dd5ac7 in parse__anon_87275 (bun-debug)
+    res.clap = try parseEx(Id, params, &iter, .{
+               ^
+/Users/renanmav/renanmav/bun/src/cli/create_command.zig:216:13: 0x101dd5d37 in parse (bun-debug)
+            return err;
+            ^
+/Users/renanmav/renanmav/bun/src/cli/create_command.zig:1680:32: 0x101dd64a3 in extractInfo (bun-debug)
+        const create_options = try CreateOptions.parse(ctx);
+                               ^
+/Users/renanmav/renanmav/bun/src/cli.zig:1972:45: 0x101df8fff in start (bun-debug)
+                const create_command_info = try CreateCommand.extractInfo(ctx);
+```
+
+Based on the history, looks like https://github.com/oven-sh/bun/pull/2238 might be the commit that introduced the bug.
+
+So, the answer to solve this bug is to try to bump, revert or patch the `zig-clap` dependency responsible for parsing command line flags.
+
+Trying that here: https://github.com/oven-sh/bun/pull/14845
+
+## Conclusion
+
+`git bisect` is a very useful tool to have in your toolbox. It allows you to find the commit that introduced a regression through iterative elimination.
+
+## Resources
+
+- https://git-scm.com/docs/git-bisect
+- https://stackoverflow.com/a/4714297
+- https://www.metaltoad.com/blog/beginners-guide-git-bisect-process-elimination
