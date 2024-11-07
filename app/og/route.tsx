@@ -10,9 +10,12 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const title = url.searchParams.get("title") || myInfo.name;
 
-    const backgroundImageUrl = new URL("/unfurl-blog-post.png", BASE_URL);
+    const backgroundImageUrl = new URL(
+      "/images/unfurl-blog-post.png",
+      BASE_URL,
+    );
 
-    const font = await fetch(new URL("/Inter-Bold.ttf", BASE_URL));
+    const font = await fetch(new URL("/fonts/Inter-Bold.ttf", BASE_URL));
     if (!font.ok) throw new Error("Failed to fetch the font file");
     const fontData = await font.arrayBuffer();
 

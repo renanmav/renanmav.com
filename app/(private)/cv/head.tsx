@@ -21,7 +21,7 @@ function LinkedinPhoto() {
   return (
     <div className="flex basis-1/3">
       <Image
-        src="/linkedin.png"
+        src="/images/linkedin.png"
         alt="Renan Mav"
         className="rounded-full object-cover"
         width={800}

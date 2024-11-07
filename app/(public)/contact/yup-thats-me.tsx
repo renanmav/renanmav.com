@@ -4,7 +4,7 @@ export default function YupThatsMe() {
   return (
     <div className="relative">
       <Image
-        src="/renanmav.png"
+        src="/images/renanmav.png"
         alt="Picture of Renan Mav (me)"
         width={300}
         height={300}

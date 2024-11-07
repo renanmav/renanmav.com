@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     alternateLocale: "pt_BR",
     images: [
       {
-        url: new URL("/unfurl.png", BASE_URL).href,
+        url: new URL("/images/unfurl.png", BASE_URL).href,
         width: 800,
         height: 600,
         alt: myInfo.name,
@@ -64,7 +64,7 @@ export default function RootLayout({
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="/favicon.png" />
+        <link rel="shortcut icon" href="/images/favicon.png" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

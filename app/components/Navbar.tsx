@@ -13,7 +13,7 @@ export default function Navbar() {
           className="flex flex-row items-center text-base font-semibold"
         >
           <Image
-            src="/habbo-pfp.png"
+            src="/images/habbo-pfp.png"
             width={30}
             height={30}
             alt="Picture of the author"
