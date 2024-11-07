@@ -117,16 +117,7 @@ const CustomListItem = withLinkifyText("li");
 
 function Quote({ children }) {
   return (
-    <blockquote
-      style={{
-        borderLeft: "4px solid #ddd",
-        marginLeft: 0,
-        marginRight: 0,
-        paddingLeft: "1em",
-        color: "#666",
-        fontStyle: "italic",
-      }}
-    >
+    <blockquote className="mx-0 border-l-4 border-neutral-300 pl-4 dark:border-neutral-700">
       {children}
     </blockquote>
   );

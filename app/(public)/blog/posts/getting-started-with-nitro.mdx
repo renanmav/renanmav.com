@@ -18,7 +18,11 @@ It recently became stable and I thought it would be a good time to experiment wi
 - **C++ codegen**: thin runtime layer close to zero overhead
 - **Fast performance**: multiply the speed of execution by 5~15 folds 🏎️💨
 
-Check out the [Nitro benchmarks](https://github.com/mrousavy/NitroBenchmarks) to see how it compares to the other approaches.
+Check out the [Nitro benchmarks](https://github.com/mrousavy/NitroBenchmarks) to see how it compares to the other approaches. From the author himself:
+
+> Nitro is so powerful and makes many things so much easier that it's almost impossible for us at Margelo to build our powerful high-performance libraries without it. [Filament](https://github.com/margelo/react-native-filament) wouldn't be possible either. It would've taken us days or weeks to build what we built in a few hours now.
+>
+> Marc Rousavy, creator of Nitro
 
 ## What are we building?
 
@@ -119,6 +123,10 @@ Install the local module in the example app. You can either use `link:../` or `f
 - https://stackoverflow.com/questions/20888576/how-to-develop-npm-module-locally
 
 I later found out that using `link` was causing issues with the autolinking process — so I recommend using the `file` strategy combined with a postinstall `rm -rf` strategy to avoid circular dependencies.
+
+<Alert type="Tip">
+  You can also use npm / yarn / bun workspaces and avoid the postinstall script. It just works, but the setup is more complex and the linking can be tricky.
+</Alert>
 
 `example/package.json`
 
