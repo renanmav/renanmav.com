@@ -40,7 +40,7 @@ function LastUpdated() {
     <p id="last-updated" className="text-sm text-gray-300 dark:text-gray-600">
       Last updated on{" "}
       <span className="inline-block">
-        {isLoading ? "..." : formatDate(data, true)}
+        {isLoading ? "..." : formatDate(data, { includeRelative: true })}
       </span>
     </p>
   );

@@ -1,4 +1,11 @@
-export function formatDate(date: string, includeRelative = false) {
+type Options = {
+  includeRelative?: boolean;
+};
+
+export function formatDate(
+  date: string,
+  { includeRelative = false }: Options = {},
+) {
   let currentDate = new Date();
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;
