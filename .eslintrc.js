@@ -1,5 +1,5 @@
 /** @type {import("eslint").Linter.LegacyConfig} */
-const config = {
+module.exports = {
   root: true,
   extends: ["next/core-web-vitals", "plugin:tailwindcss/recommended"],
   plugins: ["filenames"],
@@ -17,5 +17,3 @@ const config = {
     },
   ],
 };
-
-module.exports = config;
