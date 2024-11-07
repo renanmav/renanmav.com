@@ -16,8 +16,7 @@ Includes:
 First, install dependencies using [Bun](https://bun.sh/docs/installation) and then run the development server:
 
 ```bash
-bun i
-bun dev
+bun i && bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
