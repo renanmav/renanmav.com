@@ -187,3 +187,10 @@ table {
 .active {
   @apply text-black dark:text-white;
 }
+
+/* Code font */
+pre > code,
+pre > div > code,
+pre > div > code > * {
+  font-family: var(--font-fira) !important;
+}
