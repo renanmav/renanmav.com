@@ -82,7 +82,7 @@ export default function LateralIndex() {
 
   return (
     <aside className="fixed left-10 top-6">
-      <nav className="hidden lg:block">
+      <nav className="hidden xl:block">
         <ul className="flex !list-none flex-col gap-1">
           {headings.map((heading) => (
             <li key={heading.id} className={getLevelClassName(heading.level)}>

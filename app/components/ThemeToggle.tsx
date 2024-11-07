@@ -5,7 +5,9 @@ import { LuSunMedium, LuMoonStar } from "react-icons/lu";
 import { useTheme } from "./ThemeProvider";
 
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, isMounted } = useTheme();
+
+  if (!isMounted) return null;
 
   return (
     <button

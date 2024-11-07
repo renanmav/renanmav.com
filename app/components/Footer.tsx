@@ -32,13 +32,16 @@ function getLatestCommitDate(): Promise<string> {
 }
 
 function LastUpdated() {
-  const { data } = useSWR("lastCommitDate", getLatestCommitDate, {
+  const { data, isLoading } = useSWR("lastCommitDate", getLatestCommitDate, {
     fallbackData: new Date().toISOString(),
   });
 
   return (
     <p id="last-updated" className="text-sm text-gray-300 dark:text-gray-600">
-      Last updated on {formatDate(data, true)}
+      Last updated on{" "}
+      <span className="inline-block">
+        {isLoading ? "..." : formatDate(data, true)}
+      </span>
     </p>
   );
 }
