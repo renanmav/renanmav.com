@@ -264,6 +264,20 @@ It should offer some basic features:
 
 Always use source code control. With git, you can always go back to a previous version of your software. It helps answer questions such as: Who made changes in this line of code? What's the difference between the current version and last week's? How many lines of code did we change in this release? Which files get changed most often? This kind of information is <Tooltip content="of great value.">invaluable</Tooltip> for bug-tracking, audit, performance and quality purposes.
 
+No one writes perfect software. Bugs are a certainty. These software defects manifest themselves in a variety of ways, from misunderstood requirements to coding errors. Debugging those errors is just problem solving. Concentrate on fixing the problem, not the blame. Also, be sure that you're attacking the root of the problem, not just the symptoms.
+
+<Alert type="tip">
+  Fix the problem, not the blame. It doesn't really matter whether the bug is your fault or someone else's — it is still your problem, and it needs to be fixed.
+</Alert>
+
+Always interview the user who reported the bug in order to gather more data than you were initially given. You must brutally test both boundary conditions and realistic end-user usage patterns. Bug reproduction is key. The best way to start fixing a bug is to make it reproducible. Sometimes, by forcing yourself to isolate the circumstances that display the bug, you'll even gain an insight on how to fix it. Visualize your data, use a debugging tool. Analyze stack traces. Add tracing statements as you descend the call tree. Don't panic.
+
+<Alert type="tip">
+  Don't panic when debugging. Take a deep breath and think about what could be causing the bug.
+</Alert>
+
+Reevaluate truths you hold dear. Don't make assumptions and <Tooltip content="to avoid considering.">gloss over</Tooltip> a routine you "know" is working. Prove it. Prove it in _this_ context, with _this_ data, with _these_ boundary conditions. When you fix a bug, that should be the last time you ever have to deal with it. Add tests so that you don't have to deal with it again. If it took a long time to fix, ask yourself why.
+
 ## Chapter 4: Pragmatic Paranoia
 
 TODO
