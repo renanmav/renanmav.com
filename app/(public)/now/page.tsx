@@ -1,35 +1,84 @@
+import Link from "app/components/Link";
 import { myInfo } from "app/constants";
 
 export default function NowPage() {
   return (
     <section>
-      <h1 className="mb-4 text-xl font-semibold">
+      <Title />
+      <IAm
+        question="Where am I living?"
+        answer={`I'm currently living in ${myInfo.address}`}
+      />
+      <IAm
+        question="Where am I working?"
+        answer="I'm not working at the moment. I'm actively looking for a job."
+      />
+      <IAm
+        question="What am I coding?"
+        answer={
+          <p className="text-base">
+            I'm contributing to <Link href="https://useliquid.xyz">Liquid</Link>{" "}
+            from Supermigrate & MetastableLabs.
+          </p>
+        }
+      />
+      <IAm
+        question="What am I learning?"
+        answer={
+          <p className="text-base">
+            I'm learning about <em>Golang</em> for backend development,
+            specifically the{" "}
+            <Link href="https://goexpert.fullcycle.com.br/pos-goexpert">
+              GoExpert
+            </Link>{" "}
+            course from Fullcycle.
+          </p>
+        }
+      />
+      <IAm
+        question="What am I reading?"
+        answer={
+          <p className="text-base">
+            The Pragmatic Programmer by Andrew Hunt and David Thomas.
+          </p>
+        }
+      />
+    </section>
+  );
+}
+
+function Title() {
+  return (
+    <div className="mb-8">
+      <h1 className="text-xl font-semibold">
         now. <em className="text-sm font-light">or never.</em>
       </h1>
-      {/* <span>Last update: 05/11/2024</span> */}
+      <span className="text-xs font-normal text-gray-400">
+        Last updated on{" "}
+        {new Date().toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </span>
+    </div>
+  );
+}
 
-      <p className="mb-8 text-base">I'm currently living in {myInfo.address}</p>
+type IAmProps = {
+  question: string;
+  answer: string | React.ReactNode;
+};
 
-      <div className="mb-8">
-        <h2 className="mb-2 text-base font-semibold">What am I coding?</h2>
-        <p className="text-base">
-          I'm not working at the moment. I'm actively looking for a job.
-        </p>
-      </div>
-
-      <div className="mb-8">
-        <h2 className="mb-2 text-base font-semibold">What am I learning?</h2>
-        <p className="text-base">
-          I'm learning about <em>Golang</em>.
-        </p>
-      </div>
-
-      <div className="mb-8">
-        <h2 className="mb-2 text-base font-semibold">What am I reading?</h2>
-        <p className="text-base">
-          <em>The Pragmatic Programmer</em> by Andrew Hunt and David Thomas.
-        </p>
-      </div>
-    </section>
+function IAm({ question, answer }: IAmProps) {
+  return (
+    <div className="mb-8">
+      <h2 className="mb-2 text-base font-semibold">{question}</h2>
+      {typeof answer === "string" ? (
+        <p className="text-base">{answer}</p>
+      ) : (
+        answer
+      )}
+    </div>
   );
 }
