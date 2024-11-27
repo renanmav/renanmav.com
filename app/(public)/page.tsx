@@ -5,6 +5,7 @@ import Link from "app/components/Link";
 export default function IndexPage() {
   return (
     <section>
+      <Intro />
       <MeNowadays />
       <PassionsAndInterests />
       <PreviousWorkExperience />
@@ -18,11 +19,26 @@ export default function IndexPage() {
   );
 }
 
+function Intro() {
+  return (
+    <div>
+      <p className="mb-4 text-xl font-bold">Hello 👋😄</p>
+      <p className="mb-4 text-base">
+        I'm{" "}
+        <strong className="font-semibold">
+          Renan
+          {/* TODO: add pronounce button */}
+        </strong>
+        , a software engineer focused on building delightful user experiences.
+      </p>
+    </div>
+  );
+}
+
 function MeNowadays() {
   return (
     <p id="me-nowadays" className="mb-4 text-base">
-      If you want to see what I'm currently doing, check my{" "}
-      <Link href="/now">/now page</Link>.
+      Check my <Link href="/now">/now page</Link> to see what I'm doing.
     </p>
   );
 }

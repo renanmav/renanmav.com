@@ -11,35 +11,55 @@ export default function NowPage() {
       />
       <IAm
         question="Where am I working?"
-        answer="I'm not working at the moment. I'm actively looking for a job."
+        answer={
+          <p className="text-base">
+            I'm working at <Link href="https://margelo.com">Margelo</Link> as a
+            React Native developer.
+          </p>
+        }
       />
       <IAm
         question="What am I coding?"
         answer={
           <p className="text-base">
-            I'm contributing to <Link href="https://useliquid.xyz">Liquid</Link>{" "}
-            from Supermigrate & MetastableLabs.
+            I'm contributing to{" "}
+            <Link href="https://x.com/getliquidapp">Liquid</Link> from
+            Supermigrate & MetastableLabs.
           </p>
         }
       />
       <IAm
         question="What am I learning?"
         answer={
-          <p className="text-base">
-            I'm learning about <em>Golang</em> for backend development,
-            specifically the{" "}
-            <Link href="https://goexpert.fullcycle.com.br/pos-goexpert">
-              GoExpert
-            </Link>{" "}
-            course from Fullcycle.
-          </p>
+          <div className="space-y-2">
+            <p className="text-base">
+              I'm learning about <em>Golang</em> for backend development,
+              through the postgraduate course{" "}
+              <Link href="https://goexpert.fullcycle.com.br/pos-goexpert">
+                GoExpert
+              </Link>{" "}
+              from Fullcycle.
+            </p>
+            <p className="text-base">
+              I'm learning <em>Swift</em> and <em>Kotlin</em> to better
+              understand native mobile development and improve my React Native
+              skills by knowing what happens under the hood.
+            </p>
+            <p className="text-base">
+              I'm learning about <em>animations in React Native</em>, exploring
+              the Reanimated library to create fluid and performant animations.
+            </p>
+          </div>
         }
       />
       <IAm
         question="What am I reading?"
         answer={
           <p className="text-base">
-            The Pragmatic Programmer by Andrew Hunt and David Thomas.
+            <Link href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition">
+              The Pragmatic Programmer
+            </Link>{" "}
+            by Andrew Hunt and David Thomas.
           </p>
         }
       />
