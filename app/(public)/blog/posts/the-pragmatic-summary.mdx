@@ -280,11 +280,19 @@ Reevaluate truths you hold dear. Don't make assumptions and <Tooltip content="to
 
 ## Chapter 4: Pragmatic Paranoia
 
-Axiom of life: you can't write perfect software. Accept it. Turn that depressing reality into an advantage. Code defensively, don't trust other people's code. If there's any doubt, validate all information you're given. Don't trust yourself either. When everybody is out to get you, paranoia is just good thinking. Play it safe.
+As mentioned earlier, an axiom of life is that you can't write perfect software. Accept it and turn that depressing reality into an advantage. Code defensively by not trusting other people's code. If there's any doubt, validate all information you're given. Don't trust yourself either. When everybody is out to get you, paranoia is just good thinking. Play it safe.
 
 {/* Design by Contract */}
 
-Client and suppliers must agree on rights and responsibilities. Design by contract is a way to ensure that both parties understand the expectations and constraints of the relationship.
+Client and suppliers must agree on rights and responsibilities. Design by contract is a way to ensure that both parties understand the expectations and constraints of the relationship. Each party meets its obligations and everyone benefits. Use contracts as a mechanism to write correct program and evaluate its correctness. A correct program is one that does no more and no less than it claims to do. Those expectations and claims are described as follows:
+
+- **Preconditions**: the assumptions that must be true before the program is executed.
+- **Postconditions**: the promises that must be true after the program is executed.
+- **Invariants**: the assumptions that must be true during the program's execution.
+
+Be strict in what you will accept before you begin, and promise as little as possible in return. Simply enumerate at design time what the input range is, what the boundary conditions are, and what the routine promises to deliver — or, more importantly, what it doesn't promise to deliver — and you're on your way to write better software.
+
+Have the compiler check your contracts for you. Inheritance and polymorphism are the cornerstones of object-oriented languages and an area where contracts can really shine. Specify a contract only once, in the base class, to have it applied to every future subclass automatically.
 
 {/* Dead Programs Tell No Lies */}
 
