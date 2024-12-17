@@ -296,15 +296,39 @@ Have the compiler check your contracts for you. Inheritance and polymorphism are
 
 {/* Dead Programs Tell No Lies */}
 
-Ensure that your code does no damage while you're working the bugs out. Try to check things often and terminate the program if things go <Tooltip content="away from the appropriate, planned, or expected course.">awry</Tooltip>.
+Ensure that your code does no damage while you're working the bugs out. Try to check things often and terminate the program if things go <Tooltip content="away from the appropriate, planned, or expected course.">awry</Tooltip>. An easy way to do this is leverage early returns in your code. It's much easier to find and diagnose the problem by crashing early. Dead programs tell no lies.
+
+<Alert type="tip">
+  Crash early. A dead program normally does a lot less damage than a crippled one.
+</Alert>
 
 {/* Assertive Programming */}
 
-Write code that actively verifies your assumptions.
+Write code that actively verifies your assumptions with assertions. Don't use assertions instead of actual error handling.
 
 {/* When to Use Exceptions */}
 
+In practice, if you check for every possible error, it often leads to some pretty ugly code with nested `if` branches. Use try-catch blocks to have a clear flow of control and move all the error handling to a single place. If either party fails to live up to the terms of the contract, an exception should be raised, or the program terminates.
+
+One of the problems with exceptions is knowing when to use them. The author believes that they should rarely be used. Exceptions should be reserved for unexpected events. An exception represents an immediate, nonlocal transfer of control, like a cascading `goto`. Programs that use exceptions for their normal processing suffer from readability and maintainability problems.
+
+<Alert type="tip">
+  Use exceptions for exceptional problems. Exceptions can suffer from all the readability and maintainability problems of classic spaghetti code. Reverse exceptions for exceptional things.
+</Alert>
+
+If an exception is oftenly thrown and adding code to handle these exceptions becomes tedious, consider using error handler routines.
+
 {/* How to Balance Resources */}
+
+When dealing with resources — memory, transactions, threads, files, timers — you need to balance allocation and deallocation. The author suggests a simple tip:
+
+<Alert type="tip">
+  Finish what you start. Where possible, the routine or object that allocates a resource should be responsible for deallocating it.
+</Alert>
+
+Encapsulate resources in classes. The constructor allocates the resource, and the destructor deallocates it.
+
+For nested allocations, deallocate resources in the opposite order of allocation. When allocating the same set of resources in different places in your code, always allocate them in the same order.
 
 ## Chapter 5: Bend, or Break
 
