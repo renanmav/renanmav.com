@@ -22,9 +22,7 @@ export default function NowPage() {
         question="What am I coding?"
         answer={
           <p className="text-base">
-            I'm contributing to{" "}
-            <Link href="https://x.com/getliquidapp">Liquid</Link> from
-            Supermigrate & MetastableLabs.
+            I'm contributing to <Link href="https://www.lava.xyz">Lava</Link>.
           </p>
         }
       />
