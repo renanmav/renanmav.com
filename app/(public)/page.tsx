@@ -1,6 +1,6 @@
 import BlogPosts from "app/components/Posts";
 import Link from "app/components/Link";
-import NamePronounciation from "app/components/NamePronounciation";
+import NamePronunciation from "app/components/NamePronunciation";
 
 export default function IndexPage() {
   return (
@@ -27,7 +27,7 @@ function Intro() {
         I'm{" "}
         <strong className="inline-flex items-center font-semibold">
           Renan
-          <NamePronounciation />
+          <NamePronunciation />
         </strong>
         , a software engineer focused on building delightful user experiences.
       </p>

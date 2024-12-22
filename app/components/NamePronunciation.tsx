@@ -10,7 +10,7 @@ const volumeIcons = [
   <IoVolumeHigh key="high" className="size-4" />,
 ];
 
-export default function NamePronounciation() {
+export default function NamePronunciation() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIcon, setCurrentIcon] = useState(volumeIcons.length - 1);
 
@@ -34,24 +34,33 @@ export default function NamePronounciation() {
   );
 
   const playAudio = () => {
-    const audioUrl = new URL("/audio/renan-pronunciation.mp4", BASE_URL);
+    const audioUrl = new URL("audio/renan-pronunciation.mp4", BASE_URL);
     const audio = new Audio(audioUrl.toString());
 
-    setIsPlaying(true);
+    audio.preload = "auto";
+
+    audio.addEventListener(
+      "canplaythrough",
+      () => {
+        setIsPlaying(true);
+        audio.play().catch((error) => {
+          setIsPlaying(false);
+          console.error("Error playing audio:", error);
+        });
+      },
+      { once: true },
+    );
 
     audio.addEventListener("ended", () => {
       setIsPlaying(false);
     });
 
-    audio.addEventListener("error", () => {
+    audio.addEventListener("error", (e) => {
       setIsPlaying(false);
-      console.error("Error playing audio");
+      console.error("Error loading audio:", e);
     });
 
-    audio.play().catch((error) => {
-      setIsPlaying(false);
-      console.error("Error playing audio:", error);
-    });
+    audio.load();
   };
 
   return (
