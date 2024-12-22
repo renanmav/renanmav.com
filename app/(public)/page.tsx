@@ -1,6 +1,6 @@
-import { myInfo } from "app/constants";
 import BlogPosts from "app/components/Posts";
 import Link from "app/components/Link";
+import NamePronounciation from "app/components/NamePronounciation";
 
 export default function IndexPage() {
   return (
@@ -22,12 +22,12 @@ export default function IndexPage() {
 function Intro() {
   return (
     <div>
-      <p className="mb-4 text-xl font-bold">Hello 👋😄</p>
+      <p className="mb-4 text-xl font-semibold">Hello 👋😄</p>
       <p className="mb-4 text-base">
         I'm{" "}
-        <strong className="font-semibold">
+        <strong className="inline-flex items-center font-semibold">
           Renan
-          {/* TODO: add pronounce button */}
+          <NamePronounciation />
         </strong>
         , a software engineer focused on building delightful user experiences.
       </p>
