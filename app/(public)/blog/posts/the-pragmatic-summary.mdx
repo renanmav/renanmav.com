@@ -6,7 +6,7 @@ summary: "My summary of The Pragmatic Programmer book"
 
 This is my summary of the book [The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/).
 
-<Highlight color="green">I like to read and make highlights of the parts that I think are more important</Highlight>. This reading approach helps me absorb the content better. This post is a collection of my highlights tailored to my own life and experience.
+<Highlight color="green">I like to read and make highlights of the parts that I think are most important</Highlight>. This reading approach helps me absorb the content better. This post is a collection of my highlights tailored to my own life and experience.
 
 I've starting reading this book to become a better programmer. This content will be full of <Highlight color="green">tips to incorporate into your own professional life</Highlight>. It also includes some <Tooltip content="👋😄">tooltips</Tooltip> into some less known words to me. That's a good way to learn new words, specially for a non-native English speaker.
 
@@ -326,13 +326,47 @@ When dealing with resources — memory, transactions, threads, files, timers —
   Finish what you start. Where possible, the routine or object that allocates a resource should be responsible for deallocating it.
 </Alert>
 
-Encapsulate resources in classes. The constructor allocates the resource, and the destructor deallocates it.
+Encapsulate resources in classes. The constructor provides a mechanism to allocate the resource, and the destructor deallocates it.
 
 For nested allocations, deallocate resources in the opposite order of allocation. When allocating the same set of resources in different places in your code, always allocate them in the same order.
 
+Check the resource balancing. A good place to ensure that resource usage has not increased since the last execution is the main processing loop of a long-running program, like a `server.listen()` call.
+
 ## Chapter 5: Bend, or Break
 
-TODO
+Life doesn't stand still, neither does code. Write code that's as flexible as possible. Otherwise, we may find our code quickly becoming outdated, or too <Tooltip content="hard but liable to break or shatter easily.">brittle</Tooltip> to fix. You need code that will <Tooltip content="adapt oneself to adverse circumstances.">roll with the punches</Tooltip>.
+
+{/* Coupling */}
+
+Organize your code into modules and limit the interaction between them by minimizing coupling. Coupling dependencies increases the risk that an unrelated change somewhere else in the system will affect your code. Traversing relationships between objects directly can quickly lead to a combinatorial explosion of dependency relationships.
+
+When we ask an object for a particular service, we'd like the service to be performed on our behalf. We do not want the object to give us a third-party object that we have to deal with to get the required service.
+
+Keep dependencies to a minimum by following The Law of Demeter for functions. It states that a function should only call functions that are declared in the same class. It tries to prevent you from reaching into an object to gain access to a third object's methods.
+
+<Alert type="tip">
+  Minimize coupling between modules. Avoid coupling by writing "shy" code and applying the Law of Demeter.
+</Alert>
+
+{/* TODO: explain more about the Law of Demeter here */}
+
+{/* Metaprogramming */}
+
+Write less code. Move details out of the code completely. Make them configurable. Details messes up our pristine code. Everytime we have to make a change to accomodate a new business rule, we run the risk of breaking the system, or introducing a new bug.
+
+You need to make your system highly configurable to a point of easily switching deeply <Tooltip content="firmly fixed or established; difficult to change.">ingrained</Tooltip> items such as choice of algorithms, database products, middleware technology and user-interface style.
+
+{/* Temporal coupling */}
+
+Do you depende on the "tick" coming before the "tack"?
+
+{/* It's just a view */}
+
+Separation of a data model from a view, or presentation, of that model.
+
+{/* Blackboards */}
+
+Meeting place where modules can exchange data anonymously and asynchronously.
 
 ## Chapter 6: While You Are Coding
 
