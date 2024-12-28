@@ -340,8 +340,6 @@ Life doesn't stand still, neither does code. Write code that's as flexible as po
 
 Organize your code into modules and limit the interaction between them by minimizing coupling. Coupling dependencies increases the risk that an unrelated change somewhere else in the system will affect your code. Traversing relationships between objects directly can quickly lead to a combinatorial explosion of dependency relationships.
 
-When we ask an object for a particular service, we'd like the service to be performed on our behalf. We do not want the object to give us a third-party object that we have to deal with to get the required service.
-
 Keep dependencies to a minimum by following The Law of Demeter for functions. It states that a function should only call functions that are declared in the same class. It tries to prevent you from reaching into an object to gain access to a third object's methods.
 
 <Alert type="tip">
@@ -356,9 +354,27 @@ Write less code. Move details out of the code completely. Make them configurable
 
 You need to make your system highly configurable to a point of easily switching deeply <Tooltip content="firmly fixed or established; difficult to change.">ingrained</Tooltip> items such as choice of algorithms, database products, middleware technology and user-interface style.
 
+<Alert type="tip">
+  Configure, don't integrate. Implement technology choices for an application as configuration options, not through integration or engineering.
+</Alert>
+
+Programming with metadata (data about data) might not be feasible in all applications and scenarios, but it's a high ROI technique. To implement metadata-driven apps, your goal is to think declaratively by specifying _what_ is to be done — not _how_ — and then create highly dynamic and adaptable systems.
+
+This approach has significant benefits:
+
+- it forces you to decouple your design
+- you deffer details out of the code
+- you can change the behavior of the application without recompiling it
+
+<Alert type="tip">
+  Put abstractions in code, details in metadata. Program for the general case, and put the specifics in the metadata.
+</Alert>
+
 {/* Temporal coupling */}
 
-Do you depende on the "tick" coming before the "tack"?
+Do you depend on the "tick" coming before the "tock"? If you do, you might be suffering from temporal coupling.
+
+{/* TODO: UML diagrams */}
 
 {/* It's just a view */}
 
