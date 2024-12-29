@@ -372,9 +372,43 @@ This approach has significant benefits:
 
 {/* Temporal coupling */}
 
-Do you depend on the "tick" coming before the "tock"? If you do, you might be suffering from temporal coupling.
+Do you depend on the "tick" coming before the "tock"? If you do, you might be suffering from temporal coupling. There are two aspects we need to consider:
 
-{/* TODO: UML diagrams */}
+1. **Concurrency**: things happening at the same time
+2. **Ordering**: the relative positions of things in time
+
+When we write code, we often make assumptions about the order of execution that may not hold true in all circumstances. This can lead to subtle bugs, especially in concurrent systems.
+
+Find out what _can_ happen at the same time, and what _must_ happen in a strict order. UML activity diagrams are useful to maximize parallelism by identifying activities that _could_ be performed in parallel. <Highlight color="green">When we design an architecture, or write a program, things tend to be linear. We need to be proactively looking out for concurrency.</Highlight>
+
+The author brings a good workflow example "making a piña colada".
+
+Recipe:
+
+1. Open blender
+2. Open piña colada mix
+3. Put mix in blender
+4. Measure 1/2 cup white rum
+5. Pour in rum
+6. Add 2 cups of ice
+7. Close blender
+8. Liquefy for 2 minutes
+9. Open blender
+10. Get glasses
+11. Get pink umbrellas
+12. Serve
+
+If we were in a piña colada-making contest, we could optimize this workflow:
+
+{/* TODO: UML diagram */}
+
+It can be eye-opening to see where the dependencies really exist.
+
+<Alert type="tip">
+  Analyze workflow to improve concurrency. Exploit concurrency in your user's workflow.
+</Alert>
+
+Design your program to work with time as an explicit parameter. Make the order of execution clear and controllable. This makes your code more flexible and easier to maintain, especially when requirements change or when you need to add concurrent processing.
 
 {/* It's just a view */}
 
