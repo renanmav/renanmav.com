@@ -8,26 +8,34 @@ import Code from "./Code";
 import DateRange from "./DateRange";
 import YoutubeVideo from "./YoutubeVideo";
 import LateralIndex from "./LateralIndex";
+import Tooltip from "./Tooltip";
+import Highlight from "./Highlight";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
+    <th key={index} className="pb-1">
+      {header}
+    </th>
   ));
   let rows = data.rows.map((row, index) => (
     <tr key={index}>
       {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
+        <td key={cellIndex} className="pr-6 pt-1">
+          {cell}
+        </td>
       ))}
     </tr>
   ));
 
   return (
-    <table>
-      <thead>
-        <tr>{headers}</tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <div className="my-6 flex w-full items-center justify-center overflow-x-auto">
+      <table className="border-collapse">
+        <thead className="border-b border-neutral-300 text-left dark:border-neutral-700">
+          <tr>{headers}</tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    </div>
   );
 }
 
@@ -140,6 +148,8 @@ let components = {
   li: CustomListItem,
   blockquote: Quote,
   Alert,
+  Tooltip,
+  Highlight,
 };
 
 interface CustomMDXProps extends MDXRemoteProps {
