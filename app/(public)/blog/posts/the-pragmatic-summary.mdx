@@ -412,11 +412,23 @@ Design your program to work with time as an explicit parameter. Make the order o
 
 {/* It's just a view */}
 
-Separation of a data model from a view, or presentation, of that model.
+Keep your data separate from how it's presented. This way, you only have to change the data once, and all views will update automatically.
+
+<Alert type="tip">
+  Separate views from models. Let views subscribe to model changes.
+</Alert>
 
 {/* Blackboards */}
 
-Meeting place where modules can exchange data anonymously and asynchronously.
+You can also use blackboards to coordinate work as a meeting place where modules can exchange data anonymously and asynchronously, with almost no restrictions on what can be added, the data format and its organization.
+
+Think of detectives working on a case: they gather evidence and post their findings on a blackboard. Other detectives see this information, make connections with their own findings, and add new insights. No detective needs to know who added what - they just work with the available information.
+
+A real-world application of this pattern is processing mortgage or loan applications. Different departments (credit check, property appraisal, income verification, etc.) can work independently, adding their findings to a central blackboard. When all required information is present, the final approval process can begin. Each department works at its own pace, and the system coordinates their efforts without tight coupling between modules.
+
+<Alert type="tip">
+  Use blackboards to coordinate disparate facts and agents, while maintaining independence and isolation among participants.
+</Alert>
 
 ## Chapter 6: While You Are Coding
 
