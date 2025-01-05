@@ -1,6 +1,9 @@
 import Link from "app/components/Link";
 import { myInfo } from "app/constants";
 
+/**
+ * Everytime this is updated, also remember to update last updated date in the title below.
+ */
 export default function NowPage() {
   return (
     <section>
@@ -72,12 +75,7 @@ function Title() {
         now. <em className="text-sm font-light">or never.</em>
       </h1>
       <span className="text-xs font-normal text-gray-400">
-        Last updated on{" "}
-        {new Date().toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
+        Last updated on {"December 22, 2024"}
       </span>
     </div>
   );
