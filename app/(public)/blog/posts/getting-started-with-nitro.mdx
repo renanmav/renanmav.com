@@ -42,6 +42,12 @@ I've chosen to build a module that opens a website in an in-app-browser experien
 
 You can use Nitro in an existing app or within a library. I'll be using a new project for this experiment. Luckily, there's a [template](https://github.com/mrousavy/nitro/tree/main/packages/template) that makes it easier to get started.
 
+<Alert type="Tip">
+  There's also an npx command to help you here: 
+  
+  `npx nitro-codegen@latest init react-native-nitro-foo`
+</Alert>
+
 Make sure you replace all `<<foo>>` with the correct values. Remember to also rename folders.
 
 ## Defining specs
@@ -462,12 +468,13 @@ RCT_NEW_ARCH_ENABLED=0 bundle exec pod install
 
 ## Next steps
 
-Things I'd like to try:
+Things I'd like to try next:
 
-- Learn about properties getters and setters
-- Learn about events emitters and subscribers
-- Learn about promises and async/await
-- Build a Hybrid view component `WKWebView`
+- Learn about [host object inheritance](https://nitro.margelo.com/docs/hybrid-objects#inheritance) and properties getters and setters
+- Learn about [callbacks](https://nitro.margelo.com/docs/types/callbacks)
+- Learn about [events and emitters](https://nitro.margelo.com/docs/comparison#events)
+- Learn about [promises and sync vs async](https://nitro.margelo.com/docs/sync-vs-async)
+- Build a [view component](https://nitro.margelo.com/docs/view-components) with `WKWebView`
 
 Here's the [source code](https://github.com/renanmav/react-native-in-app-browser) for the module if you want to check it out. Also available as an NPM package:
 
@@ -482,6 +489,7 @@ Other nitro modules in the wild:
 - [patrickkabwe/react-native-nitro-in-app-browser](https://github.com/patrickkabwe/react-native-nitro-in-app-browser)
 - [BubbleTrouble14/react-native-nitro-bip39](https://github.com/BubbleTrouble14/react-native-nitro-bip39)
 - [4cc3ssX/react-native-nitro-totp](https://github.com/4cc3ssX/react-native-nitro-totp)
+- [litecoin-foundation/react-native-turbo-scrypt](https://github.com/litecoin-foundation/react-native-turbo-scrypt)
 
 Podcasts and videos about Nitro:
 

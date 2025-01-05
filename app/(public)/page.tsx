@@ -22,6 +22,7 @@ export default function IndexPage() {
 function Intro() {
   return (
     <div>
+      {/* TODO: loop over languages to say hello in each language */}
       <p className="mb-4 text-xl font-semibold">Hello 👋😄</p>
       <p className="mb-4 text-base">
         I'm{" "}
