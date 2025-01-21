@@ -1,6 +1,6 @@
 ---
 title: "The Pragmatic Summary"
-publishedAt: "2024-11-15"
+publishedAt: "2025-01-27"
 summary: "My summary of The Pragmatic Programmer book"
 ---
 
@@ -432,7 +432,34 @@ A real-world application of this pattern is processing mortgage or loan applicat
 
 ## Chapter 6: While You Are Coding
 
-TODO
+Coding is not mechanical. There are decisions to be made every minute that require careful thought and judgement. Developers who don't actively think about their code are programming by coincidence. Pragmatic programmers think critically about all code. We constantly see room for improvement. We make our code easy to test. We put ourselves into good positions in case the unexpected happens.
+
+{/* Programming by Coincidence */}
+
+<Highlight color="pink">Programming by coincidence happens when developers rely on undocumented or accidental behaviors in their code rather than understanding how and why it works.</Highlight> Don't be a war soldier on a minefield <Tooltip content="a slight grimace or shrinking movement caused by pain or distress.">wincing</Tooltip> and poking as you take more steps forward only to be blown to pieces as you gain confidence. There are hundreds of traps just waiting to catch us each day. Don't let false conclusions lead you to disastrous results. Be wary not to rely on undocumented error or boundary conditions.
+
+To avoid programming by coincidence, <Highlight color="green">rely only on documented behaviors, eliminate unnecessary calls, and adhere to modular design principles</Highlight>. Ensure assumptions are explicit and well-documented, particularly for edge cases and dependencies on external systems, such as specific environments or user characteristics. Testing should prove causality rather than assuming it, as implicit and unverified assumptions can undermine projects at every level.
+
+<Alert type="tip">
+  Don't program by coincidence. Rely on reliable things. Beware of accidental complexity, and don't confuse a happy coincidence with a purposeful plan.
+</Alert>
+
+How to program deliberately?
+
+- Always be aware of what you are doing
+- Don't code blindfolded
+- Proceed from a plan
+- Rely only on reliable things
+- Document your assumptions
+- Don't just test your code, but test your assumptions as well
+- Prioritize your effort
+- Don't be a slave to history, be ready to refactor
+
+{/* Algorithm Speed */}
+
+Besides estimating timeframes for a project, you should also estimate the resources that algorithms use: time, processor, memory and so on. This kind of estimating is crucial. Given a choice between two ways of doing something, which do you pick? It's critical to choose the fastest implementation, predicting scalability and performance bottlenecks. To evaluate algorithm efficiency, the "big O" notation is commonly used.
+
+Me, specially, didn't study this in school because my graduation was in Electrical Engineering, so I had to learn it on my own. TLDR: the "big O" notation is used to describe the upper bound of an algorithm's time complexity.
 
 ## Chapter 7: Before the Project
 
