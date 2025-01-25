@@ -463,9 +463,20 @@ How to program deliberately?
 
 Besides estimating timeframes for a project, you should also estimate the resources that algorithms use: time, processor, memory and so on. This kind of estimating is crucial. Given a choice between two ways of doing something, which do you pick? It's critical to choose the fastest implementation, predicting scalability and performance bottlenecks. To evaluate algorithm efficiency, the "big O" notation is commonly used.
 
-Me, specially, didn't study this in school because my graduation was in Electrical Engineering, so I had to learn it on my own. TLDR: the "big O" notation is used to describe the upper bound of an algorithm's time complexity.
-
 {/* TODO: add big O figure with Mermaid? */}
+
+Me, specially, didn't study this in school because my graduation was in Electrical Engineering, so I had to learn it on my own. TLDR: the "big O" notation is used to describe the upper bound of an algorithm's time complexity. I won't be diving too much into this topic, but you can estimate the order of many basic algorithms using common sense:
+
+- Simple loops are `O(n)`, examples include exhaustive searches, finding the maximum value in an array, and generating checksums.
+- Nested loops are `O(m * n)`, examples are simple sorting algorithms such as bubble sort.
+- Binary halves are `O(log n)`, examples include binary search and binary tree operations that traverse it.
+- Divide and conquer algorithms are `O(n log n)`, examples include algorithms that partition their input and work on two halves independently like quicksort.
+- Combinatorial algorithms are `O(n!)`, examples include algorithms that try all possible combinations of elements, like the [traveling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem). Often, <Tooltip content="any approach to problem solving that employs a pragmatic method that is not fully optimized, perfected, or rationalized, but is nevertheless good enough as an approximation.">heuristics</Tooltip> are used to reduce the running times of these algorithms in particular problem domains.
+
+<Alert type="tip">
+  Estimate the order of your algorithms. Ask yourself how large the input can get.
+</Alert>
+
 
 ## Chapter 7: Before the Project
 
