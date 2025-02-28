@@ -465,7 +465,7 @@ Besides estimating timeframes for a project, you should also estimate the resour
 
 {/* TODO: add big O figure with Mermaid? */}
 
-Me, specially, didn't study this in school because my graduation was in Electrical Engineering, so I had to learn it on my own. TLDR: the "big O" notation is used to describe the upper bound of an algorithm's time complexity. I won't be diving too much into this topic, but you can estimate the order of many basic algorithms using common sense:
+Me, specially, didn't study this in school because my graduation was in Electrical Engineering, so I had to learn it on my own. TLDR: the "big O" notation is used to describe the upper bound of an algorithm's time-space complexity. I won't be diving too much into this topic, but you can estimate the order of many basic algorithms using common sense:
 
 - Simple loops are `O(n)`, examples include exhaustive searches, finding the maximum value in an array, and generating checksums.
 - Nested loops are `O(m * n)`, examples are simple sorting algorithms such as bubble sort.
@@ -481,24 +481,56 @@ Also be wary of premature optimization.
 
 {/* Refactoring */}
 
-Software development is more like gardening than construction as a metaphor — it is more organic then concrete. You constantly monitor the health of the garden, and make adjustments as needed. You should rework your code when it all strikes you as being "wrong". Don't hesitate to change it. There's no time like the present. Some things that qualify refactoring are:
+As a metaphor exercise, think of software development more like gardening than construction — it is more organic then concrete. You constantly monitor the health of the garden, and make adjustments as needed. You should rework your code when it all strikes you as being "wrong". Don't hesitate to change it. There's no time like the present.
+
+Some things that qualify refactoring are:
 
 - Duplication
 - Non-orthogonal design
 - Outdated knowledge
 - Performance
 
-Refactoring is an exercise in pain management. Time pressure is often used as an excuse for not refactoring. That excuse does not hold up. Think of code that needs refactoring as a malignant cancer. The longer you wait, the more damage it does.
+Refactoring is an exercise of pain management. Time pressure is often used as an excuse for not refactoring. That excuse does not hold up. Think of code that needs refactoring as a malignant cancer. The longer you wait, the more damage it does.
 
 <Alert type="tip">
   Refactor early, refactor often. Don't let your code rot.
 </Alert>
 
-Keep track of things that need to be refactored. Make sure it gets placed on the schedule.
+Keep track of things that need to be refactored by maintaining a backlog. Make sure it gets placed on the schedule.
+
+Refactoring is redesign. It needs to be undertaken slowly, deliberately and carefully. You don't want to do more harm than good. If you proceed to rip up vast quantities of code with wild abandon, you may find yourself in a worse position than when you started.
+
+Three tips for refactoring:
+
+1. Don't try to refactor and add functionality at the same time.
+2. Make sure you have good tests before you begin refactoring. Maintaining a good regression test suite is key to refactoring.
+3. Take short, deliberate steps. Make many localized changes that result in a larger-scale change.
 
 {/* Code That's Easy to Test */}
 
+Speaking of tests, you should make your code easy to test. Integrated circuits only work if the components you are using are known to be reliable. We need to do the same thing in software — test each piece thoroughly before trying to wire them together.
+
+When you design a module, you should design both its contract and the code to test that contract, considering boundary conditions and other issues that wouldn't occur to you otherwise. In fact, if you build the tests before you implement the code, you get to try out the interface before you commit to it. That's Test-Driven-Development (TDD)!
+
+<Alert type="tip">
+  Design to test. Start thinking about testing before you write a line of code.
+</Alert>
+
+The unit tests for a module shouldn't be shoved away in some far-away corner of the source tree. <Highlight color="green">Tests need to be convinently located.</Highlight> Co-located with the code they are testing. Remember: if it's not easy to find, it won't be used.
+
+You should also have a solid test harness, like [Jest](https://jestjs.io). It should be easy to write tests, run them and see the results. They should be fast to be run frequently. You should have mechanisms to run tests in different environments, or in isolation if you're trying to debug a failing test.
+
+Unit tests are the foundation, but you can also write integration tests, composing modules to test how they work together. You can even consider writing end-to-end tests, which simulate the interaction between a user and the system.
+
+Testing is more cultural than technical. It's about guarantee quality and minimize risks.
+
+<Alert type="tip">
+  Test your software, or your users will. Don't make your users find bugs for you.
+</Alert>
+
 {/* Evil Wizards */}
+
+Be wary of wizards that automatically generate skeleton or boilerplate code. You need to understand that produced code too, otherwise you're just programming by coincidence. No one should be producing code that they don't fully understand.
 
 ## Chapter 7: Before the Project
 
