@@ -350,7 +350,7 @@ Keep dependencies to a minimum by following The Law of Demeter for functions. It
   Minimize coupling between modules. Avoid coupling by writing "shy" code and applying the Law of Demeter.
 </Alert>
 
-{/* TODO: explain more about the Law of Demeter here */}
+The Law of Demeter states that an object should only talk to its immediate friends. This means a method should only call methods on objects that are directly accessible to it, avoiding chains like `object.getX().getY().doZ()`. This reduces coupling and makes code more maintainable.
 
 {/* Metaprogramming */}
 
@@ -404,7 +404,7 @@ Recipe:
 
 If we were in a piña colada-making contest, we could optimize this workflow:
 
-{/* TODO: UML diagram with Mermaid */}
+<img src="/images/pina–colada-uml-diagram.png" alt="Piña colada workflow" />
 
 It can be eye-opening to see where the dependencies really exist.
 
@@ -440,7 +440,7 @@ Coding is not mechanical. There are decisions to be made every minute that requi
 
 {/* Programming by Coincidence */}
 
-<Highlight color="pink">Programming by coincidence happens when developers rely on undocumented or accidental behaviors in their code rather than understanding how and why it works.</Highlight> Don't be a war soldier on a minefield <Tooltip content="a slight grimace or shrinking movement caused by pain or distress.">wincing</Tooltip> and poking as you take more steps forward only to be blown to pieces as you gain confidence. There are hundreds of traps just waiting to catch us each day. Don't let false conclusions lead you to disastrous results. Be wary not to rely on undocumented error or boundary conditions.
+Programming by coincidence happens when developers rely on undocumented or accidental behaviors in their code rather than understanding how and why it works. Don't be a war soldier on a minefield <Tooltip content="a slight grimace or shrinking movement caused by pain or distress.">wincing</Tooltip> and poking as you take more steps forward only to be blown to pieces as you gain confidence. There are hundreds of traps just waiting to catch us each day. Don't let false conclusions lead you to disastrous results. Be wary not to rely on undocumented error or boundary conditions.
 
 To avoid programming by coincidence, <Highlight color="green">rely only on documented behaviors, eliminate unnecessary calls, and adhere to modular design principles</Highlight>. Ensure assumptions are explicit and well-documented, particularly for edge cases and dependencies on external systems, such as specific environments or user characteristics. Testing should prove causality rather than assuming it, as implicit and unverified assumptions can undermine projects at every level.
 
@@ -463,7 +463,7 @@ How to program deliberately?
 
 Besides estimating timeframes for a project, you should also estimate the resources that algorithms use: time, processor, memory and so on. This kind of estimating is crucial. Given a choice between two ways of doing something, which do you pick? It's critical to choose the fastest implementation, predicting scalability and performance bottlenecks. To evaluate algorithm efficiency, the "big O" notation is commonly used.
 
-{/* TODO: add big O figure with Mermaid? */}
+<img src="/images/big-o.png" alt="Big O notation" />
 
 Me, specially, didn't study this in school because my graduation was in Electrical Engineering, so I had to learn it on my own. TLDR: the "big O" notation is used to describe the upper bound of an algorithm's time-space complexity. I won't be diving too much into this topic, but you can estimate the order of many basic algorithms using common sense:
 
@@ -591,4 +591,51 @@ Ask yourself these questions:
 
 ## Chapter 8: Pragmatic Projects
 
-TODO
+Pragmatic techniques that work for individuals can be applied to teams as well. A pragmatic team is more than just a collection of pragmatic individuals - it's a team where the whole is greater than the sum of its parts.
+
+<Alert type="tip">
+  Build teams around motivated individuals. Give them the environment and support they need, and trust them to get the job done.
+</Alert>
+
+Quality is a team issue. The project team should have a "no broken windows" policy, where no one is allowed to check in code that breaks the build, or causes tests to fail. Teams should avoid the "boiled frog syndrome" - where quality degrades so gradually that no one notices until it's too late.
+
+Communication is key in pragmatic teams. Teams should adopt a common vocabulary, avoid "us versus them" mentality, and maintain small, stable teams whenever possible.
+
+<Alert type="tip">
+  Don't use one large team when you can use two smaller ones.
+</Alert>
+
+Automation is a force multiplier for your team, reducing manual effort and increasing consistency. Pragmatic programmers automate everything they can.
+
+<Alert type="tip">
+  Don't use manual procedures when you can automate.
+</Alert>
+
+Automation should be applied to:
+- The build process
+- Testing
+- Documentation generation
+- Deployment
+- Monitoring
+
+A fully automated build process is essential. It should be a single command that builds the entire system from scratch, runs all tests, and produces deployable artifacts.
+
+<Alert type="tip">
+  Invest in the build process. Make it easy to deploy your application.
+</Alert>
+
+Managing expectations is perhaps the most difficult part of software development. Users, clients, and managers all have different expectations about what the software will do and when it will be done.
+
+<Alert type="tip">
+  Gently exceed your users' expectations.
+</Alert>
+
+Under-promise and over-deliver. It's better to surprise people with earlier delivery or more features than to disappoint them with delays or missing functionality.
+
+Be honest about timeframes and capabilities. If you don't know how long something will take, say so. If you're not sure if a feature is possible, be upfront about it.
+
+<Alert type="tip">
+  Sign your work. Craftspeople of an earlier age were proud to sign their work. You should be, too.
+</Alert>
+
+Taking pride in your work is the essence of being a pragmatic programmer. When you truly care about the quality of what you produce, it shows in everything you do.
