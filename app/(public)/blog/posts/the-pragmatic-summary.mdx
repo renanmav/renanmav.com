@@ -536,6 +536,8 @@ Be wary of wizards that automatically generate skeleton or boilerplate code. You
 
 At the very beginning of a project, establish some basic ground rules to make sure **the developer _(you)_ and the project** are not fated to doom.
 
+{/* The Requirements Pit */}
+
 First, determine the requirements. They rarely lie on the surface. Instead, they're bured deep beneath layers of assumptions, misconceptions, and politics. You have to dig for them.
 
 <Alert type="tip">
@@ -551,6 +553,41 @@ To understand users' requirements, become a user. Understand their pain and lear
   Work with a user to think like a user. It's the best way to gain insight into how the system will really be used.
 </Alert>
 
+As you find requirements, you need to write them down and publish a document that everyone on the team can understand — the developers, the project manager, the customer, the marketing team, etc. That's a pretty wide audience. The author recommends to use cases to capture requirements. The form that they will take is based on your audience: simple prose, structured document, level of detail, etc. Emphasize the goal-driven nature of the use cases.
+
+Don't be a slave to any notation. UML diagrams, formal vs informal documents, whatever works for your audience.
+
+Overspecification can be dangerous. Good requirement documents remain abstract. Requirements are plain language translations of _needs_.
+
+<Alert type="tip">
+  Abstractions live longer than details. They can survive the barrage of changes from different implementations and new technologies.
+</Alert>
+
+Many projects failures are blamed on an increase of scope. What can we do to prevent requirements from <Tooltip content="to approach someone quietly, so that the person is suddenly surprised.">creeping up</Tooltip> on us? The key to manage growth of scope is to point out new feature's impact on the schedule. If you're using Agile sprints or cycles, it's easy to have an accurate, complete picture of how, and when, requirements growth occurred.
+
+Maintain a project glossary. It's hard to succeed on a project where users and developers refer to the same thing by different names, or even worse, refer to different things by the same name.
+
+{/* Solving impossible puzzles */}
+
+To solve tough problems that obvious solutions don't work, we need to think outside the box. The solution lies elsewhere. The secret to solving the puzzle is to identify the real (not imaginated) constraints. For example, can you connect all of the dots in the following puzzle and return to the starting point with just three straight lines — without lifting your pen from the paper or retracing your steps?
+
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <g class="layer">
+    <circle cx="50" cy="50" r="7" stroke="currentColor" fill="currentColor" />
+    <circle cx="150" cy="50" r="7" stroke="currentColor" fill="currentColor" />
+    <circle cx="50" cy="150" r="7" stroke="currentColor" fill="currentColor" />
+    <circle cx="150" cy="150" r="7" stroke="currentColor" fill="currentColor" />
+  </g>
+</svg>
+
+Ask yourself these questions:
+
+- Is there an easier way?
+- Are you trying to solve the right problem, or have you been distracted by a peripheral technicality?
+- Why is this thing a problem?
+- What is it that's making it so hard to solve?
+- Does it have to be done this way?
+- Does it have to be done at all?
 
 ## Chapter 8: Pragmatic Projects
 
