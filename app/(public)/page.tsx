@@ -1,6 +1,7 @@
 import BlogPosts from "app/components/Posts";
 import Link from "app/components/Link";
 import NamePronunciation from "app/components/NamePronunciation";
+import GreetingLanguageSwitcher from "app/components/GreetingLanguageSwitcher";
 
 export default function IndexPage() {
   return (
@@ -22,8 +23,7 @@ export default function IndexPage() {
 function Intro() {
   return (
     <div>
-      {/* TODO: loop over languages to say hello in each language */}
-      <p className="mb-4 text-xl font-semibold">Hello 👋😄</p>
+      <GreetingLanguageSwitcher />
       <p className="mb-4 text-base">
         I'm{" "}
         <strong className="inline-flex items-center font-semibold">
@@ -47,10 +47,10 @@ function MeNowadays() {
 function PassionsAndInterests() {
   return (
     <p id="passions-and-interests" className="mb-4 text-base">
-      I'm passionate about design, code quality, making open-source
-      contributions and building in public. I have a particular interest in
-      mobile technologies and building fast and scalable apps that are easy and
-      delightful to use.
+      I'm passionate about learning new languages, design, code quality, making
+      open-source contributions and building in public. I have a particular
+      interest in mobile technologies and building fast and scalable apps that
+      are easy and delightful to use.
     </p>
   );
 }
