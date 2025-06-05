@@ -15,18 +15,28 @@ export default function NowPage() {
       <IAm
         question="Where am I working?"
         answer={
-          <p className="text-base">
-            I'm working at <Link href="https://margelo.com">Margelo</Link> as a
-            React Native developer.
-          </p>
+          <div className="space-y-2">
+            <p className="text-base">
+              I'm working at <Link href="https://margelo.com">Margelo</Link> as
+              a React Native developer. More specifically, in{" "}
+              <Link href="https://www.lava.xyz">Lava</Link>.
+            </p>
+            <p className="text-base"></p>
+          </div>
         }
       />
       <IAm
         question="What am I coding?"
         answer={
-          <p className="text-base">
-            I'm contributing to <Link href="https://www.lava.xyz">Lava</Link>.
-          </p>
+          <div className="space-y-2">
+            <p className="text-base">
+              I'm contributing to the rewrite of the{" "}
+              <Link href="https://github.com/margelo/react-native-quick-crypto">
+                react-native-quick-crypto
+              </Link>{" "}
+              library to Nitro Module.
+            </p>
+          </div>
         }
       />
       <IAm
@@ -34,21 +44,21 @@ export default function NowPage() {
         answer={
           <div className="space-y-2">
             <p className="text-base">
-              I'm learning about <em>Golang</em> for backend development,
-              through the postgraduate course{" "}
+              <em>Rust</em> and <em>BDK</em> (Bitcoin Development Kit) to
+              understand Bitcoin development at a lower level and build more
+              secure applications.
+            </p>
+            <p className="text-base">
+              <em>Animations in React Native</em>, exploring the Reanimated &
+              Skia libraries to create fluid and performant animations.
+            </p>
+            <p className="text-base">
+              <em>Golang</em> for backend development, through the postgraduate
+              course{" "}
               <Link href="https://goexpert.fullcycle.com.br/pos-goexpert">
                 GoExpert
               </Link>{" "}
               from Fullcycle.
-            </p>
-            <p className="text-base">
-              I'm learning <em>Swift</em> and <em>Kotlin</em> to better
-              understand native mobile development and improve my React Native
-              skills by knowing what happens under the hood.
-            </p>
-            <p className="text-base">
-              I'm learning about <em>animations in React Native</em>, exploring
-              the Reanimated library to create fluid and performant animations.
             </p>
           </div>
         }
@@ -56,12 +66,20 @@ export default function NowPage() {
       <IAm
         question="What am I reading?"
         answer={
-          <p className="text-base">
-            <Link href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition">
-              The Pragmatic Programmer
-            </Link>{" "}
-            by Andrew Hunt and David Thomas.
-          </p>
+          <div className="space-y-2">
+            <p className="text-base">
+              <Link href="https://www.amazon.com/Mastering-Bitcoin-Programming-Open-Blockchain/dp/1491954388">
+                Mastering Bitcoin: Programming the Open Blockchain
+              </Link>{" "}
+              Third Edition by Andreas M. Antonopoulos and David A. Harding.
+            </p>
+            <p className="text-base line-through">
+              <Link href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition">
+                The Pragmatic Programmer
+              </Link>{" "}
+              by Andrew Hunt and David Thomas.
+            </p>
+          </div>
         }
       />
     </section>
@@ -75,7 +93,7 @@ function Title() {
         now. <em className="text-sm font-light">or never.</em>
       </h1>
       <span className="text-xs font-normal text-gray-400">
-        Last updated on {"December 22, 2024"}
+        Last updated on {"June 5, 2025"}
       </span>
     </div>
   );
