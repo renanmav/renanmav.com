@@ -36,24 +36,6 @@ export default function ContactList() {
       value: myInfo.twitter,
       icon: <FaTwitter />,
     },
-    {
-      name: "Instagram",
-      link: myInfo.instagram,
-      value: myInfo.instagram,
-      icon: <FaInstagram />,
-    },
-    {
-      name: "Telegram",
-      link: myInfo.telegram,
-      value: myInfo.telegram,
-      icon: <FaTelegram />,
-    },
-    {
-      name: "WhatsApp",
-      link: `https://wa.me/${myInfo.phone.replace(/[\s-]/g, "")}?text=hey`,
-      value: myInfo.phone,
-      icon: <FaWhatsapp />,
-    },
   ];
 
   return (
